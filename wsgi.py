@@ -1,5 +1,6 @@
 import click, pytest, sys
 from flask.cli import with_appcontext, AppGroup
+from datetime import datetime
 
 from App.database import db, get_migrate
 from App.models import User
@@ -11,6 +12,14 @@ from App.controllers import ( create_user, get_all_users_json, get_all_users, in
 
 app = create_app()
 migrate = get_migrate(app)
+
+def parse_exam_date(date_str):
+    date_str = " ".join(date_str.split())  # Remove extra spaces
+    return datetime.strptime(date_str.strip(), "%A %d %B %Y").date()
+
+def parse_exam_time(time_str):
+    time_str = " ".join(time_str.split())  # Remove extra spaces
+    return datetime.strptime(time_str.strip(), "%I:%M %p").time()
 
 # This command creates and initializes the database
 @app.cli.command("init", help="Creates and initializes the database")
