@@ -18,6 +18,12 @@ def init():
     initialize()
     print('database intialized')
 
+@app.cli.command("read-file", help="reads data file into the database")
+def read_file():
+    # read the data file and create the objects in the database
+
+    print('data parsed')
+
 '''
 User Commands
 '''
