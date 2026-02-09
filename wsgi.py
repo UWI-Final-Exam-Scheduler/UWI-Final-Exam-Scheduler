@@ -1,6 +1,6 @@
-import click, pytest, sys
-from flask.cli import with_appcontext, AppGroup
+import click, pytest, sys, csv
 
+from flask.cli import with_appcontext, AppGroup
 from App.database import db, get_migrate
 from App.models import User
 from App.main import create_app
@@ -17,6 +17,15 @@ migrate = get_migrate(app)
 def init():
     initialize()
     print('database intialized')
+
+@app.cli.command("read-file", help="reads data file into the database")
+def read_file():
+    with open('test.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        with open('output.txt', 'a') as f:                
+            for row in reader:
+                print(row, file=f)
+    print('data parsed')
 
 '''
 User Commands
