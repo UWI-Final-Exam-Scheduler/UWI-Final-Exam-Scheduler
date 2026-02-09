@@ -1,11 +1,17 @@
-from App.models import User
+from App.models import User, Admin
 from App.database import db
 
-def create_user(username, password):
-    newuser = User(username=username, password=password)
+def create_user(username, password, email):
+    newuser = User(username=username, password=password, email=email)
     db.session.add(newuser)
     db.session.commit()
     return newuser
+
+def create_admin(username, password, email):
+    newadmin = Admin(username=username, password=password, email=email)
+    db.session.add(newadmin)
+    db.session.commit()
+    return newadmin
 
 def get_user_by_username(username):
     result = db.session.execute(db.select(User).filter_by(username=username))

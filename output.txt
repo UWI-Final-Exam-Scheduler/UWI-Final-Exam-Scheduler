@@ -1,33 +1,33 @@
-{'id': '1', 'Subj Code': 'ACCT ', 'Crse Numb': '1002', 'Title': 'Intro to Financial Accounting', 'Date': 'THURSDAY 04 DECEMBER 2025 ', 'Exam Time': '4:00 pm', 'Room': 'Mechanical Design Office (MD2) ', 'Exam Length': '2', 'Number of Students': '135'}
-{'id': '2', 'Subj Code': 'ACCT ', 'Crse Numb': '1002', 'Title': 'Intro to Financial Accounting', 'Date': 'THURSDAY 04 DECEMBER 2025 ', 'Exam Time': '4:00 pm', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '280'}
-{'id': '3', 'Subj Code': 'ACCT', 'Crse Numb': '1003', 'Title': 'Intro to Cost and Mgmt Acctg', 'Date': 'MONDAY 15 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'The Temporary Room at Nat Sci  ', 'Exam Length': '2', 'Number of Students': '76'}
-{'id': '4', 'Subj Code': 'ACCT', 'Crse Numb': '2014', 'Title': 'Financial Accounting I', 'Date': 'MONDAY 08 DECEMBER 2025 ', 'Exam Time': '4:00 pm', 'Room': 'Mechanical Design Office (MD2) ', 'Exam Length': '2', 'Number of Students': '140'}
-{'id': '5', 'Subj Code': 'ACCT', 'Crse Numb': '2017', 'Title': 'Management Accounting I', 'Date': 'FRIDAY 19 DECEMBER 2025 ', 'Exam Time': '9:00 am', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '2', 'Number of Students': '26'}
-{'id': '6', 'Subj Code': 'ACCT', 'Crse Numb': '2021', 'Title': 'Cost & Management Accounting', 'Date': 'FRIDAY 19 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '127'}
-{'id': '7', 'Subj Code': 'ACCT', 'Crse Numb': '3041', 'Title': 'Adv Financial Accounting', 'Date': 'MONDAY 01 DECEMBER 2025 ', 'Exam Time': '4:00 pm', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '74'}
-{'id': '8', 'Subj Code': 'ACCT', 'Crse Numb': '3043', 'Title': 'Auditing I', 'Date': 'WEDNESDAY 03 DECEMBER 2025', 'Exam Time': '1:00 pm', 'Room': 'The Temporary Room at Chemistry  ', 'Exam Length': '2', 'Number of Students': '76'}
-{'id': '9', 'Subj Code': 'ACTS', 'Crse Numb': '3001', 'Title': 'Life Contingencies II', 'Date': 'MONDAY 15 DECEMBER  2025', 'Exam Time': '4:00 pm', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '21'}
-{'id': '10', 'Subj Code': 'ACTS', 'Crse Numb': '3003', 'Title': 'Loss Models I', 'Date': 'FRIDAY 05 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'The Temporary Room at Chemistry  ', 'Exam Length': '2', 'Number of Students': '15'}
-{'id': '11', 'Subj Code': 'ACTS', 'Crse Numb': '3004', 'Title': 'Asset & Liability Management I', 'Date': 'THURSDAY 18 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '22'}
-{'id': '12', 'Subj Code': 'ADRR', 'Crse Numb': '1001', 'Title': 'Intro to Nat Haz, Dis &Clim Ch', 'Date': 'TUESDAY 02 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'Mechanical Design Office (MD2) ', 'Exam Length': '2', 'Number of Students': '8'}
-{'id': '13', 'Subj Code': 'ADRR', 'Crse Numb': '1002', 'Title': 'Environmental Sustainability', 'Date': 'MONDAY 08 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '2', 'Number of Students': '13'}
-{'id': '14', 'Subj Code': 'ADRR', 'Crse Numb': '3001', 'Title': 'Food & Nutri Sec Policy & Legi', 'Date': 'FRIDAY 19 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'The Temporary Room at Chemistry  ', 'Exam Length': '2', 'Number of Students': '16'}
-{'id': '15', 'Subj Code': 'ADRR', 'Crse Numb': '3002', 'Title': 'Community Eng Prin & Pract', 'Date': 'MONDAY 15 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'The Temporary Room at Chemistry  ', 'Exam Length': '2', 'Number of Students': '14'}
-{'id': '16', 'Subj Code': 'AGBU', 'Crse Numb': '1005', 'Title': 'Introduction to Microeconomics', 'Date': 'MONDAY 08 DECEMBER 2025 ', 'Exam Time': '4:00 pm', 'Room': 'The Temporary Room at Chemistry  ', 'Exam Length': '2', 'Number of Students': '46'}
-{'id': '17', 'Subj Code': 'AGBU', 'Crse Numb': '2000', 'Title': 'Agriculture in the Economy', 'Date': 'MONDAY 01 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '12'}
-{'id': '18', 'Subj Code': 'AGBU', 'Crse Numb': '2002', 'Title': 'Mgmt & Econ-Agri Prod & Mktg', 'Date': 'MONDAY 08 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '8'}
-{'id': '19', 'Subj Code': 'AGBU', 'Crse Numb': '3001', 'Title': 'Marketing and Price Analysis', 'Date': 'FRIDAY 19 DECEMBER 2025 ', 'Exam Time': '4:00 pm', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '2', 'Number of Students': '6'}
-{'id': '20', 'Subj Code': 'AGBU', 'Crse Numb': '3006', 'Title': 'Agri Project Appraisal & Imp', 'Date': 'MONDAY 15 DECEMBER 2025 ', 'Exam Time': '4:00 pm', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '9'}
-{'id': '21', 'Subj Code': 'AGCP', 'Crse Numb': '2000', 'Title': 'Biosystems Engr Principles', 'Date': 'MONDAY 08 DECEMBER 2025 ', 'Exam Time': '4:00 pm', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '27'}
-{'id': '22', 'Subj Code': 'AGCP', 'Crse Numb': '2101', 'Title': 'Principles of Sustainable Crop', 'Date': 'THURSDAY 04 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '2', 'Number of Students': '25'}
-{'id': '23', 'Subj Code': 'AGCP', 'Crse Numb': '3011', 'Title': "Major C'bean Export Crops", 'Date': 'MONDAY 08 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '2', 'Number of Students': '5'}
-{'id': '24', 'Subj Code': 'AGCP', 'Crse Numb': '3014', 'Title': 'Principles of Commodity Util', 'Date': 'MONDAY 01 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '2', 'Number of Students': '16'}
-{'id': '25', 'Subj Code': 'AGEX', 'Crse Numb': '1003', 'Title': "Development of C'bbean Agri", 'Date': 'THURSDAY 18 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'Mechanical Design Office (MD2) ', 'Exam Length': '2', 'Number of Students': '23'}
-{'id': '26', 'Subj Code': 'AGLS', 'Crse Numb': '1001', 'Title': 'Anatomy & Phys of Animals', 'Date': 'MONDAY 15 DECEMBER 2025 ', 'Exam Time': '9:00 am', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '25'}
-{'id': '27', 'Subj Code': 'AGLS', 'Crse Numb': '2101', 'Title': 'Principles of Livestock Sci', 'Date': 'WEDNESDAY 10 DECEMBER 2025 ', 'Exam Time': '4:00 pm', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '2', 'Number of Students': '24'}
-{'id': '28', 'Subj Code': 'AGLS', 'Crse Numb': '3003', 'Title': 'Ruminant Production Systems', 'Date': 'THURSDAY 18 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'Mechanical Design Office (MD2) ', 'Exam Length': '2', 'Number of Students': '9'}
-{'id': '29', 'Subj Code': 'AGLS', 'Crse Numb': '6001', 'Title': 'Tropical Animal Science', 'Date': 'THURSDAY 11 DECEMBER 2025 ', 'Exam Time': '9:00 am', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '3', 'Number of Students': '12'}
-{'id': '30', 'Subj Code': 'AGRI', 'Crse Numb': '0101', 'Title': 'Agriculture,Food & the Env', 'Date': 'THURSDAY 11 DECEMBER  2025 ', 'Exam Time': '1:00 pm', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '2', 'Number of Students': '10'}
-{'id': '31', 'Subj Code': 'AGRI', 'Crse Numb': '0102', 'Title': 'Agricultural Physics', 'Date': 'TUESDAY 16 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '2', 'Number of Students': '10'}
-{'id': '32', 'Subj Code': 'AGRI', 'Crse Numb': '0103', 'Title': 'Agricultural Chemistry', 'Date': 'MONDAY 01 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'JFK Auditorium ', 'Exam Length': '2', 'Number of Students': '36'}
-{'id': '33', 'Subj Code': 'AGRI', 'Crse Numb': '0104', 'Title': 'Agricultural Biology I', 'Date': 'WEDNESDAY 10 DECEMBER 2025 ', 'Exam Time': '1:00 pm', 'Room': 'Main Drawing Office (MD3) ', 'Exam Length': '2', 'Number of Students': '22'}
+1, ACCT, 1002, Intro to Financial Accounting, 2025-12-04, 16:00, Mechanical Design Office (MD2), 2, 135
+2, ACCT, 1002, Intro to Financial Accounting, 2025-12-04, 16:00, JFK Auditorium, 2, 280
+3, ACCT, 1003, Intro to Cost and Mgmt Acctg, 2025-12-15, 13:00, The Temporary Room at Nat Sci, 2, 76
+4, ACCT, 2014, Financial Accounting I, 2025-12-08, 16:00, Mechanical Design Office (MD2), 2, 140
+5, ACCT, 2017, Management Accounting I, 2025-12-19, 09:00, Main Drawing Office (MD3), 2, 26
+6, ACCT, 2021, Cost & Management Accounting, 2025-12-19, 13:00, JFK Auditorium, 2, 127
+7, ACCT, 3041, Adv Financial Accounting, 2025-12-01, 16:00, JFK Auditorium, 2, 74
+8, ACCT, 3043, Auditing I, 2025-12-03, 13:00, The Temporary Room at Chemistry, 2, 76
+9, ACTS, 3001, Life Contingencies II, 2025-12-15, 16:00, JFK Auditorium, 2, 21
+10, ACTS, 3003, Loss Models I, 2025-12-05, 13:00, The Temporary Room at Chemistry, 2, 15
+11, ACTS, 3004, Asset & Liability Management I, 2025-12-18, 13:00, JFK Auditorium, 2, 22
+12, ADRR, 1001, Intro to Nat Haz, Dis &Clim Ch, 2025-12-02, 13:00, Mechanical Design Office (MD2), 2, 8
+13, ADRR, 1002, Environmental Sustainability, 2025-12-08, 13:00, Main Drawing Office (MD3), 2, 13
+14, ADRR, 3001, Food & Nutri Sec Policy & Legi, 2025-12-19, 13:00, The Temporary Room at Chemistry, 2, 16
+15, ADRR, 3002, Community Eng Prin & Pract, 2025-12-15, 13:00, The Temporary Room at Chemistry, 2, 14
+16, AGBU, 1005, Introduction to Microeconomics, 2025-12-08, 16:00, The Temporary Room at Chemistry, 2, 46
+17, AGBU, 2000, Agriculture in the Economy, 2025-12-01, 13:00, JFK Auditorium, 2, 12
+18, AGBU, 2002, Mgmt & Econ-Agri Prod & Mktg, 2025-12-08, 13:00, JFK Auditorium, 2, 8
+19, AGBU, 3001, Marketing and Price Analysis, 2025-12-19, 16:00, Main Drawing Office (MD3), 2, 6
+20, AGBU, 3006, Agri Project Appraisal & Imp, 2025-12-15, 16:00, JFK Auditorium, 2, 9
+21, AGCP, 2000, Biosystems Engr Principles, 2025-12-08, 16:00, JFK Auditorium, 2, 27
+22, AGCP, 2101, Principles of Sustainable Crop, 2025-12-04, 13:00, Main Drawing Office (MD3), 2, 25
+23, AGCP, 3011, Major C'bean Export Crops, 2025-12-08, 13:00, Main Drawing Office (MD3), 2, 5
+24, AGCP, 3014, Principles of Commodity Util, 2025-12-01, 13:00, Main Drawing Office (MD3), 2, 16
+25, AGEX, 1003, Development of C'bbean Agri, 2025-12-18, 13:00, Mechanical Design Office (MD2), 2, 23
+26, AGLS, 1001, Anatomy & Phys of Animals, 2025-12-15, 09:00, JFK Auditorium, 2, 25
+27, AGLS, 2101, Principles of Livestock Sci, 2025-12-10, 16:00, Main Drawing Office (MD3), 2, 24
+28, AGLS, 3003, Ruminant Production Systems, 2025-12-18, 13:00, Mechanical Design Office (MD2), 2, 9
+29, AGLS, 6001, Tropical Animal Science, 2025-12-11, 09:00, Main Drawing Office (MD3), 3, 12
+30, AGRI, 0101, Agriculture,Food & the Env, 2025-12-11, 13:00, Main Drawing Office (MD3), 2, 10
+31, AGRI, 0102, Agricultural Physics, 2025-12-16, 13:00, Main Drawing Office (MD3), 2, 10
+32, AGRI, 0103, Agricultural Chemistry, 2025-12-01, 13:00, JFK Auditorium, 2, 36
+33, AGRI, 0104, Agricultural Biology I, 2025-12-10, 13:00, Main Drawing Office (MD3), 2, 22
