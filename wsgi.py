@@ -20,12 +20,10 @@ def init():
 
 @app.cli.command("read-file", help="reads data file into the database")
 def read_file():
-    # read the data file and create the objects in the database
     with open('test.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         with open('output.txt', 'a') as f:                
             for row in reader:
-            #print to a separate file 
                 print(row, file=f)
     print('data parsed')
 
