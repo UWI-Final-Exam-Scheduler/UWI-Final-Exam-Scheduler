@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 import click, pytest, sys
 from flask.cli import with_appcontext, AppGroup
 from datetime import datetime
+=======
+import click, pytest, sys, csv
+>>>>>>> origin/Data-Parser
 
+from flask.cli import with_appcontext, AppGroup
 from App.database import db, get_migrate
 from App.models import User
 from App.main import create_app
@@ -26,6 +31,17 @@ def parse_exam_time(time_str):
 def init():
     initialize()
     print('database intialized')
+
+@app.cli.command("read-file", help="reads data file into the database")
+def read_file():
+    # read the data file and create the objects in the database
+    with open('test.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            #print to a separate file 
+            with open('output.txt', 'a') as f:                
+                print(row, file=f)
+    print('data parsed')
 
 '''
 User Commands
