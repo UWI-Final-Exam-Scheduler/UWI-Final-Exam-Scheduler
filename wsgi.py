@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import click, pytest, sys
+import click, pytest, sys, csv
 from flask.cli import with_appcontext, AppGroup
 from datetime import datetime
-=======
-import click, pytest, sys, csv
->>>>>>> origin/Data-Parser
 
 from flask.cli import with_appcontext, AppGroup
 from App.database import db, get_migrate
