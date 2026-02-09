@@ -1,6 +1,6 @@
 import click, pytest, sys
 from flask.cli import with_appcontext, AppGroup
-
+import csv
 from App.database import db, get_migrate
 from App.models import User
 from App.main import create_app
@@ -21,7 +21,10 @@ def init():
 @app.cli.command("read-file", help="reads data file into the database")
 def read_file():
     # read the data file and create the objects in the database
-
+    with open('data.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            print(row)
     print('data parsed')
 
 '''
