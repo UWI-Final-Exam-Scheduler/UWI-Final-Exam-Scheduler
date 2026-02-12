@@ -5,6 +5,8 @@ class Courses(db.Model):
 
     id = db.Column(db.Integer, nullable=False, unique=True, primary_key=True)
     name = db.Column(db.String(100), nullable=False, unique=True)
+
+    enrollments = db.relationship('Enrollment', back_populates='course')
     
     def __init__(self, name):
         self.name = name
