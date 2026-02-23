@@ -14,12 +14,6 @@ from App.controllers.students import import_students_from_csv
 app = create_app()
 migrate = get_migrate(app)
 
-# This command creates and initializes the database
-# @app.cli.command("init", help="Creates and initializes the database")
-# def init():
-#     course = Courses(name="MATH1100")
-#     db.session.add(course)
-#     db.session.commit()
 
 @app.cli.command("db-reset", help="Drops and recreates the database")
 def db_reset():
