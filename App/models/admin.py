@@ -1,7 +1,6 @@
 from App.models import User
 from App.database import db
 
-
 class Admin(User):
     id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=True, primary_key=True)
     
