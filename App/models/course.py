@@ -1,6 +1,6 @@
 from App.database import db
 
-class Courses(db.Model):
+class Course(db.Model):
     __tablename__ = "courses"
 
     courseCode = db.Column(db.String(20), nullable=False, unique=True, primary_key=True)
