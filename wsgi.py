@@ -5,7 +5,7 @@ from flask.cli import with_appcontext, AppGroup
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users )
-from App.controllers.courses import import_courses_from_csv
+from App.controllers.courses import import_courses_from_csv, create_course
 from App.controllers.students import import_students_from_csv
 
 
@@ -22,13 +22,29 @@ def db_reset():
 
 @app.cli.command("import-all-courses", help="reads courses data file into the database")
 def read_courses():
-    msg = import_courses_from_csv("Test Data/courses.csv")
-    print(msg)
+    try:
+        msg = import_courses_from_csv("Test Data/courses.csv")
+        print(msg)
+    except Exception as e:
+        print(f"Error importing courses: {e}")
+
+@app.cli.command("create course", help="Creates a course")
+@click.argument("courseCode")
+@click.argument("name")
+def create_course_command(courseCode, name):
+    try:
+        msg = create_course(courseCode, name)
+        print(msg)
+    except Exception as e:
+        print(f"Error creating course: {e}")
 
 @app.cli.command("import-all-students", help="reads students data file into the database")
 def read_students():
-    msg = import_students_from_csv("Test Data/students.csv")
-    print(msg)
+    try:
+        msg = import_students_from_csv("Test Data/students.csv")
+        print(msg)
+    except Exception as e:
+        print(f"Error importing students: {e}")
 
     
 '''

@@ -25,3 +25,17 @@ def import_courses_from_csv(file_path):
             db.session.rollback()
             raise e
         return "Courses imported successfully!"
+    
+def create_course(courseCode, name):
+    existing = Course.query.filter_by(courseCode=courseCode).first()
+    if existing:
+        raise ValueError(f"Course with code {courseCode} already exists.")
+    
+    course = Course(courseCode=courseCode, name=name)
+    db.session.add(course)
+    try:
+        db.session.commit()    
+    except Exception as e:
+        db.session.rollback()
+        raise e
+    return f"Course {courseCode} created successfully!"
