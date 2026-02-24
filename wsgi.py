@@ -2,11 +2,12 @@ import click, pytest, sys
 from flask.cli import with_appcontext, AppGroup
 
 from flask.cli import with_appcontext, AppGroup
+from App.controllers.enrollments import create_enrollment, import_enrollments_from_csv
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users )
 from App.controllers.courses import import_courses_from_csv, create_course
-from App.controllers.students import import_students_from_csv
+from App.controllers.students import import_students_from_csv, create_student
 
 
 # This commands file allow you to create convenient CLI commands for testing controllers
@@ -28,12 +29,13 @@ def read_courses():
     except Exception as e:
         print(f"Error importing courses: {e}")
 
-@app.cli.command("create course", help="Creates a course")
-@click.argument("courseCode")
-@click.argument("name")
-def create_course_command(courseCode, name):
+@app.cli.command("create-course", help="Creates a course")
+@click.argument("course_code")
+@click.argument("name", nargs=-1)
+def create_course_command(course_code, name):
+    name = " ".join(name)
     try:
-        msg = create_course(courseCode, name)
+        msg = create_course(course_code, name)
         print(msg)
     except Exception as e:
         print(f"Error creating course: {e}")
@@ -46,6 +48,32 @@ def read_students():
     except Exception as e:
         print(f"Error importing students: {e}")
 
+@app.cli.command("create-student", help="Creates a student")
+@click.argument("student_id")
+def create_student_command(student_id):
+    try:
+        msg = create_student(student_id)
+        print(msg)
+    except Exception as e:
+        print(f"Error creating student: {e}")
+
+@app.cli.command("import-all-enrollments", help="reads enrollments data file into the database")
+def read_enrollments():
+    try:
+        msg = import_enrollments_from_csv("Test Data/enrollments.csv")
+        print(msg)
+    except Exception as e:
+        print(f"Error importing enrollments: {e}")
+
+@app.cli.command("create-enrollment", help="Creates an enrollment")
+@click.argument("student_id")
+@click.argument("course_code")
+def create_enrollment_command(student_id, course_code):
+    try:
+        msg = create_enrollment(student_id, course_code)
+        print(msg)
+    except Exception as e:
+        print(f"Error creating enrollment: {e}")
     
 '''
 User Commands
