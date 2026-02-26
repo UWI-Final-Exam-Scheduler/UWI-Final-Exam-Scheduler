@@ -8,6 +8,8 @@ from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users )
 from App.controllers.courses import import_courses_from_csv, create_course
 from App.controllers.students import import_students_from_csv, create_student
+from App.controllers.admin import create_admin
+from App.controllers.venue import import_venues_from_csv
 
 
 # This commands file allow you to create convenient CLI commands for testing controllers
@@ -74,6 +76,15 @@ def create_enrollment_command(student_id, course_code):
         print(msg)
     except Exception as e:
         print(f"Error creating enrollment: {e}")
+
+@app.cli.command("import-all-venues", help="reads venues data file into the database")
+def read_venues():
+    try:
+        msg = import_venues_from_csv("Test Data/venues.csv")
+        print(msg)
+    except Exception as e:
+        print(f"Error importing venues: {e}")
+
     
 '''
 User Commands
@@ -87,13 +98,13 @@ user_cli = AppGroup('user', help='User object commands')
 
 # Then define the command and any parameters and annotate it with the group (@)
 @user_cli.command("create", help="Creates a user")
-@click.argument("username", default="rob")
-@click.argument("password", default="robpass")
+@click.argument("username", default="admin")
+@click.argument("password", default="adminpass")
 def create_user_command(username, password):
     create_user(username, password)
     print(f'{username} created!')
 
-# this command will be : flask user create bob bobpass
+# this command will be : flask user create admin adminpass
 
 @user_cli.command("list", help="Lists users in the database")
 @click.argument("format", default="string")
@@ -104,6 +115,20 @@ def list_user_command(format):
         print(get_all_users_json())
 
 app.cli.add_command(user_cli) # add the group to the cli
+
+'''
+Admin Commands
+'''
+admin_cli = AppGroup('admin', help='Admin object commands')
+@admin_cli.command("create", help="Creates an admin")
+@click.argument("username", default="admin")
+@click.argument("password", default="adminpass")
+def create_admin_command(username, password):
+    create_admin(username, password)
+    print(f'{username} created!')
+
+
+app.cli.add_command(admin_cli) # add the group to the cli
 
 '''
 Test Commands
