@@ -1,1 +1,2 @@
-SQLALCHEMY_DATABASE_URI="postgresql://neondb_owner:npg_AzXyFdhR2Zq9@ep-raspy-firefly-ai7dfdm8-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+SQLALCHEMY_DATABASE_URI="sqlite:///temp-database.db" 
+SECRET_KEY="secret key"
