@@ -10,8 +10,18 @@ def import_enrollments_from_csv(file_path):
             if not row.get("Student ID") or not row.get("Course Code"):
                 raise ValueError(f"Missing required fields in row: {row}")
             
-            student_id = int(row.get("Student ID"))
+            student_id = row.get("Student ID")
+
+            if len(str(student_id)) != 9:
+                raise ValueError("student_id must be exactly 9 digits")
+    
+            if not str(student_id).isdigit():
+                raise ValueError("student_id must contain only digits (no letters or other characters)")
+            
+            student_id = int(student_id)
+
             course_code = row.get("Course Code")
+            course_code = normalize_course_code(course_code)
 
             existing_student = Student.query.filter_by(student_id=student_id).first()
             if not existing_student:
@@ -36,6 +46,10 @@ def create_enrollment(student_id, course_code):
     if len(str(student_id)) != 9:
         raise ValueError("student_id must be exactly 9 digits")
     
+    if not str(student_id).isdigit():
+        raise ValueError("student_id must contain only digits (no letters or other characters)")
+    
+    student_id = int(student_id)
     course_code = normalize_course_code(course_code)
 
     existing_student = Student.query.filter_by(student_id=student_id).first()

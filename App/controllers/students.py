@@ -9,7 +9,15 @@ def import_students_from_csv(file_path):
             if not row.get("Student ID"):
                 raise ValueError(f"Missing required fields in row: {row}")
             
-            student_id = int(row.get("Student ID"))
+            student_id = row.get("Student ID")
+
+            if len(str(student_id)) != 9:
+                raise ValueError("student_id must be exactly 9 digits")
+            
+            if not str(student_id).isdigit():
+                raise ValueError("student_id must contain only digits (no letters or other characters)")
+            
+            student_id = int(student_id)
             
             existing = Student.query.filter_by(student_id=student_id).first()
             if not existing:
@@ -25,6 +33,11 @@ def import_students_from_csv(file_path):
 def create_student(student_id):
     if len(str(student_id)) != 9:
         raise ValueError("student_id must be exactly 9 digits")
+    
+    if not str(student_id).isdigit():
+        raise ValueError("student_id must contain only digits (no letters or other characters)")
+    
+    student_id = int(student_id)
     
     existing = Student.query.filter_by(student_id=student_id).first()
     if existing:
