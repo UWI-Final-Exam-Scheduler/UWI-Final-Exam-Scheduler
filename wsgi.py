@@ -6,7 +6,7 @@ from App.controllers.enrollments import create_enrollment, import_enrollments_fr
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users )
-from App.controllers.courses import import_courses_from_csv, create_course
+from App.controllers.courses import import_courses_from_csv, create_course, get_all_courses, get_course_by_code, get_courses_by_subject
 from App.controllers.students import import_students_from_csv, create_student
 from App.controllers.admin import create_admin
 from App.controllers.venue import import_venues_from_csv
@@ -85,6 +85,32 @@ def read_venues():
     except Exception as e:
         print(f"Error importing venues: {e}")
 
+
+@app.cli.command("view_courses", help="View all courses in the database")
+def view_courses():
+    try:
+        courses = get_all_courses()
+        print(courses)
+    except Exception as e:
+        print(f"Error viewing courses: {e}")
+
+@app.cli.command("view_course", help="View a course by its code")
+@click.argument("course_code")
+def view_course(course_code):
+    try:
+        course = get_course_by_code(course_code)
+        print(course)
+    except Exception as e:
+        print(f"Error viewing course: {e}")
+
+@app.cli.command("view_courses_by_subject", help="View courses by subject code")
+@click.argument("subject_code")
+def view_courses_by_subject(subject_code):
+    try:
+        courses = get_courses_by_subject(subject_code)
+        print(courses)
+    except Exception as e:
+        print(f"Error viewing courses by subject: {e}")
     
 '''
 User Commands
