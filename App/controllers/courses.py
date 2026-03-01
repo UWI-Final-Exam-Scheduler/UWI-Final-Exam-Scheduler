@@ -1,4 +1,4 @@
-from App.models import Course
+from App.models import Course, Enrollment
 import csv
 from App.database import db
 
@@ -55,3 +55,41 @@ def create_course(courseCode, name):
         db.session.rollback()
         raise e
     return f"Course {courseCode} created successfully!"
+
+def get_all_courses():
+    courses = db.session.query(Course).all()
+    if not courses: 
+        return f"No courses found."
+    course_json = []
+    for course in courses:
+        course_json.append({
+            "courseCode": course.courseCode,
+            "name": course.name
+        })
+    return course_json
+
+def get_course_by_code(courseCode):
+    courseCode = normalize_course_code(courseCode)
+    course = db.session.query(Course).filter_by(courseCode=courseCode).first()
+    if not course:
+        return f"Course with code {courseCode} not found."
+    students = len(db.session.query(Enrollment).filter_by(courseCode=courseCode).all())
+    return {
+        "courseCode": course.courseCode,
+        "name": course.name,
+        "enrolledStudents": str(students)
+    }
+
+def get_courses_by_subject(subjectCode):
+    subjectCode = subjectCode.upper()
+    courses = db.session.query(Course).filter(Course.courseCode.startswith(subjectCode)).all()
+    if not courses:
+        return f"No courses found for subject {subjectCode}."
+    courses_json = []
+    for course in courses:
+        course_data = get_course_by_code(course.courseCode)
+        if course_data:
+            courses_json.append(course_data)
+    return courses_json
+
+    
