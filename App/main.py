@@ -38,4 +38,19 @@ def create_app(overrides={}):
     def custom_unauthorized_response(error):
         return render_template('401.html', error=error), 401
     app.app_context().push()
+
+    #configure CORS to allow requests from frontend
+    CORS(
+        app,
+        resources={r"/api/*": 
+                   {"origins": 
+                    ["http://localhost:3000", # frontend local
+                     "http://127.0.0.1:8080", # backend local
+                     "https://uwi-final-exam-scheduler.onrender.com/", # backend production 
+                     "https://uwifinalexamcchedulerfrontend.vercel.app/" # frontend production
+                    ]}},
+        supports_credentials=True,
+        allow_headers=["Content-Type", "Authorization"],
+        methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    )
     return app
