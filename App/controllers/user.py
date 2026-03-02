@@ -1,8 +1,12 @@
-from App.models import User
+from App.models import User, Admin
 from App.database import db
+from App.controllers.admin import create_admin
 
-def create_user(username, password, email):
-    newuser = User(username=username, password=password, email=email)
+def create_user(username, password, role='user'):
+    if role == 'admin':
+        newuser = Admin(username=username, password=password, role=role)
+    else:
+        newuser = User(username=username, password=password, role=role)
     db.session.add(newuser)
     db.session.commit()
     return newuser
@@ -24,10 +28,13 @@ def get_all_users_json():
     users = [user.get_json() for user in users]
     return users
 
-def update_user(id, username):
+def update_user(id, username, role=None):
     user = get_user(id)
     if user:
         user.username = username
+
+        if role is not None:
+            user.role = role
         # user is already in the session; no need to re-add
         db.session.commit()
         return True
