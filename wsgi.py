@@ -126,8 +126,9 @@ user_cli = AppGroup('user', help='User object commands')
 @user_cli.command("create", help="Creates a user")
 @click.argument("username", default="admin")
 @click.argument("password", default="adminpass")
-def create_user_command(username, password):
-    create_user(username, password)
+@click.argument("role", default="admin")
+def create_user_command(username, password, role):
+    create_user(username, password, role=role)
     print(f'{username} created!')
 
 # this command will be : flask user create admin adminpass
@@ -149,8 +150,8 @@ admin_cli = AppGroup('admin', help='Admin object commands')
 @admin_cli.command("create", help="Creates an admin")
 @click.argument("username", default="admin")
 @click.argument("password", default="adminpass")
-def create_admin_command(username, password):
-    create_admin(username, password)
+def create_admin_command(username, password, role='admin'):
+    create_admin(username, password, role=role)
     print(f'{username} created!')
 
 

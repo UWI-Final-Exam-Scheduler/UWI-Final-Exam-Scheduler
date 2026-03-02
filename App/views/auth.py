@@ -47,7 +47,7 @@ def logout_action():
 API Routes
 '''
 
-@auth_views.route('/api/login', methods=['POST'])
+@auth_views.route('/api/auth/login', methods=['POST'])
 def user_login_api():
   data = request.json
   token = login(data['username'], data['password'])
@@ -57,7 +57,7 @@ def user_login_api():
   set_access_cookies(response, token)
   return response
 
-@auth_views.route('/api/identify', methods=['GET'])
+@auth_views.route('/api/auth/identify', methods=['GET'])
 @jwt_required()
 def identify_user():
     return jsonify({'message': f"username: {current_user.username}, id : {current_user.id}"})

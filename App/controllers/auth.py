@@ -4,13 +4,20 @@ from App.models import User
 from App.database import db
 
 def login(username, password):
-  result = db.session.execute(db.select(User).filter_by(username=username))
-  user = result.scalar_one_or_none()
+  user = User.query.filter_by(username=username).first()
   if user and user.check_password(password):
     # Store ONLY the user id as a string in JWT 'sub'
-    return create_access_token(identity=str(user.id))
+    return create_access_token(
+       identity=str(user.id), 
+       additional_claims={"username": user.username, "role": user.role}
+       )
   return None
 
+def is_admin(identity):
+  user = User.query.filter_by(id=identity).first()
+  if user and user.role == 'admin':
+    return True
+  return False
 
 def setup_jwt(app):
   jwt = JWTManager(app)
