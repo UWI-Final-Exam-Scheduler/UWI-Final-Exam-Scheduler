@@ -17,7 +17,6 @@ from App.controllers import (
 from App.views import views, setup_admin
 
 
-
 def add_views(app):
     for view in views:
         app.register_blueprint(view)
@@ -25,7 +24,6 @@ def add_views(app):
 def create_app(overrides={}):
     app = Flask(__name__, static_url_path='/static')
     load_config(app, overrides)
-    CORS(app)
     add_auth_context(app)
     photos = UploadSet('photos', TEXT + DOCUMENTS + IMAGES)
     configure_uploads(app, photos)
@@ -46,8 +44,8 @@ def create_app(overrides={}):
                    {"origins": 
                     ["http://localhost:3000", # frontend local
                      "http://127.0.0.1:8080", # backend local
-                     "https://uwi-final-exam-scheduler.onrender.com/", # backend production 
-                     "https://uwifinalexamcchedulerfrontend.vercel.app/" # frontend production
+                     "https://uwi-final-exam-scheduler.onrender.com", # backend production 
+                     "https://uwifinalexamcchedulerfrontend.vercel.app" # frontend production
                     ]}},
         supports_credentials=True,
         allow_headers=["Content-Type", "Authorization"],

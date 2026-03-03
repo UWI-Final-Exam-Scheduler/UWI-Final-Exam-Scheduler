@@ -11,7 +11,7 @@ def load_config(app, overrides):
         app.config.from_object('App.default_config')
 
     # Select Neon DB URI based on ENV
-    env = os.environ.get('ENV', 'development')
+    env = os.environ.get('ENV', 'development') # default to 'development' if ENV is not set
     if env == 'production':
         db_url = os.environ.get('DATABASE_URI_NEON_PROD')
     else:
@@ -31,13 +31,18 @@ def load_config(app, overrides):
     app.config['PREFERRED_URL_SCHEME'] = 'https'
     app.config['UPLOADED_PHOTOS_DEST'] = "App/uploads"
 
+    # JWT configuration
     app.config['JWT_ACCESS_COOKIE_NAME'] = 'access_token'
     app.config["JWT_TOKEN_LOCATION"] = ["cookies", "headers"]
-    app.config["JWT_COOKIE_SECURE"] = True
-    app.config["JWT_COOKIE_CSRF_PROTECT"] = False
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
 
-    app.config['JWT_SECRET_KEY'] = app.config['SECRET_KEY']
+    # Set secure cookie settings based on environment
+    is_production = (env == 'production') # boolean check for production environment
+    app.config["JWT_COOKIE_SECURE"] = is_production # False for development, True for production
+    app.config["JWT_COOKIE_CSRF_PROTECT"] = is_production  # Disable CSRF protection in development for easier testing, enable in production for security
+
+    # app.config['JWT_SECRET_KEY'] = app.config['SECRET_KEY']
+    app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY", "default_secret_key")
     
     app.config['FLASK_ADMIN_SWATCH'] = 'darkly'
 
