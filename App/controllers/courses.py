@@ -62,9 +62,11 @@ def get_all_courses():
         return f"No courses found."
     course_json = []
     for course in courses:
+        students = len(db.session.query(Enrollment).filter_by(courseCode=course.courseCode).all())
         course_json.append({
             "courseCode": course.courseCode,
-            "name": course.name
+            "name": course.name,
+            "enrolledStudents": str(students)
         })
     return course_json
 
