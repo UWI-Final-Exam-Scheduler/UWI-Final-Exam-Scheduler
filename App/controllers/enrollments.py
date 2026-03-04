@@ -72,3 +72,41 @@ def create_enrollment(student_id, course_code):
         db.session.rollback()
         raise e
     return f"Enrollment for student {student_id} in course {course_code} created successfully!"
+
+def get_all_enrollments():
+    enrollments = Enrollment.query.all()
+
+    if not enrollments:
+        return []
+    
+    enrollment_json = []
+    for enrollment in enrollments:
+        enrollment_json.append({
+            "student_id": enrollment.student_id,
+            "courseCode": enrollment.courseCode
+        })
+    
+    return enrollment_json
+
+def get_enrollments_by_student(student_id):
+    if len(str(student_id)) != 9:
+        raise ValueError("student_id must be exactly 9 digits")
+    
+    if not str(student_id).isdigit():
+        raise ValueError("student_id must contain only digits (no letters or other characters)")
+    
+    student_id = int(student_id)
+
+    enrollments = Enrollment.query.filter_by(student_id=student_id).all()
+
+    if not enrollments:
+        return []
+    
+    enrollment_json = []
+    for enrollment in enrollments:
+        enrollment_json.append({
+            "student_id": enrollment.student_id,
+            "courseCode": enrollment.courseCode
+        })
+    
+    return enrollment_json
