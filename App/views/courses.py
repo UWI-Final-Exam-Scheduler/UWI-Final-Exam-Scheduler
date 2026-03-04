@@ -16,7 +16,7 @@ def get_courses():
     authenticated_user =  get_jwt_identity()
 
     # Ensure the user is authenticated before accessing courses
-    if not is_admin(authenticated_user):
+    if not is_admin(authenticated_user.id):
         return jsonify({'error': 'Unauthorized'}), 401
     
     try:
@@ -35,7 +35,7 @@ def get_courseInfo(course_code):
     authenticated_user = get_jwt_identity()
 
     # Ensure the user is authenticated before accessing course info
-    if not is_admin(authenticated_user):
+    if not is_admin(authenticated_user.id):
         return jsonify({'error': 'Unauthorized'}), 401
     
     try:
@@ -52,7 +52,7 @@ def get_coursesBySubject(subject_code):
     authenticated_user = get_jwt_identity()
 
     # Ensure the user is authenticated before accessing courses by subject
-    if not is_admin(authenticated_user):
+    if not is_admin(authenticated_user.id):
         return jsonify({'error': 'Unauthorized'}), 401
     
     try:
