@@ -43,7 +43,7 @@ def create_app(overrides={}):
         resources={r"/api/*": 
                    {"origins": 
                     ["http://localhost:3000", # frontend local
-                     "http://127.0.0.1:8080", # backend local
+                     "http://localhost:8080", # backend local
                      "https://uwi-final-exam-scheduler.onrender.com", # backend production 
                      "https://uwifinalexamcchedulerfrontend.vercel.app" # frontend production
                     ]}},
