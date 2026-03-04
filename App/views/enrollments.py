@@ -24,7 +24,7 @@ def get_enrollments_endpoint():
         
     try:
         enrollments = get_all_enrollments()
-        if enrollments is None:
+        if not enrollments:
             return jsonify({'error': 'No enrollments found'}), 404
         return jsonify(enrollments), 200
     except Exception as e:
@@ -41,7 +41,7 @@ def get_enrollments_by_student_endpoint(student_id):
         
     try:
         enrollments = get_enrollments_by_student(student_id)
-        if enrollments is None:
+        if not enrollments:
             return jsonify({'error': f'No enrollments found for student ID {student_id}'}), 404
         return jsonify(enrollments), 200
     except Exception as e:
