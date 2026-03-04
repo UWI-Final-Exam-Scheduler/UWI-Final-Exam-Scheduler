@@ -28,3 +28,25 @@ def import_venues_from_csv(file_path):
             db.session.rollback()
             raise e
         return "Venues imported successfully!"
+
+def get_all_venues():
+    venues = db.session.query(Venue).all()
+    if not venues:
+        return []
+    venue_json = []
+    for venue in venues:
+        venue_json.append({
+            "name": venue.name,
+            "capacity": venue.capacity
+        })
+    return venue_json
+
+def get_venue_by_name(name):
+    venue = db.session.query(Venue).filter_by(name=name).first()
+    if not venue:
+        return f"Venue with name {name} not found."
+    venue = {
+        "name": venue.name,
+        "capacity": venue.capacity
+    }
+    return venue
