@@ -4,7 +4,8 @@ from App.database import db
 
 def import_students_from_csv(file_path):
     with open(file_path, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)               
+        reader = csv.DictReader(csvfile)    
+        students = []           
         for row in reader:
             if not row.get("Student ID"):
                 raise ValueError(f"Missing required fields in row: {row}")
@@ -18,18 +19,21 @@ def import_students_from_csv(file_path):
                 raise ValueError("student_id must contain only digits (no letters or other characters)")
             
             student_id = int(student_id)
+            students.append(Student(student_id=student_id))
             
-            existing = Student.query.filter_by(student_id=student_id).first()
-            if not existing:
-                student = Student(student_id=student_id)
-                db.session.add(student)
+            if len(students) == 1000:
+                db.session.bulk_save_objects(students)
+                db.session.commit()
+                students = []
         try:
-            db.session.commit()    
+            if students:
+                db.session.bulk_save_objects(students)
+                db.session.commit()
         except Exception as e:
             db.session.rollback()
             raise e
         return "Students imported successfully!"
-    
+
 def create_student(student_id):
     if len(str(student_id)) != 9:
         raise ValueError("student_id must be exactly 9 digits")
