@@ -4,7 +4,7 @@ class Course(db.Model):
     __tablename__ = "courses"
 
     courseCode = db.Column(db.String(20), nullable=False, unique=True, primary_key=True)
-    name = db.Column(db.String(100), nullable=False, unique=True)
+    name = db.Column(db.String(100), nullable=False, unique=False)
 
     enrollments = db.relationship('Enrollment', back_populates='course')
     

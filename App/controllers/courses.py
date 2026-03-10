@@ -16,7 +16,8 @@ def normalize_course_code(courseCode):
 
 def import_courses_from_csv(file_path):
     with open(file_path, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)               
+        reader = csv.DictReader(csvfile)   
+        courses = []            
         for row in reader:
             if not row.get("Subj Code") or not row.get("Crse Numb") or not row.get("Title"):
                 raise ValueError(f"Missing required fields in row: {row}")
@@ -28,13 +29,17 @@ def import_courses_from_csv(file_path):
             courseCode = normalize_course_code(courseCode)
 
             title = str(row.get("Title")).strip()
-            
-            existing = Course.query.filter_by(courseCode=courseCode).first()
-            if not existing:
-                course = Course(courseCode=courseCode, name=title)
-                db.session.add(course)
+
+            courses.append(Course(courseCode=courseCode, name=title))
+
+            if len(courses) == 1000:
+                db.session.bulk_save_objects(courses)
+                db.session.commit()
+                courses = []
         try:
-            db.session.commit()    
+            if courses:
+                db.session.bulk_save_objects(courses)
+                db.session.commit()
         except Exception as e:
             db.session.rollback()
             raise e
