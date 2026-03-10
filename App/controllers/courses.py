@@ -61,8 +61,8 @@ def create_course(courseCode, name):
         raise e
     return f"Course {courseCode} created successfully!"
 
-def get_all_courses():
-    courses = db.session.query(Course).all()
+def get_all_courses(page=1, per_page=20):
+    courses = db.session.query(Course).paginate(page=page, per_page=per_page)
     if not courses: 
         return f"No courses found."
     course_json = []
@@ -73,7 +73,15 @@ def get_all_courses():
             "name": course.name,
             "enrolledStudents": str(students)
         })
-    return course_json
+    return {
+        'page': courses.page,
+        'per_page': courses.per_page,
+        'total': courses.total,
+        'pages': courses.pages,
+        'has_next': courses.has_next,
+        'has_prev': courses.has_prev,
+        'courses': course_json
+    }
 
 def get_course_by_code(courseCode):
     courseCode = normalize_course_code(courseCode)
