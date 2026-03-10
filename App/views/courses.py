@@ -20,12 +20,17 @@ def get_courses():
         return jsonify({'error': 'Unauthorized'}), 401
     
     try:
-        courses = get_all_courses()
+        page = request.args.get('page', 1, type=int)
+        per_page = request.args.get('per_page',20, type=int)
+
+        if page < 1:
+            return jsonify({'error': 'Page number must be greater than 0'}), 400
+        if per_page < 1:
+            return jsonify({'error': 'Per page must be greater than 0'}), 400
+        courses = get_all_courses(page=page, per_page=per_page)
         if courses is None:
             return jsonify({'error': 'No courses found'}), 404
         return jsonify(courses), 200
-        # courses_data = [{'courseCode': course.courseCode, 'name': course.name} for course in courses]
-        # return jsonify(courses_data), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
