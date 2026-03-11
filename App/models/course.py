@@ -7,6 +7,7 @@ class Course(db.Model):
     name = db.Column(db.String(100), nullable=False, unique=False)
 
     enrollments = db.relationship('Enrollment', back_populates='course')
+    exams = db.relationship('Exam', back_populates='course')
     
     def __init__(self, courseCode, name):
         self.courseCode = courseCode

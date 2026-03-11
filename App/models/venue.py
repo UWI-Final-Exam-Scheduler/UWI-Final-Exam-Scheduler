@@ -7,6 +7,8 @@ class Venue(db.Model):
     name = db.Column(db.String(120), nullable=False, unique=True)
     capacity = db.Column(db.Integer, nullable=False)
 
+    exams = db.relationship('Exam', back_populates='venue')
+
     def __init__(self, name, capacity):
         self.name = name
         self.capacity = capacity
