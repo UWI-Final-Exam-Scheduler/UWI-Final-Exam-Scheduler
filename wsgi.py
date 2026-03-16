@@ -74,23 +74,18 @@ def export_courses():
 def export_clash_matrix():
     try:
         clashes = ClashMatrix.query.order_by(ClashMatrix.course1, ClashMatrix.course2).all()
-
         output_path = Path("Test Data/clash_matrix_export.csv")
         output_path.parent.mkdir(parents=True, exist_ok=True)
-
         with open(output_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(["Course 1", "Course 2", "Clash Count"])
-
             for clash in clashes:
                 writer.writerow([
                     clash.course1,
                     clash.course2,
                     clash.clash_count
                 ])
-
         print(f"Exported {len(clashes)} clash rows to {output_path}")
-
     except Exception as e:
         print(f"Error exporting clash matrix: {e}")
 
