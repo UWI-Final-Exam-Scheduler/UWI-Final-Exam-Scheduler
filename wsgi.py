@@ -1,3 +1,5 @@
+import csv
+from pathlib import Path
 import traceback
 
 import click, pytest, sys
@@ -17,6 +19,7 @@ from App.models.enrollment import Enrollment
 from App.models.student import Student
 from App.models.venue import Venue
 from App.controllers.clash_matrix import create_clash_matrix, view_conflicting_courses
+from App.controllers.exams import generate_timetable
 # This commands file allow you to create convenient CLI commands for testing controllers
 
 app = create_app()
@@ -27,6 +30,15 @@ migrate = get_migrate(app)
 def db_reset():
     db.drop_all()
     db.create_all()
+
+@app.cli.command("load-from-last", help="Loads all the previous exams into the ")
+def import_timetable():
+    try:
+        result = generate_timetable()
+        print(result)
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {e}")
 
 @app.cli.command("import-all-courses", help="reads courses data file into the database")
 def read_courses():
@@ -39,6 +51,30 @@ def read_courses():
         print(msg)
     except Exception as e:
         print(f"Error importing courses: {e}")
+
+@app.cli.command("export-courses", help="Exports all courses in the database to a CSV file")
+def export_courses():
+    try:
+        courses = Course.query.all()
+
+        output_path = Path("Test Data/sem2_courses.csv")
+
+        with open(output_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+
+            # Write header
+            writer.writerow(["Subj Code", "Crse Numb", "Title"])
+
+            for course in courses:
+                subject = course.courseCode[:4]
+                number = course.courseCode[4:]
+
+                writer.writerow([subject, number, course.name])
+
+        print(f"Exported {len(courses)} courses to {output_path}")
+
+    except Exception as e:
+        print(f"Error exporting courses: {e}")
 
 @app.cli.command("create-course", help="Creates a course")
 @click.argument("course_code")
