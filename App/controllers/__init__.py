@@ -6,3 +6,4 @@ from .students import *
 from .enrollments import *
 from .admin import *
 from .clash_matrix import *
+from .exams import *

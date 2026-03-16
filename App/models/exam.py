@@ -14,7 +14,8 @@ class Exam(db.Model):
     course = db.relationship('Course', back_populates='exams')
     venue = db.relationship("Venue", back_populates="exams")
 
-    def __init__(self, courseCode, date, time, venue_id, exam_length, number_of_students):
+    def __init__(self,id, courseCode, date, time, venue_id, exam_length, number_of_students):
+        self.id = id
         self.courseCode = courseCode
         self.date = date
         self.time = time
