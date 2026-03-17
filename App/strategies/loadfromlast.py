@@ -16,7 +16,7 @@ class LoadFromLastStrategy(SchedulingStrategy):
         current_file = Path(__file__).resolve()
         project_root = current_file.parents[2]
 
-        data_dir = project_root / "Data"
+        data_dir = project_root / "Test Data"
         pdf_path = data_dir / "UWI Timetable Cross Reference Final 202510 17NOV2025.pdf"
 
         main_pattern = re.compile(

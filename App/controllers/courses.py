@@ -3,11 +3,11 @@ import csv
 from App.database import db
 
 def normalize_course_code(courseCode):
-    if len(courseCode) != 8:
-        raise Exception("courseCode must be exactly 8 characters (e.g. COMP1600)")
+    if len(courseCode) not in [7, 8]:
+        raise Exception("courseCode must be 3 or 4 letters followed by 4 digits (e.g. LAW1010 or COMP1600)")
 
-    letters = courseCode[:4]
-    numbers = courseCode[4:]
+    letters = courseCode[:-4]
+    numbers = courseCode[-4:]
 
     if not letters.isalpha() or not numbers.isdigit():
         raise Exception("courseCode must be 4 letters followed by 4 digits (e.g. COMP1600)")
@@ -20,18 +20,21 @@ def import_courses_from_csv(file_path):
         courses = []            
         for row in reader:
             if not row.get("Subj Code") or not row.get("Crse Numb") or not row.get("Title"):
+                print(f"Missing required fields in row: {row}")
                 raise ValueError(f"Missing required fields in row: {row}")
             
             subject_code = str(row.get("Subj Code")).strip()
             course_number = str(row.get("Crse Numb")).strip()
-
             courseCode = f"{subject_code}{course_number}"
-            courseCode = normalize_course_code(courseCode)
+            
+            try:
+                courseCode = normalize_course_code(courseCode)
+            except Exception as e:
+                print(f"Bad row: {row} | Combined courseCode: '{courseCode}' | Error: {e}")
+                raise
 
             title = str(row.get("Title")).strip()
-
             courses.append(Course(courseCode=courseCode, name=title))
-
             if len(courses) == 1000:
                 db.session.bulk_save_objects(courses)
                 db.session.commit()
