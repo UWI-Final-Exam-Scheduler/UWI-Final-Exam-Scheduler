@@ -100,23 +100,18 @@ def get_course_by_code(courseCode):
 
 def get_courses_by_subject(subjectCode, page=1, per_page=20):
     subjectCode = subjectCode.upper()
-    courses = db.session.query(Course).filter(Course.courseCode.startswith(subjectCode)).paginate(page=page, per_page=per_page).all()
-    if not courses:
+    pagination = db.session.query(Course).filter(Course.courseCode.startswith(subjectCode)).paginate(page=page, per_page=per_page)
+    if not pagination.items:
         return f"No courses found for subject {subjectCode}."
-    courses_json = []
-    for course in courses:
-        course_data = get_course_by_code(course.courseCode)
-        if course_data:
-            courses_json.append(course_data)
     return {
-        'page': courses.page,
-        'per_page': courses.per_page,
-        'total': courses.total,
-        'pages': courses.pages,
-        'has_next': courses.has_next,
-        'has_prev': courses.has_prev,
-        'courses': courses_json
-    }
+    'courses': [{'courseCode': c.courseCode, 'name': c.name} for c in pagination.items],  # ✅ Use pagination.items here
+    'page': pagination.page,
+    'per_page': pagination.per_page,
+    'total': pagination.total,
+    'pages': pagination.pages,
+    'has_next': pagination.has_next,
+    'has_prev': pagination.has_prev
+}
 
 def get_subject_codes():
     subject_codes = db.session.query(Course.courseCode).distinct().all()
