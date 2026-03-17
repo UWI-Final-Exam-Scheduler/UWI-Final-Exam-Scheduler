@@ -4,7 +4,8 @@ from App.models import Course
 from App.controllers.courses import (
     get_all_courses,
     get_course_by_code,
-    get_courses_by_subject
+    get_courses_by_subject,
+    get_subject_codes
 )
 from App.controllers.auth import is_admin
 
@@ -61,9 +62,34 @@ def get_coursesBySubject(subject_code):
         return jsonify({'error': 'Unauthorized'}), 401
     
     try:
-        courses = get_courses_by_subject(subject_code)
+        page = request.args.get('page', 1, type=int)
+        per_page = request.args.get('per_page',20, type=int)
+
+        if page < 1:
+            return jsonify({'error': 'Page number must be greater than 0'}), 400
+        if per_page < 1:
+            return jsonify({'error': 'Per page must be greater than 0'}), 400
+        
+        courses = get_courses_by_subject(subject_code, page=page, per_page=per_page)
         if courses is None:
             return jsonify({'error': 'No courses found for subject'}), 404
         return jsonify(courses), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+@course_views.route('/api/courses/subjects', methods=['GET'])
+@jwt_required()
+def get_subjectCodes():
+    authenticated_user = get_jwt_identity()
+
+    # Ensure the user is authenticated before accessing subject codes
+    if not is_admin(authenticated_user):
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    try: 
+        subject_codes = get_subject_codes()
+        if subject_codes is None:
+            return jsonify({'error': 'No subject codes found'}), 404
+        return jsonify(subject_codes), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500

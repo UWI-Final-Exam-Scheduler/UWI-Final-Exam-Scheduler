@@ -10,7 +10,7 @@ from App.controllers.enrollments import create_enrollment, import_enrollments_fr
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users )
-from App.controllers.courses import import_courses_from_csv, create_course, get_all_courses, get_course_by_code, get_courses_by_subject
+from App.controllers.courses import get_subject_codes, import_courses_from_csv, create_course, get_all_courses, get_course_by_code, get_courses_by_subject
 from App.controllers.students import import_students_from_csv, create_student
 from App.controllers.admin import create_admin
 from App.controllers.venue import import_venues_from_csv
@@ -176,6 +176,14 @@ def view_courses_by_subject(subject_code):
         print(courses)
     except Exception as e:
         print(f"Error viewing courses by subject: {e}")
+
+@app.cli.command("view_subject_codes", help="View all subject codes")
+def view_subject_codes():
+    try:
+        subject_codes = get_subject_codes()
+        print(subject_codes)
+    except Exception as e:
+        print(f"Error viewing subject codes: {e}")
 
 @app.cli.command("create-clash-matrix", help="Creates the clash matrix")  
 def create_clash_matrix_command():
