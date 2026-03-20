@@ -1,6 +1,7 @@
 from App.models import Course, Enrollment
 import csv
 from App.database import db
+from collections import Counter
 
 def normalize_course_code(courseCode):
     if len(courseCode) not in [7, 8]:
@@ -20,21 +21,18 @@ def import_courses_from_csv(file_path):
         courses = []            
         for row in reader:
             if not row.get("Subj Code") or not row.get("Crse Numb") or not row.get("Title"):
-                print(f"Missing required fields in row: {row}")
                 raise ValueError(f"Missing required fields in row: {row}")
-            
+
             subject_code = str(row.get("Subj Code")).strip()
             course_number = str(row.get("Crse Numb")).strip()
+
             courseCode = f"{subject_code}{course_number}"
-            
-            try:
-                courseCode = normalize_course_code(courseCode)
-            except Exception as e:
-                print(f"Bad row: {row} | Combined courseCode: '{courseCode}' | Error: {e}")
-                raise
+            courseCode = normalize_course_code(courseCode)
 
             title = str(row.get("Title")).strip()
+
             courses.append(Course(courseCode=courseCode, name=title))
+
             if len(courses) == 1000:
                 db.session.bulk_save_objects(courses)
                 db.session.commit()
@@ -66,15 +64,20 @@ def create_course(courseCode, name):
 
 def get_all_courses(page=1, per_page=20):
     courses = db.session.query(Course).paginate(page=page, per_page=per_page)
-    if not courses: 
+    if not courses:
         return f"No courses found."
+
+    course_list = list(courses)
+    course_codes = [course.courseCode for course in course_list]
+    enrollments = db.session.query(Enrollment.courseCode).filter(Enrollment.courseCode.in_(course_codes)).all()
+    enrollment_counts = Counter(e.courseCode for e in enrollments)
+
     course_json = []
-    for course in courses:
-        students = len(db.session.query(Enrollment).filter_by(courseCode=course.courseCode).all())
+    for course in course_list:
         course_json.append({
             "courseCode": course.courseCode,
             "name": course.name,
-            "enrolledStudents": str(students)
+            "enrolledStudents": str(enrollment_counts.get(course.courseCode, 0))
         })
     return {
         'page': courses.page,
@@ -103,15 +106,27 @@ def get_courses_by_subject(subjectCode, page=1, per_page=20):
     pagination = db.session.query(Course).filter(Course.courseCode.startswith(subjectCode)).paginate(page=page, per_page=per_page)
     if not pagination.items:
         return f"No courses found for subject {subjectCode}."
+
+    course_codes = [c.courseCode for c in pagination.items]
+    enrollments = db.session.query(Enrollment.courseCode).filter(Enrollment.courseCode.in_(course_codes)).all()
+    enrollment_counts = Counter(e.courseCode for e in enrollments)
+
     return {
-    'courses': [{'courseCode': c.courseCode, 'name': c.name} for c in pagination.items],  # ✅ Use pagination.items here
-    'page': pagination.page,
-    'per_page': pagination.per_page,
-    'total': pagination.total,
-    'pages': pagination.pages,
-    'has_next': pagination.has_next,
-    'has_prev': pagination.has_prev
-}
+        'courses': [
+            {
+                'courseCode': c.courseCode,
+                'name': c.name,
+                'enrolledStudents': str(enrollment_counts.get(c.courseCode, 0))
+            }
+            for c in pagination.items
+        ],
+        'page': pagination.page,
+        'per_page': pagination.per_page,
+        'total': pagination.total,
+        'pages': pagination.pages,
+        'has_next': pagination.has_next,
+        'has_prev': pagination.has_prev
+    }
 
 def get_subject_codes():
     subject_codes = db.session.query(Course.courseCode).distinct().all()

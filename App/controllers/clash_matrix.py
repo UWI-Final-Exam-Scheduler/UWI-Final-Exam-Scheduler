@@ -47,37 +47,56 @@ def exceeds_percentage_threshold(clash_count, enrollment_count, course1, course2
         return False
     return (clash_count / smaller_class) >= perc_thresh
 
+# would only show clashes when both thresholds are satisfied
 def view_conflicting_courses(abs_threshold=5, perc_threshold=0.1):
     conflicting_courses = []
-    abs_conflicts_count = 0
-    perc_conflicts_count = 0
-
+    unique_courses = set()
+    
     # get total enrollments for each course to use in percentage threshold calculations 
     enrollments_counts = db.session.query(Enrollment.courseCode, db.func.count(Enrollment.student_id)).group_by(Enrollment.courseCode).all()
     enrollment_count = dict(enrollments_counts)
 
     clashes = ClashMatrix.query.all()
     for clash in clashes:
-        if absolute_threshold(clash.clash_count, abs_threshold=abs_threshold):
-            abs_conflicts_count += 1
+        if absolute_threshold(clash.clash_count, abs_threshold=abs_threshold) and \
+           exceeds_percentage_threshold(clash.clash_count, enrollment_count, clash.course1, clash.course2, perc_thresh=perc_threshold):
             conflicting_courses.append({
                 "course1": clash.course1,
                 "course2": clash.course2,
-                "clash_count": clash.clash_count,
-                "reason": "absolute_threshold"
+                "clash_count": clash.clash_count
             })
-        if exceeds_percentage_threshold(clash.clash_count, enrollment_count, clash.course1, clash.course2, perc_thresh=perc_threshold):
-            perc_conflicts_count += 1
-            conflicting_courses.append({
-                "course1": clash.course1,
-                "course2": clash.course2,
-                "clash_count": clash.clash_count,
-                "reason": "percentage_threshold"
-            })
+            unique_courses.add(clash.course1)
+            unique_courses.add(clash.course2)
 
     return {
         "total_conflicts": len(conflicting_courses),
-        "conflicting_courses": conflicting_courses,
-        "absolute_conflicts_count": abs_conflicts_count,
-        "percentage_conflicts_count": perc_conflicts_count
+        "unique_courses_with_conflicts": len(unique_courses),
+        "conflicting_courses": conflicting_courses
+    }
+
+def view_course_clashes(course_code, abs_threshold=5, perc_threshold=0.1):
+    course_code = course_code.upper()
+    clashes = ClashMatrix.query.filter((ClashMatrix.course1 == course_code) | (ClashMatrix.course2 == course_code)).all()
+    
+    if not clashes:
+        return f"No clashes found for course {course_code}."
+
+    enrollments_counts = db.session.query(Enrollment.courseCode, db.func.count(Enrollment.student_id)).group_by(Enrollment.courseCode).all()
+    enrollment_count = dict(enrollments_counts)
+
+
+    course_clashes = []
+    for clash in clashes:
+        other_course = clash.course2 if clash.course1 == course_code else clash.course1
+        if absolute_threshold(clash.clash_count, abs_threshold=abs_threshold) and \
+        exceeds_percentage_threshold(clash.clash_count, enrollment_count, clash.course1, clash.course2, perc_thresh=perc_threshold):
+            course_clashes.append({
+                "other_course": other_course,
+                "clash_count": clash.clash_count
+            })
+
+    return {
+        "course": course_code,
+        "clashes": course_clashes,
+        "total_clashes": len(course_clashes)        
     }
