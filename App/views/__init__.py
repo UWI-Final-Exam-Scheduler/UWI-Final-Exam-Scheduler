@@ -6,6 +6,7 @@ from .clash_matrix import clash_matrix_views
 from .index import index_views
 from .auth import auth_views
 from .user import user_views
+from .upload import upload_views
 
-views = [user_views, index_views, auth_views, course_views, venue_views, enrollment_views, clash_matrix_views] 
+views = [user_views, index_views, auth_views, course_views, venue_views, enrollment_views, clash_matrix_views, upload_views] 
 # blueprints must be added to this list
