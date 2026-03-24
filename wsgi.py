@@ -18,8 +18,8 @@ from App.models.course import Course
 from App.models.enrollment import Enrollment
 from App.models.student import Student
 from App.models.venue import Venue
-from App.controllers.clash_matrix import create_clash_matrix, view_conflicting_courses
-from App.controllers.exams import generate_timetable
+from App.controllers.clash_matrix import create_clash_matrix, view_conflicting_courses, view_course_clashes
+from App.controllers.exams import createTestExams, generate_timetable, get_all_days_with_exams, get_all_exams, get_exams_by_date, reschedule_exam
 from App.models.clash_matrix import ClashMatrix
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -194,13 +194,51 @@ def create_clash_matrix_command():
     except Exception as e:
         print(f"Error creating clash matrix: {e}")
 
-@app.cli.command("view-conflicts", help="View conflicting courses based on clash matrix")
-@click.argument("abs_threshold", default=5, type=int)
-@click.argument("perc_threshold", default=0.1, type=float)
-def view_conflicts_command(abs_threshold, perc_threshold):
+@app.cli.command("create-test-exams", help="Creates test exams in the database")
+def create_test_exams_command():
     try:
-        conflicts = view_conflicting_courses(abs_threshold=abs_threshold, perc_threshold=perc_threshold)
-        print(conflicts)
+        createTestExams()
+        print("Test exams created successfully!")
+    except Exception as e:
+        print(f"Error creating test exams: {e}")
+
+@app.cli.command("get-exams", help="Get all exams in the database")
+def get_exams_command():
+    try:
+        exams = get_all_exams()
+        print(exams)
+    except Exception as e:
+        print(f"Error getting exams: {e}")
+
+@app.cli.command("get-exams-by-date", help="Get exams by date")
+@click.argument("exam_date")
+def get_exams_by_date_command(exam_date):
+    try:
+        exams = get_exams_by_date(exam_date)
+        print(exams)
+    except Exception as e:
+        print(f"Error getting exams by date: {e}")
+
+@app.cli.command("reschedule-exam", help="Reschedules an exam")
+@click.argument("exam_course_code")
+@click.option("--date", help="New exam date")
+@click.option("--time", help="New exam time")
+@click.option("--venue", help="New exam venue")
+def reschedule_exam_command(exam_course_code, date, time, venue):
+    try:
+        exam, error = reschedule_exam(exam_course_code, date_str=date, time_str=time, venue_id=venue)
+        if error:
+            print(f"Error rescheduling exam: {error}")
+        else:
+            print(f"Exam rescheduled successfully: {exam}")
+    except Exception as e:
+        print(f"Error rescheduling exam: {e}")
+
+@app.cli.command("get-days-with-exams", help="Get all days that have exams scheduled")
+def get_days_with_exams_command():
+    try:
+        days = get_all_days_with_exams()
+        print(days)
     except Exception as e:
         print(f"Error viewing conflicting courses: {e}")
 
@@ -251,6 +289,26 @@ def create_admin_command(username, password, role='admin'):
     create_admin(username, password, role=role)
     print(f'{username} created!')
 
+@admin_cli.command("view-conflicts", help="View conflicting courses based on clash matrix")
+@click.argument("abs_threshold", default=5, type=int)
+@click.argument("perc_threshold", default=0.1, type=float)
+def view_conflicts_command(abs_threshold, perc_threshold):
+    try:
+        conflicts = view_conflicting_courses(abs_threshold=abs_threshold, perc_threshold=perc_threshold)
+        print(conflicts)
+    except Exception as e:
+        print(f"Error viewing conflicting courses: {e}")
+
+@admin_cli.command("view-course-clashes", help="View clashes for a specific course based on clash matrix")
+@click.argument("course_code", default="FOUN1105")
+@click.argument("abs_threshold", default=5, type=int)
+@click.argument("perc_threshold", default=0.1, type=float)
+def view_course_clashes_command(course_code, abs_threshold, perc_threshold):
+    try:
+        clashes = view_course_clashes(course_code, abs_threshold=abs_threshold, perc_threshold=perc_threshold)
+        print(clashes)
+    except Exception as e:
+        print(f"Error viewing course clashes: {e}")
 
 app.cli.add_command(admin_cli) # add the group to the cli
 
