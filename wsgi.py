@@ -203,6 +203,12 @@ def view_conflicts_command(abs_threshold, perc_threshold):
         print(conflicts)
     except Exception as e:
         print(f"Error viewing conflicting courses: {e}")
+
+@app.cli.command("clear-exams")
+def clear_exams():
+    db.session.query(Exam).delete()
+    db.session.commit()
+    print("All rows in Exam table deleted.")
 '''
 User Commands
 '''
