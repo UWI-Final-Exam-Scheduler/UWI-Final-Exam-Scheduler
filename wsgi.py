@@ -19,7 +19,7 @@ from App.models.enrollment import Enrollment
 from App.models.student import Student
 from App.models.venue import Venue
 from App.controllers.clash_matrix import create_clash_matrix, view_conflicting_courses, view_course_clashes
-from App.controllers.exams import generate_timetable
+from App.controllers.exams import createTestExams, generate_timetable, get_all_days_with_exams, get_all_exams, get_exams_by_date, reschedule_exam
 from App.models.clash_matrix import ClashMatrix
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -193,6 +193,55 @@ def create_clash_matrix_command():
         print("Clash matrix created successfully!")
     except Exception as e:
         print(f"Error creating clash matrix: {e}")
+
+@app.cli.command("create-test-exams", help="Creates test exams in the database")
+def create_test_exams_command():
+    try:
+        createTestExams()
+        print("Test exams created successfully!")
+    except Exception as e:
+        print(f"Error creating test exams: {e}")
+
+@app.cli.command("get-exams", help="Get all exams in the database")
+def get_exams_command():
+    try:
+        exams = get_all_exams()
+        print(exams)
+    except Exception as e:
+        print(f"Error getting exams: {e}")
+
+@app.cli.command("get-exams-by-date", help="Get exams by date")
+@click.argument("exam_date")
+def get_exams_by_date_command(exam_date):
+    try:
+        exams = get_exams_by_date(exam_date)
+        print(exams)
+    except Exception as e:
+        print(f"Error getting exams by date: {e}")
+
+@app.cli.command("reschedule-exam", help="Reschedules an exam")
+@click.argument("exam_course_code")
+@click.option("--date", help="New exam date")
+@click.option("--time", help="New exam time")
+@click.option("--venue", help="New exam venue")
+def reschedule_exam_command(exam_course_code, date, time, venue):
+    try:
+        exam, error = reschedule_exam(exam_course_code, date_str=date, time_str=time, venue_id=venue)
+        if error:
+            print(f"Error rescheduling exam: {error}")
+        else:
+            print(f"Exam rescheduled successfully: {exam}")
+    except Exception as e:
+        print(f"Error rescheduling exam: {e}")
+
+@app.cli.command("get-days-with-exams", help="Get all days that have exams scheduled")
+def get_days_with_exams_command():
+    try:
+        days = get_all_days_with_exams()
+        print(days)
+    except Exception as e:
+        print(f"Error getting days with exams: {e}")
+
 
 '''
 User Commands
