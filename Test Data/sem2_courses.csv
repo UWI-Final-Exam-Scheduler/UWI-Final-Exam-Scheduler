@@ -1,812 +1,6 @@
 Subj Code,Crse Numb,Title
 ACCT,1002,Intro to Financial Accounting
 ACCT,1003,Intro to Cost and Mgmt Acctg
-ACCT,2015,Financial Accounting II
-ACCT,2025,Fraud Examination
-ACCT,3015,Accounting Information Systems
-ACCT,3039,Management Accounting
-ACCT,3040,Accounting Theory
-ACTS,3000,Actuarial Science Project
-ACTS,3013,Loss Models
-ACTS,3014,Asset and Liability Management II (not offered in 2024/2025)
-ADRR,2001,Disaster Risk Assessment and Analysis
-ADRR,2004,Disaster Risk Resilience and Climate Change Adaptations
-AGBU,1002,Introduction to Agro-environmental Management
-AGBU,1006,Macroeconomic Fundamentals for Caribbean Agriculture
-AGBU,2003,Applied Statistics
-AGBU,3000,Farm Business Management
-AGBU,3001,Marketing and Price Analysis
-AGBU,3002,International Marketing of Agricultural Products
-AGBU,3005,Introduction to Quantitative Methods in Economics
-AGBU,3007,New Venture Creation and Management
-AGBU,3009,International Trade Policy and Regulations
-AGCP,2007,Post-Harvest Technology
-AGCP,3012,Tropical Food Crops
-AGCP,3200,Crop Breeding
-AGEX,3000,Technology Transfer in Agriculture
-AGEX,3001,Island Food Systems
-AGLS,2001,Animal Health and Management
-AGLS,2102,Fundamentals of Animal Nutrition
-AGLS,3004,Non-Ruminant Production Systems
-AGRI,0107,Mathematics
-AGRI,0108,Agricultural Biology
-AGRI,0109,Agricultural Biochemistry
-AGRI,0110,Introductory Soils Science
-AGRI,0111,Crop Production
-AGRI,0112,Livestock Production
-AGRI,0206,Introduction to Post-Production Technology
-AGRI,0207,Tropical Aquaculture
-AGRI,0208,Livestock Production
-AGRI,0209,Agricultural Economics
-AGRI,0210,Farm Practice
-AGRI,1003,Mathematics for Scientists
-AGRI,1011,Introduction to General Genetics
-AGRI,1013,Introduction to Biochemistry
-AGRI,1016,Plant Anatomy and Physiology
-AGRI,1020,Crop and Livestock Fundamentals
-AGRI,1100,Practical Techniques and Tools in Agriculture
-AGRI,1102,"Critical Thinking, Information, Literacy and Communication"
-AGRI,2001,Tropical Crop Protection
-AGRI,3020,Food Microbiology
-AGRI,3124,Research Project
-AGSL,2000,Soil Fertility and Fertilizer Technology
-AGSL,2001,Soil and Water Management
-AGSL,3001,Irrigation and Drainage Technology
-BIOC,2069,Practical Skills in Biochemistry
-BIOC,2162,Circulatory and Secretory Systems
-BIOC,2169,Practical Skills in Biochemistry
-BIOC,2262,Gene Expression
-BIOC,3069,Biochemistry Research Project
-BIOC,3262,Medical Biochemistry
-BIOC,3364,Biochemical Basis of Disease
-BIOC,3500,Molecular Virology
-BIOL,0200,N1 Biology
-BIOL,1262,Living Organisms 1
-BIOL,1263,Living Organisms II
-BIOL,1362,Biochemistry
-BIOL,1364,Genetics
-BIOL,2164,Principles of Molecular Biology
-BIOL,2265,Fundamentals of Microbiology
-BIOL,2464,Fundamentals of Ecology
-BIOL,2764,Physiology of Plants
-BIOL,2867,Physiology of Animals
-BIOL,3162,Principles of Microbial Biotechnology
-BIOL,3366,Plant Biotechnology and Genetic Engineering
-BIOL,3369,Laboratory Skills in Biotechnology (Year-long -credits applied in Semester 2)
-BIOL,3409,Caribbean Coral Reefs
-BIOL,3462,The Ecology of Freshwaters
-BIOL,3465,Tropical Forest Ecology and Use
-BIOL,3466,Coastal Ecosystems & Resource Management
-BIOL,3768,Plant Diversity & Systematics
-BIOL,3772,Plant Development
-BIOL,3774,Research and Practical Skills in Plant Biology
-BIOL,3866,Parasite Biology
-BIOL,3869,Zoology Project
-BIOL,3870,Insect Biology
-BIOL,3971,Fisheries Management
-BMET,1005,Introductory Human Anatomy & Physiology
-BMET,3000,Biomedical Technology Project (Year-long)
-BMET,3003,Biomedical Technology Laboratory
-BMET,3004,Metrology & Regulatory Standards
-CANV,2702,Canvas Intermediate
-CANV,3499,Canvas Project
-CANV,3602,Canvas Advanced
-CASS,0111,Community Arts and Social Studies
-CHEM,0200,N1 Chemistry
-CHEM,1066,Intro to Chemistry I
-CHEM,1067,Introduction to Chemistry
-CHEM,1068,Introduction to Chemistry
-CHEM,1070,Introductory Chemistry Laboratory (Yearlong â€“ credits applied in Semester 2)
-CHEM,2472,Analytical Chemistry Laboratory (Elective)
-CHEM,2673,Core Chemistry Laboratory
-CHEM,3163,Chemistry of Technologically Important Materials (Elective)
-CHEM,3170,Fundamentals of Inorganic Chemistry
-CHEM,3270,Organic Chemistry
-CHEM,3370,Physical Chemistry
-CHEM,3470,Analytical Methods in Chemistry II (Elective)
-CHEM,3471,Quality Assurance for Laboratories
-CHEM,3563,Environmental Degradation of Materials (Elective)
-CHEM,3579,Chemistry and Industry II (Elective)
-CHEM,3670,Research Project for Chemistry Majors
-CHIN,1007,Chinese (Mandarin) Beginners
-CHNG,1002,Applied Chemistry
-CHNG,1004,Chemical Process Principles
-CHNG,1006,Transport Phenomena
-CHNG,1007,Chemical Engineering Laboratory
-CHNG,2003,Computer-aided Engineering
-ECON,1005,Introduction to Statistics
-CHNG,2006,Process Dynamics & Control (Prerequisite: ENGR 1180)
-CHNG,2007,Particle Technology
-CHNG,2008,Chemical Engineering Practice
-CHNG,2010,Chemical Engineering Laboratory
-CHNG,3002,Biochemical Engineering
-CHNG,3012,Chemical Engineering Design Project
-CHNG,3013,Chemical Engineering Research Project
-CHNG,3014,Safety & Loss Prevention in Process Industries
-CLTR,3101,Caribbean Cultural Studies
-COCR,1012,Workplace Protocol for Students
-COCR,1013,Financial Literacy & Training
-COCR,1030,Technology Literacy
-COCR,1034,Public Speaking and Voice Training: Towards a More Confident You
-COCR,1036,Ethics and Integrity: Building Moral Competencies
-COCR,1052,Introduction to Sign Language
-COCR,1058,Microsoft Excel
-COCR,1059,Discover Microsoft 365 Collaborative Tools
-COMP,0200,N1 Computer Science
-COMP,1011,Introduction to Information Technology
-COMP,1600,Intro to Computing Concepts
-COMP,1601,Computer Programming I
-COMP,1602,Computer Programming II
-COMP,1603,Computer Programming
-COMP,1604,Mathematics for Computing
-COMP,2601,Computer Architecture
-COMP,2602,Computer Networks
-COMP,2603,Object-Oriented Programming
-COMP,2604,Operating Systems
-COMP,2605,Enterprise Database Systems
-COMP,2606,Software Engineering
-COMP,3601,Design and Analysis of Algorithms
-COMP,3608,Intelligent Systems
-COMP,3609,Game Programming
-COMP,3610,Big Data Analytics
-COMS,1102,Introduction to Communication Studies
-COMS,2002,Media and Society
-COMS,2102,Communication Research Methods
-COMS,2302,Public Relations
-COMS,2501,Radio Production
-COMS,2502,Television Production
-COMS,2601,Digital Media Production
-COMS,3099,Communication Studies Research Project
-CRMJ,3001,Research Methods in Criminology
-CVNG,1000,Mechanics of Solids
-CVNG,1001,Mechanics of Fluids
-CVNG,1002,Civil Engineering Design
-CVNG,1010,Information Technology for Engineers
-CVNG,1011,Geology
-CVNG,1015,Civil Engineering Law & Management
-CVNG,2003,Civil Engineering Design II (Prerequisite: CVNG 1002)
-CVNG,2006,Structural Design 1 (Prerequisite: CVNG 1000)
-CVNG,2009,Soil Mechanics II (Prerequisite: CVNG 2008)
-CVNG,2011,Engineering Surveying
-CVNG,2012,Environmental Engineering
-CVNG,2013,Hydrology for Civil Engineers (Prerequisite: CVNG2005)
-CVNG,3001,"Structural Engineering (Prerequisites: CVNG 2001, CVNG 2006)"
-CVNG,3004,Structural Dynamics (Prerequisite: CVNG 3002)
-CVNG,3007,Environmental Engineering I (For enrolment by ME with Biosystems
-CVNG,3008,"Environmental Engineering II (Prerequisites: CVNG 2005, CVNG 2012/3007)"
-CVNG,3010,Transportation Engineering (Prerequisite: CVNG 3009)
-CVNG,3011,Pavement Design & Management (Prerequisite: CVNG 3009)
-CVNG,3013,Coastal Engineering (Prerequisite: CVNG 2005)
-CVNG,3014,Civil Engineering Design Project (Prerequisites: Normally all Level 1 and Level
-CVNG,3015,Special Investigative Project (Prerequisites: Normally all Level 1 and Level 2 Courses)
-CVNG,3020,Design Project Environmental (Prerequisites: Normally all Level 1 and Level 2 Courses)
-CVNG,3021,Special Investigative Project Environmental (Prerequisites: Normally all Level 1 and
-CVNG,3022,Building Services Engineering
-DANC,0804,Dance Technique I
-DANC,0805,Dance Technique II
-DANC,0806,Dance Composition
-DANC,0807,Dance Performance
-DANC,1011,Introduction to Dance
-DANC,1012,Dance History and Theory
-DANC,1013,Caribbean Dance Forms
-DANC,1014,Dance Improvisation
-DANC,3012,Advanced Dance Performance
-DANC,3013,Choreography
-ECCD,0112,Early Childhood Care and Development I
-ECCD,0113,Early Childhood Care and Development II
-ECCD,0210,Child Development and Learning
-ECCD,0211,Early Childhood Curriculum
-ECNG,1006,Laboratory & Project Design I (Prerequisite: ECNG 1012)
-ECNG,1007,Electrical Engineering Technology
-ECNG,1009,Introduction to Programming
-ECNG,1014,Digital Electronics
-ECNG,1015,Introduction to Electrical Energy Systems
-ECNG,1016,Mathematics for Electrical Engineers
-ECNG,2000,Electromechanical Energy Conversion Systems (Prerequisites: ECNG 1000 and ECNG
-ECNG,2001,Communication Systems I (Prerequisites: ECNG 2011 and ECNG 2013; PHYS 2150 for
-ECNG,2005,Laboratory & Project Design
-ECNG,2006,Introduction to Microprocessors (Prerequisites: ECNG 1009 and ECNG 1014)
-ECNG,2009,Control Systems (Prerequisite: ECNG 2011)
-ECNG,3003,Telecommunication Networks
-ECNG,3004,Control and Instrumentation
-ECNG,3010,Electrical Machines & Drive Systems
-ECNG,3012,Power Systems Analysis
-ECNG,3016,Advanced Digital Electronics
-ECNG,3019,Advanced Control Systems Design (Prerequisite: ECNG 2009; PHYS 3201 for Physics
-ECNG,3020,Special Project
-ECNG,3022,Electromagnetic Field Theory (Prerequisite: ECNG 2013)
-ECNG,3024,Network Synthesis
-ECNG,3025,Discrete Signal Processing
-ECNG,3031,Engineering & Technology for Acoustics & Music
-ECON,0001,Mathematics for Social Sci
-ECON,1001,Introduction to Microeconomics
-ECON,1002,Introduction to Macroeconomics
-ECON,1003,Mathematics for Economics I
-ECON,1004,Mathematics for Economics II
-ECON,2001,Intermediate Microeconomics
-ECON,2003,Intermediate Macroeconomics
-ECON,2005,Social and Economic Accounting
-ECON,2016,Mathematics for Economics
-ECON,2020,Caribbean Economy (Prerequisites: ECON 1001; ECON 1002)
-ECON,2030,Labour Economics
-ECON,3002,Development Economics
-ECON,3007,International Finance
-ECON,3008,History of Economic Thought
-ECON,3020,Public Finance
-ECON,3050,Econometrics
-ECON,3052,Fiscal Policy and Economic Development
-ECON,3056,Project Evaluation
-ECON,3066,Environmental Economics
-ECON,3071,The Economics of Disasters and Climate Change
-ECON,3074,Health Economics
-EDEA,1410,Introduction to Early Childhood Education
-EDFA,2402,Foundations of Adult Education
-EDFA,3201,Adult Learning and Development
-EDLA,1180,Language Arts in Education
-EDLA,2113,Literacy Development
-EDLA,3111,Advanced Literacy Studies
-EDMA,1721,Mathematics Education I
-EDMA,3902,Mathematics Education II
-EDME,2006,Methods of Teaching
-EDRS,1402,Introduction to Educational Research
-EDSC,2221,Science Education I
-EDSC,3418,Science Education II
-EDSS,2906,Social Studies Education I
-EDTL,3001,Teaching and Learning Strategies
-ENGR,0305,Pre-Engineering Mathematics I
-ENGR,0307,Pre-Engineering Physics I
-ENGR,0310,Pre-Engineering Chemistry
-ENGR,0311,Pre-Engineering Mathematics II
-ENGR,0315,Pre-Engineering Physics II
-ENGR,1001,Information Technology for Engineers
-ENGR,3000,The Technology of the Steelpan (Prerequisite: MATH 2230)
-ENGR,3001,Natural Hazards Management in the Caribbean
-ENGR,3003,Engineering Entrepreneurship (Prerequisites: All Level I and Level II courses)
-ENRM,1002,Introduction to Natural Resource Economics
-ENRM,1004,Ecology and Microbiology
-ENRM,2002,Energy Resources and Sustainability
-ENRM,2003,Wildlife Resources and Management
-ENRM,2004,Environmental Microbiology and Ecological Health
-ENRM,3001,Sustainable Watershed Management
-ENRM,3002,Anthropogenic Climate Change Management
-ENTR,1001,"Introduction to Entrepreneurship, Creativity and Problem Solving"
-ENTR,2001,Introduction to Innovation and Decision Making
-ENTR,2002,Entrepreneurial Business Planning
-ENTR,3002,Case Studies in Entrepreneurship
-ENTR,3003,Entrepreneurial Finance
-ESST,1000,Physics for Environmental Sciences
-ESST,1005,Information Technology Fundamentals
-ESST,1006,Human Impact on the Environment
-ESST,2001,Principles of Env Chemistry
-ESST,2004,Physics for Environmental Sciences
-ESST,2005,Pollution Management and Abatement Technologies
-ESST,2006,Pollution Biology
-ESST,3000,Environmental Toxicology
-ESST,3004,Capstone Project
-ESST,3006,Fundamentals of Geographic Information Systems
-ESST,3007,Environmental Management Information Systems
-ESST,3102,Environmental Impact Assessment
-FDMU,0005,Foundation Music
-FILM,1101,Introduction to Film Studies
-FILM,1102,Film History
-FILM,1299,Film Studies Project I
-FILM,1399,Film Production I
-FILM,2101,Documentary Film
-FILM,2299,Film Studies Project II
-FILM,2301,Screenwriting
-FILM,2302,Film Editing
-FILM,2401,Film Production II
-FILM,2403,Cinematography
-FILM,3104,Caribbean Cinema
-FILM,3201,Advanced Film Production
-FILM,3203,Film Distribution and Exhibition
-FILM,3299,Film Studies Research Project
-FOUN,1001,English for Academic Purposes
-FOUN,1101,Caribbean Civilization
-FOUN,1104,"Science, Medicine and Technology in Society"
-FOUN,1105,Scientific and Technical Writing
-FOUN,1106,Academic English for Res Purp
-FOUN,1107,"Law, Governance, Economy and Society"
-FOUN,1210,"Sci, Med and Tech In Society"
-FOUN,1301,"Law, Governance, Economy and Society"
-FREN,1009,Introduction to French OR
-FREN,1402,French Language I
-FREN,1600,Intro Lit in Fren:Ren to Enlig
-FREN,2402,French Language II
-FREN,2608,French Language and Culture
-FREN,3402,Advanced French
-FREN,3505,French Caribbean Prose
-GEND,2013,Men and Masculinities in the Caribbean
-GEND,2025,Gender and Development
-GEND,2104,Cinema and Gender
-GEND,3031,"Sex, Gender and Society"
-GEND,3038,in the English-Speaking Caribbean
-GEOG,1132,"Human Geography 2: World Economy, Agriculture and Food"
-GEOG,1232,Earth Environments 2: Climate and Biosphere
-GEOG,2013,Geography Research Methods
-GEOG,2016,Introduction to Urban Geography
-GEOG,2017,Biogeography
-GEOG,2018,Coastal and Marine Geography
-GEOG,3110,Research Project
-GEOG,3113,Remote Sensing and GIS
-GEOG,3116,Geographies of the Caribbean
-GEOM,1002,Cartography and Visualisation
-GEOM,1015,Surveying Technology
-GEOM,1016,Advanced Surveying (Prerequisite: GEOM 1010)
-GEOM,1032,Classic Geodesy
-GEOM,1040,Remote Sensing
-GEOM,1041,Statistics for Geomatics Engineering
-GEOM,1050,Introduction to GIS
-GEOM,1051,"Practical Survey Project (Prerequisite: GEOM 1010; Co-requisite GEOM1002,"
-GEOM,2000,Geodesy
-GEOM,2015,Geomatics for Civil & Env Eng
-GEOM,2025,Remote Sensing
-GEOM,2035,"Geodetic Surveying (Prerequisites: GEOM 2030, GEOM 2032)"
-GEOM,2045,Land Law
-GEOM,2048,Introduction to Planning
-GEOM,2060,Cartography
-GEOM,2065,Construction and Engineering Surveying (Prerequisite GEOM 1015)
-GEOM,3015,Professional Practice
-GEOM,3020,Professional Internship
-GEOM,3025,Advanced GIS and Remote Sensing
-GEOM,3050,Special Investigative Project
-GOVT,0402,Organisational Theory and Behaviour
-GOVT,0412,A Study of Industrial Relations
-GOVT,0413,Human Resource Management
-GOVT,1000,Intro to Pol Inst & Anlys
-GOVT,1001,Introduction to Political Philosophy
-GOVT,1006,Intro to Public Sector Mgt
-GOVT,1007,Issues in Caribbean Public Administration
-GOVT,1009,"Ethics, Integrity & Corruption in the Public Sector"
-GOVT,2015,Modern Political Thought
-GOVT,2023,Issues in the Government and Politics of the West Indies
-GOVT,2030,Project Administration
-GOVT,2034,Human Resource Management in the Public Sector
-GOVT,2047,Principles of Public International Law
-GOVT,2049,International Political Economy
-GOVT,2062,International Security
-GOVT,2072,Employment Law
-GOVT,3003,Foreign Policy in the Global South
-GOVT,3011,Violence and Development
-GOVT,3024,Administrative Law
-GOVT,3047,International Financial Organisation
-GOVT,3054,Introduction to International Relations in the Caribbean
-GOVT,3062,Comparative Public Administration
-GOVT,3065,Religion and World Politics
-GOVT,3067,CARICOM Single Market and Economy (CSME): Internal and External
-GOVT,3123,Industrial Relations Law
-HIST,1307,History of the Caribbean I
-HIST,1504,History of the Americas
-HIST,1603,African History
-HIST,1703,History of Europe
-HIST,1801,Introduction to Archaeology
-HIST,2004,Caribbean Economic History
-HIST,2202,Caribbean History II
-HIST,2402,Modern Caribbean History
-HIST,2502,History of the United States
-HIST,2602,Latin American History
-HIST,2807,Caribbean Cultural History
-HIST,2901,Historical Research Methods
-HIST,3002,Advanced Caribbean History
-HIST,3603,Post-Colonial Studies
-HIST,3606,History of Science and Technology
-HUEC,0102,Fundamentals of Food and Nutrition
-HUEC,0104,Introduction to Human Anatomy and Physiology
-HUEC,0105,Food and Nutritional Chemistry
-HUEC,0106,Introduction to Family and Consumer Sciences
-HUEC,1001,Food Science
-HUEC,1004,Introduction to Foods & Meal Management
-HUEC,1005,Introduction to Biostatistics
-HUEC,1007,Introduction to Textiles
-HUEC,2002,Nutrition through the Life Cycle
-HUEC,2003,Foodservice Systems Management (Organisation & Management)
-HUEC,2009,Family Resource Management
-HUEC,2011,Physiology in Health and Disease
-HUEC,2013,Principles of Dietetics
-HUEC,3002,Foodservice Systems Management (Quantity Foods)
-HUEC,3006,Medical Nutrition Therapy
-HUEC,3010,Housing and the Environment
-HUEC,3015,Nutrition and Health in Sports Performance
-HUEC,3016,Nutrition in Health and Disease
-HUEC,3020,Development of Caribbean Cuisine
-HUEC,3022,Practicum (Nutritional Sciences)
-HUEC,3023,Practicum (Foods & Foodservice)
-HUEC,3027,Special Topics in Human Ecology
-HUMN,0103,Foundation Humanities I
-HUMN,0107,Foundation Humanities II
-HUMN,3099,Humanities Research Project
-IENG,2000,Work Study & Ergonomics
-IENG,2004,Industrial Database Systems & Design (Prerequisite: ENGR 1001)
-IENG,2006,"Engineering Economics, Accounting and Financial Management"
-IENG,2007,Operations Research II (Prerequisite: IENG2002)
-IENG,3001,Production Planning & Control
-IENG,3002,Plant Layout & Materials Handling
-IENG,3006,Automation
-IENG,3009,Industrial Database Systems & Design
-IENG,3012,Industrial Engineering Project
-IENG,3013,Simulation of Industrial & Business Processes
-INBU,1002,Introduction to International Business
-INBU,1004,World Trade and Business
-INBU,1006,International Marketing
-INBU,1010,Cross-Cultural Management
-INBU,1011,Global Business Environment
-INBU,1012,International Trade Finance
-INBU,1013,Export Management
-INBU,1014,International Business Law
-INBU,2006,Multinational Enterprise
-INBU,2007,Caribbean Business in a Global Context
-INBU,2008,International Human Resource Management
-INBU,2009,Foreign Direct Investment
-INBU,2010,International Entrepreneurship
-INBU,3006,International Strategic Management
-INBU,3007,Emerging Markets
-INBU,3008,International Business Research
-INBU,3009,International Trade Policy
-INFO,1600,Intro to Info Tech Concepts
-INFO,1601,Introduction to WWW Programming
-INFO,2600,Information Systems Development
-INFO,2601,Networking Tech Fundamentals
-INFO,2602,Web Programming and Technologies
-INFO,2603,Platform Technologies
-INFO,2604,Information Systems Security
-INFO,3602,Web Programming and Technologies
-INFO,3604,Project
-INFO,3606,Cloud Computing
-INFO,3607,Fundamentals of WAN Technologies
-INFO,3608,E-Commerce
-INFO,3611,Database Administration
-INRL,4102,Advanced International Relations
-INSB,1010,Introduction to Insurance
-INSB,1011,Principles of Insurance
-INSB,2004,Life and Health Insurance
-INSB,2008,Property and Casualty Insurance
-INSB,2009,Reinsurance Principles
-INSB,2011,Man for Sustain: Tools & Frame
-INSB,2015,Insurance Law
-INSB,2016,Risk Management
-INSB,2017,Marine and Aviation Insurance
-INSB,3301,Insurance Marketing
-INSB,3302,Insurance Underwriting
-INSB,3305,Claims Management
-INSB,3306,Insurance Portfolio Management
-INSB,3310,Caribbean Insurance Market
-INSB,3312,Insurance Regulation and Compliance
-INSB,3317,Emerging Risks in Insurance
-INSB,3318,Digital Insurance and Insurtech
-INSB,3401,Insurance Research Project I
-INSB,3402,Insurance Research Project II
-INSB,3404,Advanced Insurance Studies
-JAPA,1007,Japanese for Beginners
-LARS,0111,Foundation Learning and Research Skills
-LEAD,2001,Personal Leadership
-LING,1001,Introduction to Linguistics
-LING,2002,Phonology
-LING,2105,Morphology and Syntax
-LING,2302,Sociolinguistics
-LING,2305,Caribbean Creole Languages
-LING,2403,Semantics and Pragmatics
-LING,2903,Applied Linguistics
-LING,3099,Linguistics Research Project
-LING,3202,Language Acquisition
-LITS,1001,Introduction to Literary Studies
-LITS,2006,Caribbean Literature
-LITS,2109,Post-Colonial Literature
-LITS,2110,African Literature
-LITS,2507,Women and Literature
-LITS,2604,Contemporary World Literature
-LITS,3502,Advanced Caribbean Literature
-LITS,3915,Literary Research Project
-LMGV,1000,Land Economy
-LMGV,1005,Library and Information Studies I
-LMGV,1006,Residential Valuation Project
-LMGV,2003,Library Management
-LMGV,2006,Information Resources and Services
-LMGV,3002,Estate and Land Management
-LMGV,3050,Land Management Research Project
-LMGV,3060,Introduction to Land Administration
-MAPT,0001,Mathematics Aptitude
-MATH,0200,N1 Mathematics
-MATH,1115,Fund Math for the Gen Sci I
-MATH,1125,Fundamental Mathematics for General Science
-MATH,1141,Introductory Linear Algebra & Analytical Geometry
-MATH,1142,Calculus I
-MATH,1151,Calculus
-MATH,1152,Sets and Number Systems
-MATH,1192,Mathematical Software I (Excel)
-MATH,1194,Mathematical Software III (MATLAB)
-MATH,1202,Applied Mathematics
-MATH,2115,Life Contingencies
-MATH,2212,students
-MATH,2240,Statistics
-MATH,2270,Multivariable Calculus
-MATH,2271,Ordinary Differential Equations
-MATH,2272,Abstract Algebra
-MATH,2273,Linear Algebra I
-MATH,2274,Probability Theory I
-MATH,2275,Statistics
-MATH,2277,Introduction to Real Analysis
-MATH,3273,Linear Algebra
-MATH,3277,Introduction to Real Analysis
-MATH,3401,Mathematical Modelling
-MATH,3465,Statistical Inference
-MATH,3615,Graph Theory and Applications (not offered in 2024/2025)
-MDSC,1003,Medical Sciences I
-MDSC,1004,Medical Sciences II
-MDSC,2003,Applied Medical Sciences
-MENG,1001,Engineering Thermodynamics
-MENG,1004,Engineering Dynamics
-MENG,1009,Machine Drawing (Prerequisite: MENG 1008)
-MENG,1011,Engineering Fluid Mechanics
-MENG,2003,Mechanical Vibrations (Prerequisite: MENG 1004)
-MENG,2008,Manufacturing Technology
-MENG,2012,Heat Transfer
-MENG,2013,Machine Design II (Prerequisites: MENG 2011)
-MENG,2015,Control Systems Technology (Prerequisite: ECNG 1007)
-MENG,3000,Engineering Management 1
-MENG,3001,Engineering Management
-MENG,3007,Drainage & Irrigation Engineering
-MENG,3011,Advanced Mechanics of Solids (Prerequisites: MENG 3024)
-MENG,3014,Computer-aided Design & Manufacture
-MENG,3016,Maintenance & Safety Engineering
-MENG,3019,Mechanical Engineering Project
-MENG,3026,Renewable Energy (Prerequisites: MENG 2012)
-MENG,3027,Traction & Power Hydraulics
-MENG,3028,Power Plant Engineering II (Prerequisite: MENG 2007)
-MENG,3029,Environmental Control Engineering II (Prerequisite: MENG 3023)
-MGMT,1001,Introduction to Management
-MGMT,1022,Introduction to Banking
-MGMT,2006,Management Information Sys I
-MGMT,2008,Organisational Behaviour
-MGMT,2012,Quantitative Methods
-MGMT,2021,Business Law
-MGMT,2022,The Law and Sports
-MGMT,2023,Financial Management I
-MGMT,2024,Money and Capital Markets
-MGMT,2031,Banking Risk Management
-MGMT,2032,offered to these
-MGMT,2062,Motor and Property Insurance
-MGMT,3013,Database Design and Business Application
-MGMT,3015,Introduction to Information Security
-MGMT,3017,Human Resource Management
-MGMT,3018,Industrial Relations
-MGMT,3022,Organisational Development
-MGMT,3024,Business Communication
-MGMT,3025,Human Resource Development
-MGMT,3027,Sports Marketing and Public Relations
-MGMT,3031,Business Strategy and Policy
-MGMT,3032,Entrepreneurial Studies
-MGMT,3035,Ethics in Business
-MGMT,3037,Production and Operations Management
-MGMT,3050,Investment and Analysis
-MGMT,3051,Taxation I
-MGMT,3052,Business Ethics and Corporate Governance
-MGMT,3055,Applied Topics in Corporate Finance
-MGMT,3056,Project Management
-MGMT,3060,Operations Planning and Control
-MGMT,3062,Compensation Management
-MGMT,3080,Bank Treasury Management
-MGMT,3085,Derivatives Markets
-MGMT,3095,Strategic Management
-MGMT,3100,Liability Insurance
-MGMT,3102,Risk Management in Insurance
-MGMT,3104,Underwriting and Claims Management
-MGMT,3307,Quality Management
-MGMT,3310,Advanced Strategic Management Simulation
-MKTG,2001,Principles of Marketing
-MKTG,3001,International Marketing Management
-MKTG,3007,Marketing Planning
-MUSC,0002,Foundation Music Theory
-MUSC,0101,Basic Musicianship
-MUSC,0201,Applied Music l
-MUSC,0202,Applied Music ll
-MUSC,0207,Music Performance I
-MUSC,0407,Music Performance II
-MUSC,0408,Music Performance III
-MUSC,0604,Ensemble Music
-MUSC,1105,Music Theory I
-MUSC,1106,Music Theory II
-MUSC,1212,Caribbean Music
-MUSC,1401,Performance Music I
-MUSC,1402,Performance Music II
-MUSC,2004,Harmony and Counterpoint
-MUSC,2005,Performance Music III
-MUSC,2006,Music History I
-MUSC,2008,Steelband History and Development
-MUSC,2202,Music Technology
-MUSC,3003,Advanced Composition
-MUSC,3102,Ethnomusicology
-MUSC,3103,Music History II
-MUSC,3305,Performance Music V
-MUSC,3306,Performance Music VI
-MUSC,3502,Music Research Project I
-MUSC,3503,Music Research Project II
-NURS,1005,Fundamentals of Nursing
-NURS,1111,Anatomy and Physiology for Nurses
-NURS,1114,Nursing Practice I
-NURS,2011,Medical-Surgical Nursing
-NURS,2014,Nursing Research
-OESH,4050,Occupational Health and Safety I
-PECH,1101,Physical Education I
-PECH,1102,Physical Education II
-PGSC,1001,"Introduction to Earth Sciences, Processes & Caribbean Geology"
-PGSC,1004,Field & Mapping Principles
-PGSC,1005,Geophysics Fundamentals
-PGSC,1006,Industrial Chemistry
-PGSC,2002,Petrophysics
-PGSC,2004,Geochemistry of Petroleum
-PGSC,2006,Stratigraphy
-PGSC,2008,HSE for Upstream Petroleum Industry
-PGSC,2009,Field & Geologic Mapping
-PGSC,2012,Igneous & Metamorphic Petrology
-PGSC,2014,Fundamental Petroleum Geology Petroleum Geophysics
-PGSC,3005,Computational Petroleum Geology & Geophysics
-PGSC,3008,"Prospect Assessment, Evaluation & Petroleum Economics"
-PGSC,3013,Advanced Petroleum Geology
-PGSC,3014,Advanced Petroleum Geophysics
-PGSC,3015,Geoscience Seminar
-PGSC,3016,Petroleum Geoscience Project
-PHAR,1201,Pharmaceutical Sciences I
-PHAR,1202,Pharmaceutical Sciences II
-PHAR,1206,Pharmacy Practice I
-PHAR,1207,Pharmacy Practice II
-PHYS,0200,N1 Physics
-PHYS,1001,Intro to Astronomy
-PHYS,1223,Introduction to Electricity & Magnetism
-PHYS,1224,Introduction to Thermodynamics & Modern Physics
-PHYS,2150,Mathematics for Physicists
-PHYS,2151,Classical and Statistical Mechanics
-PHYS,2153,Astrophysics
-PHYS,2154,Fundamentals of Atomic and Nuclear Physics
-PHYS,2155,Physics Major Laboratory Level II (Year-long)
-PHYS,2402,Digital Circuits and Logic Design
-PHYS,3151,Quantum Mechanics
-PHYS,3152,Advanced Thermodynamics and Solid State Physics
-PHYS,3153,Physics Major Research Project
-PHYS,3155,Physics Major Laboratory Level III (Year-long)
-PHYS,3157,Earth Science
-PHYS,3158,Fundamentals of Renewable Energy
-PHYS,3159,Environmental Physics Laboratory (Year-long)
-PHYS,3160,Medical Physics & Bioengineering Laboratory (Year-long)
-PHYS,3163,Electronics Laboratory (Year-Long)
-PHYS,3165,Materials Science
-PHYS,3166,Materials Science Laboratory (Year-long)
-PHYS,3167,Radiation Biophysics and Medicine
-PHYS,3168,Medical Instrumentation
-PHYS,3202,Practical Electronics I (Year-long)
-PHYS,3203,Microprocessor and Modern Digital Design
-PSYC,1001,Introduction to Psychology
-PSYC,1004,Introduction to Social Psychology
-PSYC,1009,Research Methods in Psychology
-PSYC,2002,Abnormal Psychology
-PSYC,2003,Physiological Psychology
-PSYC,2007,Psychometrics and Testing
-PSYC,2008,Cognitive Psychology
-PSYC,2019,Experimental and Applied Psychology
-PSYC,3002,Advanced Topics in Personality
-PSYC,3014,Industrial and Organizational Psychology
-PSYC,3022,Learning and Memory
-PSYC,3023,Contemp Issues in Social Psych
-PSYC,3025,Research Projects in Psychology
-PSYC,3026,History and Systems in Psychology
-PSYC,3027,Motivation and Emotions
-REGS,1000,Introduction to Regulatory Studies
-SOCI,1000,Introduction to Sociology
-SOCI,1002,Introduction to Sociology I
-SOCI,1005,Intro Stats for Behavioural Sc
-SOCI,2000,Classical Social Theory
-SOCI,2001,Modern Social Theory
-SOCI,2006,Qualitative Methods in Sociological Research
-SOCI,2010,Anthro of Peoples of Carib 1
-SOCI,2011,Sociology of the Family
-SOCI,2015,The Organisation and Management of Social Services
-SOCI,2025,Sociology of Work
-SOCI,2030,Social Development Policy
-SOCI,2031,Anthropology of the Peoples of the Caribbean
-SOCI,2033,Caribbean Society
-SOCI,3005,Sociology of Health and Illness
-SOCI,3006,The Third World in Global Development
-SOCI,3020,Social Development Planning
-SOCI,3030,Sociology of Penal Practice
-SOCI,3031,Social Research Methods
-SOCI,3036,Criminology II: Police and Society
-SOCI,3038,Sociology of Crime
-SOCI,3040,Sociology of Families
-SOWK,1003,Theory & Practice of Social Work
-SOWK,1007,Introduction to Social Work
-SOWK,1010,Social Work Practicum I (168 Contact Hours)
-SOWK,2003,Theory and Practice of Social Work
-SOWK,2007,Disability Studies
-SOWK,2008,Social Work Practicum
-SOWK,2021,Human Behaviour: Person-in-Environment Perspective
-SOWK,3002,Social Work Practice
-SOWK,3011,Theory and Practice of Social Work: Human Resource Management
-SOWK,3015,Drugs and Society
-SOWK,3017,Social Work Practicum
-SPAN,1002,Spanish for Beginners
-SPAN,1007,Introduction to Spanish OR
-SPAN,1011,Spanish Language I
-SPAN,1013,Spanish Language II
-SPAN,1702,Spanish for Heritage Speakers I
-SPAN,2002,Intermediate Spanish
-SPAN,2212,Latin American Culture
-SPAN,2301,20thC Spanish Am Poetry
-SPAN,3002,Advanced Spanish
-SPAN,3604,Spanish Literature
-STAT,3000,Regression with Time Series
-STAT,3001,Experimental Design & Sampling Theory
-STAT,3012,Applied Multivariate Statistics
-SWEN,2000,Software Engineering Fundamentals
-SWEN,2002,Object-Oriented Software Engineering
-SWEN,2007,Software Requirements Engineering
-SWEN,2014,Software Testing and Quality
-SWEN,3000,Software Architecture and Design
-SWEN,3002,Android Application Development
-SWEN,3004,Web and Mobile Application Development
-SWEN,3165,Software Testing
-SWEN,3911,Software Engineering Project I
-SWEN,3912,Software Engineering Project II
-SWEN,3920,Capstone Project (Software Engineering)
-THEA,0503,Foundation Theatre I
-THEA,0504,Foundation Theatre II
-THEA,0505,Foundation Performance
-THEA,0506,Foundation Stage Craft
-THEA,1204,Introduction to Theatre
-THEA,1205,Theatre History I
-THEA,1216,Acting Fundamentals
-THEA,2011,Directing
-THEA,2207,Theatre History II
-THEA,2299,Theatre Project
-THEA,3204,Advanced Performance
-THEA,3205,Contemporary Theatre
-THEA,3302,Caribbean Theatre
-THEA,3307,Theatre Research Project
-THEO,1002,Introduction to Theology
-THEO,1103,Old Testament Studies
-THEO,1301,Intro to Systematic Theology
-THEO,1404,Introduction to Ethics
-THEO,1405,World Religions
-THEO,2002,New Testament Studies
-THEO,2202,Christian Ethics
-THEO,2203,Church History
-THEO,2204,Theology and Culture
-THEO,2205,Systematic Theology
-THEO,2310,Caribbean Theology
-THEO,2316,Pastoral Theology
-THEO,2401,Islamic Studies
-THEO,2402,Hindu Studies
-THEO,3101,Advanced Theological Studies
-THEO,3208,Theology Research Methods
-THEO,3304,Liberation Theology
-THEO,3310,Theology Research Project
-TOUR,1001,Intro to International Tourism
-TOUR,2001,Caribbean Tourism
-TOUR,2002,Transportation & Travel
-TOUR,3004,Tourism Destination Marketing
-TOUR,3008,Tourism Impact Analysis
-VART,0016,Foundation Visual Arts I
-VART,0018,Foundation Visual Arts II
-VART,0116,Drawing I
-VART,0118,Drawing II
-VART,0216,Painting I
-VART,0218,Painting II
-VART,0602,Ceramics I
-VART,0604,Ceramics II
-VART,1001,Visual Arts History I
-VART,1405,Printmaking
-VART,1406,Colour and Materials
-VART,1803,Digital Arts I
-VART,1905,Photography I
-VART,1906,Photography II
-VART,2014,Sculpture
-VART,2026,Intermediate Painting
-VART,2032,Mixed Media
-VART,2036,Visual Arts History II
-VART,2042,Contemporary Art Theory
-VART,2202,Art and Caribbean Identity
-VART,2324,Digital Arts II
-VART,3011,Advanced Painting
-VART,3013,Advanced Sculpture
-VART,3201,Visual Arts Research Project
 ACCT,2014,Financial Accounting I
 ACCT,2017,Management Accounting I
 ACCT,2021,Cost & Management Accounting
@@ -822,6 +16,7 @@ ADRR,3002,Community Eng Prin & Pract
 AGBU,1005,Introduction to Microeconomics
 AGBU,2000,Agriculture in the Economy
 AGBU,2002,Mgmt & Econ-Agri Prod & Mktg
+AGBU,3001,Marketing and Price Analysis
 AGBU,3006,Agri Project Appraisal & Imp
 AGCP,2000,Biosystems Engr Principles
 AGCP,2101,Principles of Sustainable Crop
@@ -839,6 +34,7 @@ AGRI,0104,Agricultural Biology I
 AGRI,0201,Agricultural Economics 1
 AGRI,0202,Sociology of Agriculture
 AGRI,0204,Intro to Crop & Livestock
+AGRI,1003,Mathematics for Scientists
 AGRI,1012,Microbiology
 AGRI,2003,Fundamentals of Applied Stat
 AGRI,6620,Statistics
@@ -853,6 +49,8 @@ BIOC,2161,Primary Metabolism
 BIOC,3062,Cellular & Molecular Def Sys
 BIOC,3162,Exp Biochem & Molecular Biol
 BIOL,0100,N1 Biology I
+BIOL,1262,Living Organisms 1
+BIOL,1263,Living Organisms II
 BIOL,2061,Cell & Developmental Biology
 BIOL,2163,Biostatistics
 BIOL,2165,Genetics II
@@ -881,6 +79,7 @@ CANV,1005,Intro to Business for the Arts
 CANV,3058,The Economics of Culture
 CHEM,0100,N1 Chemistry I
 CHEM,1062,Basic Chem for Life Sci
+CHEM,1066,Intro to Chemistry I
 CHEM,2170,Fundamentals Inorganic Chem I
 CHEM,2270,Organic Chemistry I
 CHEM,2370,Physical Chemistry I
@@ -904,12 +103,19 @@ CHNG,3007,Separation Processes II
 CIEN,6000,Adv Environmental Engineering
 CIEN,6001,Adv Structural Engineering
 CLSY,6102,Applied Health Psychology
+COCR,1013,Financial Literacy & Training
 COEM,6003,Organisation & Mgmt of Const
 COEM,6006,Constr Accounting and Finance
 COEM,6009,Contract Management and Law
 COEM,6012,Geotechnics in Construction
 COEM,6013,Materials Technology
 COMP,0100,N1 Computer Science I
+COMP,1600,Intro to Computing Concepts
+COMP,1601,Computer Programming I
+COMP,1602,Computer Programming II
+COMP,2601,Computer Architecture
+COMP,2602,Computer Networks
+COMP,2605,Enterprise Database Systems
 COMP,2611,Data Structures
 COMP,3602,Theory of Computing
 COMP,3605,Introduction to Data Analytics
@@ -953,6 +159,11 @@ ECNG,3015,Indus & Commercial Elect Sys
 ECNG,3021,Intro to Engr Mgmt & Acctg Sys
 ECNG,3023,Intro to Software Engineering
 ECNG,3030,Electromechanical Energy Con
+ECON,0001,Mathematics for Social Sci
+ECON,1001,Introduction to Microeconomics
+ECON,1003,Mathematics for Economics I
+ECON,1004,Mathematics for Economics II
+ECON,1005,Introduction to Statistics
 ECON,2000,Intermediate Microeconomics I
 ECON,2002,Intermediate Macro-Economics I
 ECON,2015,Matrix Algebra for Economics
@@ -998,6 +209,7 @@ ENTR,3000,Export Mkt Case Study & Prac
 ENTR,3001,Entrepreneurial Marketing
 ESST,1001,Biology for Enviro Sciences
 ESST,1002,Chemistry for Enviro Sciences
+ESST,2001,Principles of Env Chemistry
 ESST,2002,Environmental Technology
 ESST,3001,Environmental Fate & Transport
 ESST,3104,Clim Change & Abatement Tech
@@ -1008,7 +220,12 @@ FOST,6003,Food Chemistry
 FOST,6005,Food Microbiology
 FOST,6006,Food Quality Assurance
 FOST,6007,Pres & Proc of Meat & Poultry
+FOUN,1001,English for Academic Purposes
 FOUN,1103,Argument and Report Writing
+FOUN,1106,Academic English for Res Purp
+FOUN,1210,"Sci, Med and Tech In Society"
+FREN,1600,Intro Lit in Fren:Ren to Enlig
+FREN,3505,French Caribbean Prose
 GEND,1103,Intro to Women St:Th Con&SK
 GEND,2109,Social Media and Gender
 GEND,2203,Feminist Theoretical Framework
@@ -1020,9 +237,11 @@ GEOM,1004,Intro to Geospatial Info Scien
 GEOM,1010,Surveying I
 GEOM,2001,Numerical Methods for Geom Eng
 GEOM,2010,Fundamentals of GIS
+GEOM,2015,Geomatics for Civil & Env Eng
 GEOM,2020,Digital Photogrammetry
 GEOM,2030,Adjustment Computations
 GEOM,2040,Hydrographic Surveying
+GEOM,2045,Land Law
 GEOM,3030,Global Navigation SatelliteSys
 GEOM,3046,Advanced Mapping Systems
 GINF,6015,Extrac &Mgmt of Inf Geo-Images
@@ -1030,7 +249,10 @@ GINF,6020,Spatial Databases
 GINF,6030,Independent Study in Geoinform
 GINF,6100,Principles of Geoinformatics
 GOVT,0401,Org Theory & Behaviour I
+GOVT,0413,Human Resource Management
+GOVT,1000,Intro to Pol Inst & Anlys
 GOVT,1005,Intro Public Policy Analysis
+GOVT,1006,Intro to Public Sector Mgt
 GOVT,1011,Constitutional Law (for SS)
 GOVT,2010,Delinquency & Juvenile Justice
 GOVT,2011,Criminal Justice System
@@ -1097,6 +319,8 @@ INBU,2004,Macroecon &Sustainab Challenge
 INBU,3001,Cross Cultural Management
 INBU,3002,International Strategic Mgmt
 INBU,3004,Mastering Intl Sales Process
+INFO,1600,Intro to Info Tech Concepts
+INFO,2601,Networking Tech Fundamentals
 INFO,3600,Business Information Systems
 INRL,6020,Research Meth App Quan & Qual
 INSB,1002,Mathematics for Business
@@ -1104,6 +328,7 @@ INSB,2003,Finan Acct & Performance Dash
 INSB,2005,Managerial Accounting
 INSB,2007,Intro to Mgmt Info Systems
 INSB,2010,Macroeconomic & Sustainability
+INSB,2011,Man for Sustain: Tools & Frame
 LARS,0110,A Diasporic History of Carib
 LAW,1010,Law and Legal Systems
 LAW,1110,Criminal Law I
@@ -1146,10 +371,16 @@ LMGV,3004,Valuation Methods I-Level 3
 LMGV,3005,Intro to Quantity Surveying
 LMGV,3006,Intro to Quan Surv & Build Tec
 MATH,0100,N1 Mathematics I
+MATH,1115,Fund Math for the Gen Sci I
+MATH,1142,Calculus I
+MATH,1152,Sets and Number Systems
 MATH,1201,Applied Mathematics I
 MATH,2211,Mathematics of Finance I
 MATH,2230,Engineering Mathematics II
 MATH,2250,Industrial Statistics
+MATH,2270,Multivariable Calculus
+MATH,2273,Linear Algebra I
+MATH,2274,Probability Theory I
 MATH,2276,Discrete Mathematics
 MATH,3272,Abstract Algebra II
 MATH,3274,Set Theory
@@ -1187,6 +418,7 @@ MENG,2004,Mechanics of Machines I
 MENG,2007,Engineering Thermodynamics 2
 MENG,2009,Industrial Instrumentation
 MENG,2010,Strength of Materials I
+MENG,3000,Engineering Management 1
 MENG,3004,Soil and Water Engineering
 MENG,3006,Production Management
 MENG,3013,Product Design & Development
@@ -1204,40 +436,60 @@ MENG,6505,Health Safety &The Environment
 MENG,6700,Strategic Asset Management
 MENG,6701,Asset Maintenance Technologies
 MENG,6705,Maint Engineering & Mgmt
+MGMT,1001,Introduction to Management
 MGMT,1011,Introduction to Insurance
+MGMT,2006,Management Information Sys I
 MGMT,2007,Introduction to E- Commerce
+MGMT,2008,Organisational Behaviour
 MGMT,2009,Sociology of Sports
 MGMT,2010,Intro to Sports Management
+MGMT,2012,Quantitative Methods
+MGMT,2023,Financial Management I
+MGMT,2024,Money and Capital Markets
 MGMT,2026,Production & Operations Mgmt
 MGMT,2060,Insurance Law
 MGMT,2061,Life & Health Ins & Pensions
 MGMT,3008,Event Management
 MGMT,3011,Mgmt Information Systems II
+MGMT,3017,Human Resource Management
+MGMT,3024,Business Communication
 MGMT,3026,HR Management in Sports
 MGMT,3028,Phys Res Mgmt in Sprt/Fac Plan
+MGMT,3031,Business Strategy and Policy
+MGMT,3035,Ethics in Business
 MGMT,3048,Financial Management II
+MGMT,3051,Taxation I
 MGMT,3053,International Financial Mgmt
+MGMT,3062,Compensation Management
 MGMT,3081,Credit Analysis and Lending
 MGMT,3101,Ins Regulat & Market Conduct
 MGMT,3311,Occupational Safety&Health Mgt
 MGMT,6001,Human Resource Management
 MGMT,6310,Strategic Mgmt & Planning
 MGMT,6312,Insights into Consumer Beh
+MKTG,2001,Principles of Marketing
 MKTG,3000,Marketing Management
 MKTG,3002,Marketing Research
 MKTG,3010,Marketing Communications
 MUSC,0001,General Musicianship l
 MUSC,0005,General Musicianship lll
+MUSC,0201,Applied Music l
+MUSC,0202,Applied Music ll
 MUSC,0206,Applied Music III
 MUSC,0406,Practical Ear Training
 MUSC,1005,Introduction to World Music
 MUSC,1102,Aural Training I
 MUSC,1103,Music Theory
 MUSC,1211,History of Western Music I
+MUSC,1401,Performance Music I
+MUSC,1402,Performance Music II
 MUSC,2003,Pan Arranging I
+MUSC,2005,Performance Music III
 MUSC,2007,Musics of the Caribbean
 MUSC,2501,"Jazz Theory, Part I"
 MUSC,3201,Choral Arranging
+MUSC,3305,Performance Music V
+MUSC,3306,Performance Music VI
 MUSC,3501,Music Education I
 NURS,1004,Comm Skills: Writing
 NURS,1109,Human Anatomy & Physiology I
@@ -1308,8 +560,10 @@ PHAR,4402,Pharmacy Administration
 PHAR,4405,Clinical Toxicology
 PHAR,4407,Pharmacy Practice III
 PHYS,0100,N1 Physics I
+PHYS,1001,Intro to Astronomy
 PHYS,1221,Introduction to Mechanics
 PHYS,1222,Intro to Optics Oscill & Waves
+PHYS,2150,Mathematics for Physicists
 PHYS,2152,"Vibrations,Waves and Optics"
 PHYS,2156,Meteorology and Climatology
 PHYS,2401,Optoelectronics
@@ -1326,11 +580,14 @@ PRMG,6012,Value Engineering & Management
 PSMA,6003,Comp Prac&Dev of Publ Sec Mgmt
 PSMA,6104,Accounting Budg & Finan Mgmt
 PSMA,6112,Public Sect Employment Mgt
+PSYC,1001,Introduction to Psychology
 PSYC,2004,Personality Theory
 PSYC,2010,Stats & Res Design in Psyc
 PSYC,2011,Selected Theories in Soc Psyc
 PSYC,2012,Developmental Psychology
 PSYC,2016,Sensation and Perception
+PSYC,3022,Learning and Memory
+PSYC,3023,Contemp Issues in Social Psych
 PSYC,6101,Applied Soc Psych Seminars
 PSYC,6102,Applied Dev Psych Sem
 PSYC,6402,The Psychology of Com Conflict
@@ -1346,8 +603,11 @@ SALI,6016,Demographic Techniques I
 SALI,6019,Elements of Official Statistic
 SALI,7002,Research Design & Mgmt
 SALI,8002,Research Design & Management
+SOCI,1002,Introduction to Sociology I
+SOCI,1005,Intro Stats for Behavioural Sc
 SOCI,1006,Study Cult: Intro to Anthr
 SOCI,2007,Survey Design and Analysis
+SOCI,2010,Anthro of Peoples of Carib 1
 SOCI,2022,Social Gerontology
 SOCI,3008,Industrial Soc I - Thry & Prac
 SOCI,3019,Social Policy Analysis
@@ -1370,6 +630,7 @@ SOWK,6016,ADR Systems and Processes
 SOWK,6104,Communication Cult & Conflict
 SPAN,1701,Intro to Hispanic Lit-Narrativ
 SPAN,2202,Spanish America: Society
+SPAN,2301,20thC Spanish Am Poetry
 SPAN,3603,Hispanic Drama
 SPAN,6499,Spanish American Short Story
 SPKN,1101,Human Anatomy I
@@ -1396,9 +657,11 @@ THEA,2208,Performance II
 THEA,3301,Theory & Prac of Educ Thea I
 THEO,1001,Intro to Old Testament Lit
 THEO,1208,Christian Worship Introduction
+THEO,1301,Intro to Systematic Theology
 THEO,2008,The Gospel & Epistles of John
 THEO,2301,Perspectives in Christology
 THEO,2319,Christian Ethical Principles
+TOUR,1001,Intro to International Tourism
 TOUR,3003,Integrated Service Management
 TOUR,3005,Tourism Planning & Development
 VART,1904,History of Art Design & Archit

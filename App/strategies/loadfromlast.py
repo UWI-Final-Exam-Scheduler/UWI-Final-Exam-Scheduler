@@ -20,7 +20,7 @@ class LoadFromLastStrategy(SchedulingStrategy):
         pdf_path = data_dir / "UWI Timetable Cross Reference Final 202510 17NOV2025.pdf"
 
         main_pattern = re.compile(
-            r"^(\d+)\s+"
+            r"^\d+\s+"
             r"([A-Z]+)\s+(\d{4})\s+"
             r"(.+?)\s+"
             r"([A-Z]+\s+\d{2}\s+[A-Z]+\s+\d{4})\s+"
@@ -54,12 +54,11 @@ class LoadFromLastStrategy(SchedulingStrategy):
                             skipped += 1
                             continue
 
-                        exam_id = int(main_match.group(1))
-                        course_code = f"{main_match.group(2)}{main_match.group(3)}"
-                        course_title = main_match.group(4)
-                        date_str = main_match.group(5)
-                        time_str = main_match.group(6)
-                        rest = main_match.group(7)
+                        course_code = f"{main_match.group(1)}{main_match.group(2)}"
+                        course_title = main_match.group(3)
+                        date_str = main_match.group(4)
+                        time_str = main_match.group(5)
+                        rest = main_match.group(6)
 
                         rest_match = rest_pattern.match(rest)
                         if not rest_match:
@@ -78,7 +77,13 @@ class LoadFromLastStrategy(SchedulingStrategy):
                         parsed_date = datetime.strptime(date_str, "%A %d %B %Y").date()
                         date_obj = parsed_date.replace(year=datetime.now().year)
 
-                        time_obj = datetime.strptime(time_str, "%I:%M %p").time()
+                        parsed_time = datetime.strptime(time_str, "%I:%M %p")
+                        hour = parsed_time.hour
+
+                        # Convert to 12-hour format (no 0)
+                        time_int = hour % 12
+                        if time_int == 0:
+                            time_int = 12
 
                         course = Course.query.filter_by(courseCode=course_code).first()
                         if not course:
@@ -95,22 +100,26 @@ class LoadFromLastStrategy(SchedulingStrategy):
                             skipped += 1
                             continue
 
-                        existing_exam = Exam.query.get(exam_id)
+                        existing_exam = Exam.query.filter_by(
+                            courseCode=course_code,
+                            date=date_obj,
+                            time=time_int,
+                            venue_id=venue.id
+                        ).first()
 
-                        if existing_exam:
-                            existing_exam.courseCode = course_code
-                            existing_exam.date = date_obj
-                            existing_exam.time = time_obj
-                            existing_exam.venue_id = venue.id
-                            existing_exam.exam_length = exam_length
-                            existing_exam.number_of_students = number_of_students
-                            updated += 1
-                        else:
+                        # if existing_exam:
+                        #     existing_exam.courseCode = course_code
+                        #     existing_exam.date = date_obj
+                        #     existing_exam.time = time_int
+                        #     existing_exam.venue_id = venue.id
+                        #     existing_exam.exam_length = exam_length
+                        #     existing_exam.number_of_students = number_of_students
+                        #     updated += 1
+                        if not existing_exam:
                             exam = Exam(
-                                id=exam_id,
                                 courseCode=course_code,
                                 date=date_obj,
-                                time=time_obj,
+                                time=time_int,
                                 venue_id=venue.id,
                                 exam_length=exam_length,
                                 number_of_students=number_of_students
