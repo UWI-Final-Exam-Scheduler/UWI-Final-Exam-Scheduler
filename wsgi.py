@@ -74,7 +74,7 @@ def export_courses():
 def export_clash_matrix():
     try:
         clashes = ClashMatrix.query.order_by(ClashMatrix.course1, ClashMatrix.course2).all()
-        output_path = Path("Test Data/clash_matrix_export.csv")
+        output_path = Path("Test Data/clash_matrix.csv")
         output_path.parent.mkdir(parents=True, exist_ok=True)
         with open(output_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
