@@ -30,6 +30,12 @@ def load_config(app, overrides):
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['PREFERRED_URL_SCHEME'] = 'https'
     app.config['UPLOADED_PHOTOS_DEST'] = "App/uploads"
+    
+    # Database connection pool settings
+    app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+    "pool_pre_ping": True,
+    "pool_recycle": 300,
+}
 
     # JWT configuration
     app.config['JWT_ACCESS_COOKIE_NAME'] = 'access_token'
