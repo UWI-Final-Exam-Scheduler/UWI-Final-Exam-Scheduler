@@ -74,7 +74,7 @@ def export_courses():
 def export_clash_matrix():
     try:
         clashes = ClashMatrix.query.order_by(ClashMatrix.course1, ClashMatrix.course2).all()
-        output_path = Path("Test Data/clash_matrix_export.csv")
+        output_path = Path("Test Data/clash_matrix.csv")
         output_path.parent.mkdir(parents=True, exist_ok=True)
         with open(output_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
@@ -250,6 +250,11 @@ def get_venue_exams_command(venue_id):
     except Exception as e:
         print(f"Error getting venue exams: {e}")
 
+@app.cli.command("clear-exams")
+def clear_exams():
+    db.session.query(Exam).delete()
+    db.session.commit()
+    print("All rows in Exam table deleted.")
 '''
 User Commands
 '''
