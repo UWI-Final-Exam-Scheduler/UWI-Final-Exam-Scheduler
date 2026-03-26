@@ -2,6 +2,8 @@ from App.models import Venue
 from App.database import db
 import csv
 
+from App.models.exam import Exam
+
 def create_venue(name, capacity):
     newvenue = Venue(name=name, capacity=capacity)
     db.session.add(newvenue)
@@ -36,6 +38,7 @@ def get_all_venues():
     venue_json = []
     for venue in venues:
         venue_json.append({
+            "id": venue.id,
             "name": venue.name,
             "capacity": venue.capacity
         })
@@ -46,7 +49,27 @@ def get_venue_by_name(name):
     if not venue:
         return f"Venue with name {name} not found."
     venue = {
+        "id": venue.id,
         "name": venue.name,
         "capacity": venue.capacity
     }
     return venue
+
+def get_venue_by_id(venue_id):
+    venue = db.session.query(Venue).filter_by(id=venue_id).first()
+    if not venue:
+        return f"Venue with id {venue_id} not found."
+    venue = {
+        "id": venue.id,
+        "name": venue.name,
+        "capacity": venue.capacity
+    }
+    return venue
+
+def get_exams_capacity_in_venue(venue_id:int, date:str, time:int):
+    venue = get_venue_by_id(venue_id)
+    if not venue:
+        return "Venue not found."
+    venue_exams = db.session.query(Exam).filter_by(venue_id=venue_id, date=date, time=time).all()
+    for exam in venue_exams:
+        print(f"Exam ID: {exam.id}, Course Code: {exam.courseCode}, Date: {exam.date}, Time: {exam.time}, Exam Length: {exam.exam_length}, Number of Students: {exam.number_of_students}")

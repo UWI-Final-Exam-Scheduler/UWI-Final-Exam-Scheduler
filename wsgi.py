@@ -13,7 +13,7 @@ from App.controllers import ( create_user, get_all_users_json, get_all_users )
 from App.controllers.courses import get_subject_codes, import_courses_from_csv, create_course, get_all_courses, get_course_by_code, get_courses_by_subject
 from App.controllers.students import import_students_from_csv, create_student
 from App.controllers.admin import create_admin
-from App.controllers.venue import import_venues_from_csv
+from App.controllers.venue import get_exams_capacity_in_venue, import_venues_from_csv
 from App.models.course import Course
 from App.models.enrollment import Enrollment
 from App.models.student import Student
@@ -242,6 +242,13 @@ def get_days_with_exams_command():
     except Exception as e:
         print(f"Error getting days with exams: {e}")
 
+@app.cli.command("get-venue-exams", help="Get all exams scheduled in a venue")
+@click.argument("venue_id", type=int)
+def get_venue_exams_command(venue_id):
+    try:
+        get_exams_capacity_in_venue(venue_id)
+    except Exception as e:
+        print(f"Error getting venue exams: {e}")
 
 '''
 User Commands
