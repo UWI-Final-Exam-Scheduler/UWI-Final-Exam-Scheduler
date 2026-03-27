@@ -36,3 +36,15 @@ def test_course_not_found(empty_db):
 
     with pytest.raises(ValueError):
         create_enrollment(123456789, "COMP1600")
+
+def test_duplicate_enrollment(empty_db):
+    student = Student(student_id=123456789)
+    course = Course(courseCode="COMP1600", name="Intro to Computing")
+    db.session.add(student)
+    db.session.add(course)
+    db.session.commit()
+
+    create_enrollment(123456789, "COMP1600")
+
+    with pytest.raises(ValueError):
+        create_enrollment(123456789, "COMP1600")
