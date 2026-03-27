@@ -11,16 +11,16 @@ def test_normalize_course_code_already_uppercase():
 
 def test_normalize_course_code_invalid_length():
     with pytest.raises(Exception):
-        normalize_course_code("CO1600")  # 1 character short
+        normalize_course_code("CO1600")  
 
 def test_normalize_course_code_too_long():
     with pytest.raises(Exception):
-        normalize_course_code("COMP16000") # 1 character longer
+        normalize_course_code("COMP16000") 
 
 
 def test_normalize_course_code_invalid_format():
     with pytest.raises(Exception):
-        normalize_course_code("1600COMP")  # wrong format
+        normalize_course_code("1600COMP")  
 
 def test_create_course_success(empty_db):
     msg = create_course("comp1600", "Introduction to Computing")
