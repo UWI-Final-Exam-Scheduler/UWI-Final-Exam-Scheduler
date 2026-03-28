@@ -7,3 +7,4 @@ from .enrollments import *
 from .admin import *
 from .clash_matrix import *
 from .exams import *
+from .user_preference import *
