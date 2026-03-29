@@ -117,9 +117,9 @@ def view_conflicting_courses(abs_threshold=5, perc_threshold=0.1):
     )
 
     return {
-        # "conflicting_courses": conflicting_courses,
+        "conflicting_courses": conflicting_courses,
         "courses": unique_courses_with_conflicts,
-        # "total_conflicts": len(qualifying_clashes),
+        "total_conflicts": len(qualifying_clashes),
         "unique_courses_with_conflicts": len(course_has_clash),
         "total_students_affected": len(affected_students),
         "percentage_students_affected": round(affected_students_percentage, 2),
