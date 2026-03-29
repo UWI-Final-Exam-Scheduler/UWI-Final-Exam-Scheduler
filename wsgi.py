@@ -21,6 +21,8 @@ from App.models.venue import Venue
 from App.controllers.clash_matrix import create_clash_matrix, view_conflicting_courses, view_course_clashes
 from App.controllers.exams import createTestExams, generate_timetable, get_all_days_with_exams, get_all_exams, get_exams_by_date, reschedule_exam
 from App.models.clash_matrix import ClashMatrix
+from App.models.exam import Exam
+from App.controllers.user_preference import get_user_preferences, update_user_preferences
 # This commands file allow you to create convenient CLI commands for testing controllers
 
 app = create_app()
@@ -255,6 +257,7 @@ def clear_exams():
     db.session.query(Exam).delete()
     db.session.commit()
     print("All rows in Exam table deleted.")
+
 '''
 User Commands
 '''
@@ -283,6 +286,20 @@ def list_user_command(format):
         print(get_all_users())
     else:
         print(get_all_users_json())
+
+@user_cli.command("get-preferences", help="Get user preferences")
+@click.argument("user_id", default=1, type=int)
+def get_user_preferences_command(user_id):
+    preferences = get_user_preferences(user_id)
+    print(preferences)
+
+@user_cli.command("update-preferences", help="Update user preferences")
+@click.argument("user_id", default=1, type=int)
+@click.option("--abs_threshold", type=int, help="New absolute threshold")
+@click.option("--perc_threshold", type=float, help="New percentage threshold")
+def update_user_preferences_command(user_id, abs_threshold, perc_threshold):
+    updated_preferences = update_user_preferences(user_id, abs_threshold=abs_threshold, perc_threshold=perc_threshold)
+    print(f"Updated preferences for user {user_id}: {updated_preferences}")
 
 app.cli.add_command(user_cli) # add the group to the cli
 
