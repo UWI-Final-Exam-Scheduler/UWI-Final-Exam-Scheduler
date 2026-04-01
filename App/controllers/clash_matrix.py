@@ -1,5 +1,4 @@
 from App.models.clash_matrix import ClashMatrix
-from App.models.course import Course
 from App.models.enrollment import Enrollment
 from App.database import db
 from collections import defaultdict
@@ -49,14 +48,18 @@ def exceeds_percentage_threshold(clash_count, enrollment_count, course1, course2
 
 # would only show clashes when both thresholds are satisfied
 def view_conflicting_courses(abs_threshold=5, perc_threshold=0.1):
-    qualifying_clashes = []  # to store clashes that meet the threshold criteria for later processing
-    course_has_clash = set() # to track which courses have at least one qualifying clash
-    affected_students = set() # to track unique students affected by qualifying clashes
+    qualifying_clashes = []
+    course_has_clash = set()
+    affected_students = set()
 
-    enrollment_counts = db.session.query(Enrollment.courseCode, db.func.count(Enrollment.student_id)).group_by(Enrollment.courseCode).all()
+    enrollment_counts = (
+        db.session.query(Enrollment.courseCode, db.func.count(Enrollment.student_id))
+        .group_by(Enrollment.courseCode)
+        .all()
+    )
     enrollment_count = dict(enrollment_counts)
 
-    clashes = ClashMatrix.query.filter(ClashMatrix.clash_count >= abs_threshold).all()  # initial filter to reduce number of clashes to evaluate against percentage threshold
+    clashes = ClashMatrix.query.filter(ClashMatrix.clash_count >= abs_threshold).all()
 
     for clash in clashes:
         if absolute_threshold(clash.clash_count, abs_threshold=abs_threshold) and \
@@ -65,19 +68,19 @@ def view_conflicting_courses(abs_threshold=5, perc_threshold=0.1):
                enrollment_count,
                clash.course1,
                clash.course2,
-               perc_thresh=perc_threshold
+               perc_thresh=perc_threshold,
            ):
             qualifying_clashes.append(clash)
             course_has_clash.add(clash.course1)
             course_has_clash.add(clash.course2)
 
-    courses_to_fetch = set() # to track which courses to fetch enrollments for when calculating affected students
+    courses_to_fetch = set()
     for clash in qualifying_clashes:
         courses_to_fetch.add(clash.course1)
         courses_to_fetch.add(clash.course2)
 
-    course_students = defaultdict(set)  # to store sets of students for each course to efficiently calculate affected students
-
+    course_students = defaultdict(set)
+    enrollment_rows = []
     if courses_to_fetch:
         enrollment_rows = (
             db.session.query(Enrollment.courseCode, Enrollment.student_id)
@@ -85,13 +88,12 @@ def view_conflicting_courses(abs_threshold=5, perc_threshold=0.1):
             .all()
         )
 
-        for course_code, student_id in enrollment_rows:
-            course_students[course_code].add(student_id)
+    for course_code, student_id in enrollment_rows:
+        course_students[course_code].add(student_id)
 
-    #calculate students affected by qualifying clashes by finding intersections of student sets for each pair of conflicting courses
     for clash in qualifying_clashes:
         affected_students.update(
-            course_students[clash.course1].intersection(course_students[clash.course2])  
+            course_students[clash.course1].intersection(course_students[clash.course2])
         )
 
     conflicting_courses = [
@@ -103,13 +105,7 @@ def view_conflicting_courses(abs_threshold=5, perc_threshold=0.1):
         for clash in qualifying_clashes
     ]
 
-    unique_courses_with_conflicts = [
-        {
-            "course": course_code,
-            "has_clash": True,
-        }
-        for course_code in course_has_clash
-    ]
+    courses_with_clashes = sorted(course_has_clash)
 
     total_students = db.session.query(Enrollment.student_id).distinct().count()
     affected_students_percentage = (
@@ -118,15 +114,15 @@ def view_conflicting_courses(abs_threshold=5, perc_threshold=0.1):
 
     return {
         "conflicting_courses": conflicting_courses,
-        "courses": unique_courses_with_conflicts,
+        "courses_with_clashes": courses_with_clashes,
         "total_conflicts": len(qualifying_clashes),
         "unique_courses_with_conflicts": len(course_has_clash),
         "total_students_affected": len(affected_students),
         "percentage_students_affected": round(affected_students_percentage, 2),
     }
 
+
 def view_course_clashes(course_code, abs_threshold=5, perc_threshold=0.1):
-    has_clash = False
     course_code = course_code.upper()
     clashes = ClashMatrix.query.filter((ClashMatrix.course1 == course_code) | (ClashMatrix.course2 == course_code)).all()
     
@@ -152,3 +148,13 @@ def view_course_clashes(course_code, abs_threshold=5, perc_threshold=0.1):
         "clashes": course_clashes,
         "total_clashes": len(course_clashes)
     }
+
+def normalize_percentage_threshold(raw_value: float) -> float:
+    # Accept either decimal (0..1) or percent (0..100)
+    if raw_value > 1:
+        raw_value = raw_value / 100.0
+
+    if not (0 <= raw_value <= 1):
+        raise ValueError("Percentage threshold must be between 0 and 1 (or 0 to 100)")
+
+    return raw_value
