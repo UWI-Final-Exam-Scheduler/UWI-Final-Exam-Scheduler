@@ -1,3 +1,4 @@
+from App.controllers.exams import sync_exams_with_enrollment_data
 from App.models import Enrollment, Student, Course
 from App.controllers import normalize_course_code
 import csv
@@ -48,6 +49,7 @@ def import_enrollments_from_csv(file_path):
         except Exception as e:
             db.session.rollback()
             raise e
+   
         return "Enrollments imported successfully!"
 
 # def import_enrollments_from_csv(file_path):
@@ -170,3 +172,42 @@ def get_enrollments_by_student(student_id):
         })
     
     return enrollment_json
+
+def createTestEnrollments(): #used for testing purposes 
+    test_data = [
+        ("ACCT1002", list(range(816000001, 816000009))),       
+        ("AGBU1005", list(range(816000001, 816000004))),      
+        ("AGBU2000", list(range(816000001, 816000011))),       
+        ("AGBU2002", list(range(816000001, 816000008))),       
+        ("BIOC2061", list(range(816000001, 816000006))),       
+        ("BIOL0100", list(range(816000001, 816000010))),       
+    ]
+
+    all_student_ids = {sid for _, ids in test_data for sid in ids}
+    existing_ids = {
+        s.student_id for s in
+        Student.query.filter(Student.student_id.in_(all_student_ids)).all()
+    }
+    new_students = [Student(student_id=sid) for sid in all_student_ids if sid not in existing_ids]
+    if new_students:
+        db.session.add_all(new_students)
+        db.session.commit()
+
+    existing_enrollments = {
+        (e.student_id, e.courseCode) for e in Enrollment.query.all()
+    }
+    new_enrollments = [
+        Enrollment(student_id=sid, courseCode=code)
+        for code, ids in test_data
+        for sid in ids
+        if (sid, code) not in existing_enrollments
+    ]
+    if new_enrollments:
+        db.session.add_all(new_enrollments)
+        db.session.commit()
+
+    try:
+            sync_exams_with_enrollment_data()
+    except Exception as sync_err:
+            return f"Enrollments imported but failed to sync with exams: {sync_err}"
+    return "Enrollments imported successfully!"
