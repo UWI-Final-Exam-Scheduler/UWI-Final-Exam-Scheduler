@@ -28,7 +28,7 @@ def get_all_exams():
     for exam in exams:
         exam_json.append({
             "courseCode": exam.courseCode,
-            "exam_date": exam.date.strftime("%Y-%m-%d"),   
+            "exam_date":  exam.date.strftime("%Y-%m-%d") if exam.date else None,   
             "time": exam.time, 
             "venue_id": exam.venue_id,
             "exam_length": exam.exam_length,
@@ -71,10 +71,28 @@ def reschedule_exam(exam_course_code, date_str=None, time=None, venue_id=None, u
         return None, "At least one of date, time or venue_id is required"
 
     try:
+        # Validate and set date
         if date_str:
-            exam.date = datetime.strptime(date_str, "%Y-%m-%d").date()
-        if time:
-            exam.time = time
+            if isinstance(date_str, str):
+                date_obj = datetime.strptime(date_str, "%Y-%m-%d").date()
+            elif isinstance(date_str, datetime):
+                date_obj = date_str.date()
+            elif isinstance(date_str, datetime.date):
+                date_obj = date_str
+            else:
+                return None, "Invalid date format, must be YYYY-MM-DD"
+            if date_obj.weekday() >= 5:
+                return None, "Exams cannot be scheduled on weekends"
+            exam.date = date_obj
+        # Validate and set time
+        if time is not None:
+            try:
+                valid_time = int(time)
+            except Exception:
+                return None, "Time must be an integer (9, 1, or 4)"
+            if valid_time not in [9, 1, 4]:
+                return None, "Invalid time slot. Please choose a valid time slot (9, 1, or 4)"
+            exam.time = valid_time
         if venue_id:
             exam.venue_id = venue_id
 

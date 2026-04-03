@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from App.controllers import exams, venue
 from App.models.admin import Admin
@@ -13,22 +15,22 @@ exams_views = Blueprint('exams_views', __name__, template_folder='../templates')
 def get_exams_view():
     authenticated_user = get_jwt_identity()
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 401
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
         
     try:
         exams = get_all_exams()
         if exams is None:
-            return jsonify({'error': 'No exams found'}), 404
+            return jsonify({'error': 'No exams found'}), 404 #mock test needed
         return jsonify(exams), 200
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e)}), 500 #mock test needed
     
 @exams_views.route('/api/exams/<string:exam_date>', methods=['GET'])
 @jwt_required()
 def get_exams_by_date_view(exam_date):
     authenticated_user = get_jwt_identity()
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 401
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
         
     try:
         exams = get_exams_by_date(exam_date)
@@ -36,14 +38,14 @@ def get_exams_by_date_view(exam_date):
             return [], 200
         return jsonify(exams), 200
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e)}), 500 #mock test needed
     
 @exams_views.route('/api/exams/reschedule', methods=['PATCH'])
 @jwt_required()
 def reschedule_exam_view():
     authenticated_user = get_jwt_identity()
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 401
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
         
     data = request.get_json()
     exam_course_code = data.get('courseCode')
@@ -58,6 +60,11 @@ def reschedule_exam_view():
     try:
         exam, error = reschedule_exam(exam_course_code, date_str, time_str, venue_id, unschedule)
         if error:
+            if "weekends" in error.lower() or "date format" in error.lower() or "does not match format" in error.lower():
+                return jsonify({'error': error}), 400
+            
+            if "time slot" in error.lower() or "time must be an integer" in error.lower():
+                return jsonify({'error': error}), 400
             return jsonify({'error': error}), 404
         return jsonify({
             "courseCode": exam.courseCode,
@@ -68,28 +75,28 @@ def reschedule_exam_view():
             "number_of_students": exam.number_of_students
         }), 200
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e)}), 500  # mock test needed
     
 @exams_views.route('/api/exams/need_rescheduling', methods=['GET'])
 @jwt_required()
 def get_exams_that_need_rescheduling_view():
     authenticated_user = get_jwt_identity()
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 401 
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
     try:
         exams = get_exams_that_need_rescheduling()
         if exams is None:
             return [], 200
         return jsonify(exams), 200
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
-    
+        return jsonify({'error': str(e)}), 500  # mock test needed
+
 @exams_views.route('/api/exams/days_with_exams', methods=['GET'])
 @jwt_required()
 def get_all_days_with_exams_view():
     authenticated_user = get_jwt_identity()
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 401 
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
     try:
         days = get_all_days_with_exams()
         print("DEBUG days from DB:", days)
@@ -97,4 +104,4 @@ def get_all_days_with_exams_view():
             return [], 200
         return jsonify(days), 200
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e)}), 500 # mock test needed
