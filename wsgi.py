@@ -6,7 +6,7 @@ import click, pytest, sys
 from flask.cli import with_appcontext, AppGroup
 
 from flask.cli import with_appcontext, AppGroup
-from App.controllers.enrollments import create_enrollment, import_enrollments_from_csv
+from App.controllers.enrollments import create_enrollment, createTestEnrollments, import_enrollments_from_csv
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users )
@@ -19,7 +19,7 @@ from App.models.enrollment import Enrollment
 from App.models.student import Student
 from App.models.venue import Venue
 from App.controllers.clash_matrix import create_clash_matrix, view_conflicting_courses, view_course_clashes
-from App.controllers.exams import createTestExams, generate_timetable, get_all_days_with_exams, get_all_exams, get_exams_by_date, reschedule_exam
+from App.controllers.exams import createTestExams, generate_timetable, get_all_days_with_exams, get_all_exams, get_exams_by_date, reschedule_exam, sync_exams_with_enrollment_data
 from App.models.clash_matrix import ClashMatrix
 from App.models.exam import Exam
 from App.controllers.user_preference import get_user_preferences, update_user_preferences
@@ -34,9 +34,19 @@ def db_reset():
     db.drop_all()
     db.create_all()
 
+@app.cli.command("reset_exam_enrollments", help="Deletes all exams and enrollments from the database")
+def reset_exam_enrollments():
+    Exam.query.delete()
+    Enrollment.query.delete()
+    db.session.commit()
+    print("All exams and enrollments deleted.")
+
 @app.cli.command("load-from-last", help="Loads all the previous exams into the ")
 def import_timetable():
     try:
+        Exam.query.delete()
+        db.session.commit()
+        print("Removing past timetable. Loading new timetable...")
         result = generate_timetable()
         print(result)
     except Exception as e:
@@ -132,6 +142,7 @@ def read_enrollments():
 
         msg = import_enrollments_from_csv("Test Data/enrollments.csv")
         print(msg)
+        sync_exams_with_enrollment_data()
     except Exception as e:
         print(f"Error importing enrollments: {e}")     
 
@@ -203,6 +214,14 @@ def create_test_exams_command():
         print("Test exams created successfully!")
     except Exception as e:
         print(f"Error creating test exams: {e}")
+
+@app.cli.command("create-test-enrollments", help="Creates test enrollments in the database")
+def create_test_enrollments_command():
+    try:
+        createTestEnrollments()
+        print("Test enrollments created successfully!")
+    except Exception as e:
+        print(f"Error creating test enrollments: {e}")
 
 @app.cli.command("get-exams", help="Get all exams in the database")
 def get_exams_command():

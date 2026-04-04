@@ -1,4 +1,5 @@
 from App.models import Exam, Course
+from App.models.enrollment import Enrollment
 from App.strategies.loadfromlast import LoadFromLastStrategy
 from App.controllers.venue import get_venue_by_name
 from App.database import db
@@ -11,13 +12,14 @@ def generate_timetable():
     return result
 
 def createTestExams():
-    exam1 = Exam(courseCode="ACCT1002", date=datetime(2026, 5, 4).date(), time=9, venue_id=7, exam_length=120, number_of_students= 100)
-    exam2 = Exam(courseCode="AGBU1005", date=datetime(2026, 5, 4).date(), time=1, venue_id=7, exam_length=120, number_of_students= 100)
-    exam3 = Exam(courseCode="AGBU2000", date=datetime(2026, 5, 5).date(), time=9, venue_id=8, exam_length=120, number_of_students= 100)
-    exam4 = Exam(courseCode="AGBU2002", date=datetime(2026, 6, 5).date(), time=1, venue_id=9, exam_length=120, number_of_students= 180)
-    exam5 = Exam(courseCode="BIOC2061", date=datetime(2026, 6, 5).date(), time=4, venue_id=9, exam_length=120, number_of_students= 220)
-    exam6 = Exam(courseCode="BIOL0100", date=datetime(2026, 6, 9).date(), time=9, venue_id=10, exam_length=120, number_of_students= 250)
-    db.session.add_all([exam1, exam2, exam3, exam4, exam5, exam6])
+    exam1 = Exam(courseCode="ACCT1002", date=datetime(2026, 5, 4).date(), time=9, venue_id=7, exam_length=120, number_of_students= 5)
+    exam2 = Exam(courseCode="AGBU1005", date=datetime(2026, 5, 4).date(), time=1, venue_id=7, exam_length=120, number_of_students= 5)
+    exam3 = Exam(courseCode="AGBU2000", date=datetime(2026, 5, 5).date(), time=9, venue_id=8, exam_length=120, number_of_students= 10)
+    exam4 = Exam(courseCode="AGBU2002", date=datetime(2026, 6, 5).date(), time=1, venue_id=9, exam_length=120, number_of_students= 7)
+    exam5 = Exam(courseCode="BIOC2061", date=datetime(2026, 6, 5).date(), time=4, venue_id=9, exam_length=120, number_of_students= 2)
+    exam6 = Exam(courseCode="BIOL0100", date=datetime(2026, 6, 9).date(), time=9, venue_id=10, exam_length=120, number_of_students= 3)
+    exam7 = Exam(courseCode="BIOL0100", date=datetime(2026, 6, 9).date(), time=9, venue_id=7, exam_length=120, number_of_students= 10)
+    db.session.add_all([exam1, exam2, exam3, exam4, exam5, exam6, exam7])
     db.session.commit()
 
 def get_all_exams():
@@ -110,3 +112,41 @@ def get_all_days_with_exams():
         if exam.date:
             days_with_exams.add(exam.date.strftime("%Y-%m-%d"))
     return list(days_with_exams)
+
+def sync_exams_with_enrollment_data():
+    enrolled_students_per_course = db.session.query(
+        Enrollment.courseCode,
+        db.func.count(Enrollment.student_id)
+    ).group_by(Enrollment.courseCode).all()
+
+    enrollment_counts = {row.courseCode: row[1] for row in enrolled_students_per_course}
+
+    for course_code, total_enrolled in enrollment_counts.items():
+        exam_list = (
+            Exam.query
+            .filter_by(courseCode=course_code)
+            .order_by(Exam.number_of_students.desc())  # largest first (important)
+            .all()
+        )
+
+        if not exam_list:
+            continue
+
+        remaining = total_enrolled
+
+        for i, exam in enumerate(exam_list):
+            if remaining <= exam.number_of_students:
+                exam.number_of_students = remaining
+                for extra in exam_list[i + 1:]: # this is if the enrolled data fits in the first split(s) and the remaining is deleted
+                    db.session.delete(extra)
+
+                remaining = 0 # remaining is set to zero after
+                break
+            else:
+                remaining -= exam.number_of_students # remaining enrolled students that need to be placed in the next splits
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        raise e
+
