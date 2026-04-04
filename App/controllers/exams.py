@@ -66,6 +66,7 @@ def reschedule_exam(exam_course_code, date_str=None, time=None, venue_id=None, u
     if unschedule:
         exam.date = None
         exam.time = 0
+        exam.venue_id = None
         db.session.commit()
         return exam, None
 
@@ -149,4 +150,92 @@ def sync_exams_with_enrollment_data():
     except Exception as e:
         db.session.rollback()
         raise e
+    
+
+def split_exam(course_code, splits, venue_id=None, time=None, date=None):
+    existing = db.session.query(Exam).filter_by(courseCode=course_code).all()
+    if not existing:
+        return None, f"No exam found for course code {course_code}"
+
+    total_students = sum(e.number_of_students for e in existing)
+    split_total = sum(s["number_of_students"] for s in splits)
+    if split_total != total_students:
+        return None, (
+            f"Split totals ({split_total}) must equal the total enrolled "
+            f"students ({total_students})"
+        )
+
+    #this is just to ensure that each split has at least 1 student
+    for s in splits:
+        if s["number_of_students"] < 1:
+            return None, "Each split must have at least 1 student"
+
+    # splits can be between 2 -4 (just a rule i added)
+    if not (2 <= len(splits) <= 4):
+        return None, "Number of splits must be between 2 and 4"
+
+    # Use the first existing exam split as the template for inherited attributes like date and time 
+    template = existing[0]
+    exam_date = datetime.strptime(date, "%Y-%m-%d").date() if date else template.date
+    exam_time = time if time is not None else template.time
+    exam_venue_id = venue_id if venue_id is not None else None
+
+    # Delete all existing exam records for this course before creating new splits
+    for exam in existing:
+        db.session.delete(exam)
+
+    # Create new split records — same date/time/length, individual student counts
+    new_exams = []
+    for split in splits:
+        new_exam = Exam(
+            courseCode=course_code,
+            date=exam_date,
+            time=exam_time,
+            venue_id=exam_venue_id,  
+            exam_length=template.exam_length,
+            number_of_students=split["number_of_students"],
+        )
+        db.session.add(new_exam)
+        new_exams.append(new_exam)
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return None, str(e)
+
+    return new_exams, None
+
+def merge_exams(exam_ids):
+    if len(exam_ids) < 2:
+        return None, "At least 2 exam IDs are required to merge"
+
+    exams_to_merge = db.session.query(Exam).filter(Exam.id.in_(exam_ids)).all()
+
+    if len(exams_to_merge) != len(exam_ids):
+        found_ids = {e.id for e in exams_to_merge}
+        missing = [eid for eid in exam_ids if eid not in found_ids]
+        return None, f"Exam IDs not found: {missing}"
+
+    # all exam splits must share the same course code to be merged
+    course_codes = {e.courseCode for e in exams_to_merge}
+    if len(course_codes) > 1:
+        return None, "All exams to merge must share the same courseCode"
+
+    #we keep the first split and update the count and delete remaining splits 
+    keeper = exams_to_merge[0]
+    keeper.number_of_students = sum(e.number_of_students for e in exams_to_merge)
+
+    for exam in exams_to_merge[1:]:
+        db.session.delete(exam)
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return None, str(e)
+
+    return keeper, None
+
+
 

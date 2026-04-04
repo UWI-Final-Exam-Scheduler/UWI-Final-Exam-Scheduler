@@ -7,7 +7,7 @@ class Exam(db.Model):
     courseCode= db.Column(db.String(20), db.ForeignKey('courses.courseCode'), nullable=False)
     date = db.Column(db.Date, nullable=True, index=True)
     time = db.Column(db.Integer, nullable=False) 
-    venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'), nullable=False, index=True)
+    venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'), nullable=True, index=True)
     exam_length = db.Column(db.Integer, nullable=False)
     number_of_students = db.Column(db.Integer, nullable=False)
     
