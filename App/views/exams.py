@@ -5,7 +5,7 @@ from App.controllers import exams, venue
 from App.models.admin import Admin
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user, get_jwt_identity
 
-from App.controllers import get_exams_that_need_rescheduling, get_exams_by_date, reschedule_exam, get_all_exams, get_all_days_with_exams
+from App.controllers import get_exams_that_need_rescheduling, get_exams_by_date, reschedule_exam, get_all_exams, get_all_days_with_exams, sync_exams_with_enrollment_data
 from App.controllers.auth import is_admin
 
 exams_views = Blueprint('exams_views', __name__, template_folder='../templates')
