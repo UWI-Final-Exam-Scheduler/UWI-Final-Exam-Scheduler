@@ -9,6 +9,9 @@ from datetime import datetime
 def generate_timetable():
     strategy = LoadFromLastStrategy()
     result = strategy.execute()
+
+    if Enrollment.query.count() > 0:
+        sync_exams_with_enrollment_data()   
     return result
 
 def createTestExams():

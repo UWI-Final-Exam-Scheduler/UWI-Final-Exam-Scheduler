@@ -5,11 +5,7 @@ from App.models import User
 from App.controllers.user import get_user_by_username 
 from App.controllers.user_preference import get_user_preferences, update_user_preferences
 from.index import index_views
-
-from App.controllers import (
-    login,
-
-)
+from App.controllers import login
 
 auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
 
