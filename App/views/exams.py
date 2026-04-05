@@ -46,17 +46,17 @@ def reschedule_exam_view():
         return jsonify({'error': 'Access denied - Unauthorized user'}), 401
         
     data = request.get_json()
-    exam_course_code = data.get('courseCode')
+    exam_id = data.get('examId')
     date_str = data.get('date')
     time_str = data.get('time')
-    venue_id = data.get('venue_id')
+    venue_id = data.get('venueId')
     unschedule = data.get('unschedule', False)
 
-    if not exam_course_code:
-        return jsonify({'error': 'courseCode is required'}), 400
+    if not exam_id:
+        return jsonify({'error': 'Exam ID is required'}), 400
 
     try:
-        exam, error = reschedule_exam(exam_course_code, date_str, time_str, venue_id, unschedule)
+        exam, error = reschedule_exam(exam_id, date_str, time_str, venue_id, unschedule)
         if error:
             return jsonify({'error': error}), 404
         return jsonify({
