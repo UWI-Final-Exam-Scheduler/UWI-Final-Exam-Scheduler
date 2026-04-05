@@ -1,4 +1,4 @@
-from App.models import Exam, Course
+from App.models import Exam, Course, exam
 from App.models.enrollment import Enrollment
 from App.strategies.loadfromlast import LoadFromLastStrategy
 from App.controllers.venue import get_venue_by_name
@@ -58,10 +58,10 @@ def get_exams_by_date(exam_date):
     return exam_json
 
 
-def reschedule_exam(exam_course_code, date_str=None, time=None, venue_id=None, unschedule=False):
-    exam = db.session.query(Exam).filter_by(courseCode=exam_course_code).first()
+def reschedule_exam(exam_id, date_str=None, time=None, venue_id=None, unschedule=False):
+    exam = db.session.get(Exam, exam_id)  # direct PK lookup, no ambiguity
     if not exam:
-        return None, f"Exam with course code {exam_course_code} not found"
+        return None, f"Exam with id {exam_id} not found"
 
     if unschedule:
         exam.date = None
