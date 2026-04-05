@@ -51,7 +51,7 @@ def test_reschedule_exam(empty_db):
     db.session.commit()
 
     updated_exam, error = reschedule_exam(
-        "COMP1600",
+        exam.id,
         date_str="2026-05-10",
         time=9
     )
@@ -60,9 +60,9 @@ def test_reschedule_exam(empty_db):
     assert updated_exam.time == 9
 
 def test_reschedule_exam_not_found(empty_db):
-    updated_exam, error = reschedule_exam("COMP1600", date_str="2026-05-10")
+    updated_exam, error = reschedule_exam(999, date_str="2026-05-10")
     assert updated_exam is None
-    assert error == "Exam with course code COMP1600 not found"
+    assert error == "Exam with id 999 not found"
 
 def test_reschedule_exam_no_values_given(empty_db):
     course = Course(courseCode="COMP1600", name="Intro to Computing")
@@ -82,7 +82,7 @@ def test_reschedule_exam_no_values_given(empty_db):
     db.session.add(exam)
     db.session.commit()
 
-    updated_exam, error = reschedule_exam("COMP1600")
+    updated_exam, error = reschedule_exam(exam.id)
     assert updated_exam is None
     assert error == "At least one of date, time or venue_id is required"
 
@@ -104,7 +104,7 @@ def test_unschedule_exam(empty_db):
     db.session.add(exam)
     db.session.commit()
 
-    updated_exam, error = reschedule_exam("COMP1600", unschedule=True)
+    updated_exam, error = reschedule_exam(exam.id, unschedule=True)
     assert error is None
     assert updated_exam.date is None
     assert updated_exam.time == 0
