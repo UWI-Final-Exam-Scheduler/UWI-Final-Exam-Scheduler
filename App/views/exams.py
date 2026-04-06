@@ -107,19 +107,19 @@ def split_exam_view():
         return jsonify({'error': 'Access denied - Unauthorized user'}), 401
 
     data = request.get_json()
-    course_code = data.get('courseCode')
+    exam_id = data.get('examId')
     splits = data.get('splits')       
     venue_id = data.get('venueId')    
     time = data.get('time')           
     date = data.get('date')           
 
-    if not course_code:
-        return jsonify({'error': 'courseCode is required'}), 400
+    if not exam_id:
+        return jsonify({'error': 'examId is required'}), 400
     if not splits or not isinstance(splits, list):
         return jsonify({'error': 'splits must be a non-empty list'}), 400
 
     try:
-        new_exams, error = split_exam(course_code, splits, venue_id, time, date)
+        new_exams, error = split_exam(exam_id, splits, venue_id, time, date)
         if error:
             return jsonify({'error': error}), 400
 
