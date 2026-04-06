@@ -67,8 +67,8 @@ def reschedule_exam_view():
     if not exam_id:
         return jsonify({'error': 'Exam ID is required'}), 400
     
-    if course_exists(exam_course_code) is False:
-        return jsonify({'error': f'Course with code {exam_course_code} does not exist'}), 404
+    if course_exists(exam_id) is False:
+        return jsonify({'error': f'Course with code {exam_id} does not exist'}), 404
 
     try:
         exam, error = reschedule_exam(exam_id, date_str, time_str, venue_id, unschedule)
