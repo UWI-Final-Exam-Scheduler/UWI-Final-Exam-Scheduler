@@ -37,8 +37,8 @@ def get_all_exams():
             "time": exam.time, 
             "venue_id": exam.venue_id,
             "exam_length": exam.exam_length,
-            "number_of_students": exam.number_of_students
-
+            "number_of_students": exam.number_of_students,
+            "exam_id": exam.id
         })
     return exam_json
 

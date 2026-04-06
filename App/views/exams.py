@@ -5,7 +5,7 @@ from App.controllers import exams, venue
 from App.models.admin import Admin
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user, get_jwt_identity
 from App.strategies.loadfromlast import LoadFromLastStrategy
-from App.controllers import get_exams_that_need_rescheduling, get_exams_by_date, reschedule_exam, get_all_exams, get_all_days_with_exams, sync_exams_with_enrollment_data, split_exam, merge_exams, course_exists
+from App.controllers import get_exams_that_need_rescheduling, get_exams_by_date, reschedule_exam, get_all_exams, get_all_days_with_exams, sync_exams_with_enrollment_data, split_exam, merge_exams
 from App.controllers.auth import is_admin
 
 exams_views = Blueprint('exams_views', __name__, template_folder='../templates')
@@ -64,11 +64,13 @@ def reschedule_exam_view():
     venue_id = data.get('venueId')
     unschedule = data.get('unschedule', False)
 
-    if not exam_id:
+    if exam_id is None or exam_id == "":
         return jsonify({'error': 'Exam ID is required'}), 400
-    
-    if course_exists(exam_id) is False:
-        return jsonify({'error': f'Course with code {exam_id} does not exist'}), 404
+
+    try:
+        exam_id = int(exam_id)
+    except (TypeError, ValueError):
+        return jsonify({'error': 'Exam ID must be an integer'}), 400
 
     try:
         exam, error = reschedule_exam(exam_id, date_str, time_str, venue_id, unschedule)
@@ -134,8 +136,13 @@ def split_exam_view():
     time = data.get('time')           
     date = data.get('date')           
 
-    if not exam_id:
+    if exam_id is None or exam_id == "":
         return jsonify({'error': 'examId is required'}), 400
+    try:
+        exam_id = int(exam_id)
+    except (TypeError, ValueError):
+        return jsonify({'error': 'Exam ID must be an integer'}), 400
+
     if not splits or not isinstance(splits, list):
         return jsonify({'error': 'splits must be a non-empty list'}), 400
 

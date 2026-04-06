@@ -6,6 +6,8 @@ from App.models import Course, Student, Enrollment, Venue, Exam
 from App.database import db
 from App.controllers import (import_courses_from_csv, import_students_from_csv, import_enrollments_from_csv, import_venues_from_csv)
 from App.strategies.loadfromlast import LoadFromLastStrategy
+from flask_jwt_extended import get_jwt_identity
+from App.controllers.auth import is_admin
 
 upload_views = Blueprint('upload_views', __name__, template_folder='../templates')
 
@@ -21,6 +23,11 @@ def is_timetable_pdf(filename):
 @upload_views.route('/api/upload', methods=['POST'])
 @jwt_required()
 def receive_file_upload():
+    authenticated_user = get_jwt_identity()
+
+    if not is_admin(authenticated_user):
+        return jsonify({"error": "Access denied - Unauthorized user"}), 401
+
     if "file" not in request.files:
         return jsonify({"error": "No file part in the request"}), 400
     

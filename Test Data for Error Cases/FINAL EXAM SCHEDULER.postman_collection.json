@@ -2425,32 +2425,45 @@
                       "\r",
                       "pm.test(\"Each exam has expected properties\", function () {\r",
                       "    const data = pm.response.json();\r",
-                      "    data.forEach(function(exam) {\r",
+                      "    data.forEach(function (exam) {\r",
                       "        pm.expect(exam).to.have.property(\"courseCode\");\r",
                       "        pm.expect(exam).to.have.property(\"exam_date\");\r",
                       "        pm.expect(exam).to.have.property(\"time\");\r",
                       "        pm.expect(exam).to.have.property(\"venue_id\");\r",
                       "        pm.expect(exam).to.have.property(\"exam_length\");\r",
                       "        pm.expect(exam).to.have.property(\"number_of_students\");\r",
+                      "        pm.expect(exam).to.have.property(\"exam_id\"); \r",
                       "    });\r",
                       "});\r",
                       "\r",
                       "const exams = pm.response.json();\r",
                       "\r",
                       "const examIds = exams\r",
-                      "    .map(e => e.id)\r",
+                      "    .map(e => e.exam_id ?? e.id)\r",
                       "    .filter(id => id !== undefined && id !== null);\r",
                       "\r",
                       "pm.collectionVariables.set(\"exam_ids\", JSON.stringify(examIds));\r",
+                      "pm.collectionVariables.set(\"exam_ids_count\", String(examIds.length));\r",
                       "pm.collectionVariables.set(\"exam_id\", examIds.length ? String(examIds[0]) : \"\");\r",
                       "\r",
-                      "if (exams.length > 0) {\r",
-                      "    const first = exams[0];\r",
-                      "    pm.collectionVariables.set(\"exam_courseCode\", String(first.courseCode || \"\"));\r",
-                      "    pm.collectionVariables.set(\"exam_date\", String(first.exam_date || \"\"));\r",
-                      "    pm.collectionVariables.set(\"exam_time\", String(first.time || \"\"));\r",
-                      "    pm.collectionVariables.set(\"exam_venue_id\", String(first.venue_id || \"\"));\r",
-                      "}"
+                      "const examIdsByCourseCode = {};\r",
+                      "exams.forEach(e => {\r",
+                      "    const code = String(e.courseCode || \"\").toUpperCase();\r",
+                      "    if (!examIdsByCourseCode[code]) {\r",
+                      "        examIdsByCourseCode[code] = [];\r",
+                      "    }\r",
+                      "\r",
+                      "    const resolvedId = e.exam_id ?? e.id;\r",
+                      "    if (resolvedId !== undefined && resolvedId !== null) {\r",
+                      "        examIdsByCourseCode[code].push(resolvedId);\r",
+                      "    }\r",
+                      "});\r",
+                      "\r",
+                      "pm.collectionVariables.set(\"exam_ids_by_courseCode\", JSON.stringify(examIdsByCourseCode));\r",
+                      "\r",
+                      "pm.test(\"At least one exam ID captured\", function () {\r",
+                      "    pm.expect(examIds.length, \"No exam IDs found in response\").to.be.above(0);\r",
+                      "});"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -2509,13 +2522,14 @@
                       "\r",
                       "pm.test(\"Each exam has expected properties\", function () {\r",
                       "    const data = pm.response.json();\r",
-                      "    data.forEach(function(exam) {\r",
+                      "    data.forEach(function (exam) {\r",
                       "        pm.expect(exam).to.have.property(\"courseCode\");\r",
                       "        pm.expect(exam).to.have.property(\"exam_date\");\r",
                       "        pm.expect(exam).to.have.property(\"time\");\r",
                       "        pm.expect(exam).to.have.property(\"venue_id\");\r",
                       "        pm.expect(exam).to.have.property(\"exam_length\");\r",
                       "        pm.expect(exam).to.have.property(\"number_of_students\");\r",
+                      "        pm.expect(exam).to.have.property(\"exam_id\"); \r",
                       "    });\r",
                       "});"
                     ],
@@ -2716,7 +2730,7 @@
                       "\r",
                       "pm.test(\"Success message is correct\", function () {\r",
                       "    const data = pm.response.json();\r",
-                      "    pm.expect(data.msg).to.include(\"Exam rescheduled successfully\");\r",
+                      "    pm.expect(data.msg).to.eql(\"Exam rescheduled successfully\");\r",
                       "});\r",
                       "\r",
                       "pm.test(\"Rescheduled exam has expected properties\", function () {\r",
@@ -2727,6 +2741,15 @@
                       "    pm.expect(data).to.have.property(\"venue_id\");\r",
                       "    pm.expect(data).to.have.property(\"exam_length\");\r",
                       "    pm.expect(data).to.have.property(\"number_of_students\");\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Rescheduled values match request\", function () {\r",
+                      "    const data = pm.response.json();\r",
+                      "    const expectedVenueId = Number(pm.collectionVariables.get(\"venue_id\"));\r",
+                      "\r",
+                      "    pm.expect(data.exam_date).to.eql(\"2026-12-15\");\r",
+                      "    pm.expect(data.time).to.eql(1);\r",
+                      "    pm.expect(data.venue_id).to.eql(expectedVenueId);\r",
                       "});"
                     ],
                     "type": "text/javascript",
@@ -2738,15 +2761,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 2;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 122\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -2765,7 +2797,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"COMP2611\",\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 1,\r\n    \"venue_id\": {{venue_id}},\r\n    \"unschedule\": false\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2826,15 +2858,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 2;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 122\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -2853,7 +2894,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"COMP2611\",\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 4,\r\n    \"venue_id\": {{venue_id}},\r\n    \"unschedule\": false\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 4,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2914,15 +2955,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 3;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 122\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -2941,7 +2991,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"COMP2611\",\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 4,\r\n    \"venue_id\": {{venue_id}},\r\n    \"unschedule\": false\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 4,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3002,15 +3052,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 2;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 122\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -3029,7 +3088,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"COMP2611\",\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": 1,\r\n    \"venue_id\": {{venue_id}},\r\n    \"unschedule\": false\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3080,15 +3139,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 2;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 122\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -3107,7 +3175,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"COMP2611\",\r\n    \"date\": \"2026/12/14\",\r\n    \"time\": 1,\r\n    \"venue_id\": {{venue_id}},\r\n    \"unschedule\": false\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026/12/14\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3154,15 +3222,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 2;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 122\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -3181,7 +3258,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"COMP2611\",\r\n    \"date\": \"2026-12-12\",\r\n    \"time\": 1,\r\n    \"venue_id\": {{venue_id}},\r\n    \"unschedule\": false\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-12\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3228,15 +3305,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 2;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 122\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -3255,7 +3341,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"COMP2611\",\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": 2,\r\n    \"venue_id\": {{venue_id}},\r\n    \"unschedule\": false\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 2,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3302,15 +3388,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 2;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 122\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -3329,7 +3424,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"COMP2611\",\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": \"one\",\r\n    \"venue_id\": {{venue_id}},\r\n    \"unschedule\": false\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": \"two\",\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3351,7 +3446,7 @@
               "response": []
             },
             {
-              "name": "Reschedule (Missing Course code)",
+              "name": "Reschedule (Missing ExamId)",
               "event": [
                 {
                   "listen": "test",
@@ -3361,10 +3456,10 @@
                       "    pm.response.to.have.status(400);\r",
                       "});\r",
                       "\r",
-                      "pm.test(\"Error message for missing course code\", function () {\r",
+                      "pm.test(\"Error message for missing exam id\", function () {\r",
                       "    var jsonData = pm.response.json();\r",
                       "    pm.expect(jsonData).to.have.property(\"error\");\r",
-                      "    pm.expect(jsonData.error).to.include(\"courseCode is required\");\r",
+                      "    pm.expect(jsonData.error).to.include(\"Exam ID is required\");\r",
                       "});"
                     ],
                     "type": "text/javascript",
@@ -3403,7 +3498,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"\",\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": \"1\",\r\n    \"venue_id\": {{venue_id}},\r\n    \"unschedule\": false\r\n}",
+                  "raw": "{\r\n    \"examId\": \"\",\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 2,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3425,20 +3520,20 @@
               "response": []
             },
             {
-              "name": "Reschedule (Invalid Course code)",
+              "name": "Reschedule (Invalid ExamId)",
               "event": [
                 {
                   "listen": "test",
                   "script": {
                     "exec": [
                       "pm.test(\"Status code is 404\", function () {\r",
-                      "    pm.response.to.have.status(404);\r",
+                      "    pm.response.to.have.status(400);\r",
                       "});\r",
                       "\r",
-                      "pm.test(\"Error message for missing course code\", function () {\r",
+                      "pm.test(\"Error message for Exam ID must be an integer\", function () {\r",
                       "    var jsonData = pm.response.json();\r",
                       "    pm.expect(jsonData).to.have.property(\"error\");\r",
-                      "    pm.expect(jsonData.error).to.include(\"does not exist\");\r",
+                      "    pm.expect(jsonData.error).to.include(\"Exam ID must be an integer\");\r",
                       "});"
                     ],
                     "type": "text/javascript",
@@ -3450,15 +3545,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 2;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 122000\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -3477,7 +3581,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"COMP8490\",\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": \"1\",\r\n    \"venue_id\": {{venue_id}},\r\n    \"unschedule\": false\r\n}",
+                  "raw": "{\r\n    \"examId\": \"COMP2611\",\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3665,15 +3769,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 4;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 713\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -3692,7 +3805,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"BIOL2163\",\r\n    \"splits\": [\r\n        {\"number_of_students\": 146},\r\n        {\"number_of_students\": 37}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
+                  "raw": "{\r\n  \"examId\": {{exam_id}},\r\n  \"splits\": [\r\n    { \"number_of_students\": 143 },\r\n    { \"number_of_students\": 40}\r\n  ],\r\n  \"venueId\": {{venue_id}},\r\n  \"time\": 4,\r\n  \"date\": \"2026-12-01\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3714,7 +3827,7 @@
               "response": []
             },
             {
-              "name": "Missing Course Code",
+              "name": "Missing Exam Id",
               "event": [
                 {
                   "listen": "test",
@@ -3724,10 +3837,10 @@
                       "    pm.response.to.have.status(400);\r",
                       "});\r",
                       "\r",
-                      "pm.test(\"Error message for missing course code\", function () {\r",
+                      "pm.test(\"Error message for missing examId\", function () {\r",
                       "    var jsonData = pm.response.json();\r",
                       "    pm.expect(jsonData).to.have.property(\"error\");\r",
-                      "    pm.expect(jsonData.error).to.include(\"courseCode is required\");\r",
+                      "    pm.expect(jsonData.error).to.include(\"examId is required\");\r",
                       "});"
                     ],
                     "type": "text/javascript",
@@ -3766,7 +3879,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"\",\r\n    \"splits\": [\r\n        {\"number_of_students\": 146},\r\n        {\"number_of_students\": 37}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
+                  "raw": "{\r\n    \"examId\": \"\",\r\n    \"splits\": [\r\n        {\"number_of_students\": 146},\r\n        {\"number_of_students\": 37}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3788,7 +3901,7 @@
               "response": []
             },
             {
-              "name": "Invalid Course Code",
+              "name": "Invalid Exam Id",
               "event": [
                 {
                   "listen": "test",
@@ -3798,10 +3911,10 @@
                       "    pm.response.to.have.status(400);\r",
                       "});\r",
                       "\r",
-                      "pm.test(\"Error message for missing course code\", function () {\r",
+                      "pm.test(\"Error message for Exam ID must be an integer\", function () {\r",
                       "    var jsonData = pm.response.json();\r",
                       "    pm.expect(jsonData).to.have.property(\"error\");\r",
-                      "    pm.expect(jsonData.error).to.include(\"No exam found for course code\");\r",
+                      "    pm.expect(jsonData.error).to.include(\"Exam ID must be an integer\");\r",
                       "});"
                     ],
                     "type": "text/javascript",
@@ -3813,15 +3926,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 4;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 55\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -3840,7 +3962,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"COMP8493\",\r\n    \"splits\": [\r\n        {\"number_of_students\": 146},\r\n        {\"number_of_students\": 37}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
+                  "raw": "{\r\n    \"examId\": \"BIOL2163\",\r\n    \"splits\": [\r\n        {\"number_of_students\": 146},\r\n        {\"number_of_students\": 37}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3886,15 +4008,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 4;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 55\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -3913,7 +4044,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"BIOL2163\",\r\n    \"splits\": 2,\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"splits\": 2,\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3961,15 +4092,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 4;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 1\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -3988,7 +4128,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"BIOL2163\",\r\n    \"splits\": [\r\n        {\"number_of_students\": 146},\r\n        {\"number_of_students\": 36}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"splits\": [\r\n        {\"number_of_students\": 146},\r\n        {\"number_of_students\": 36}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -4020,10 +4160,10 @@
                       "    pm.response.to.have.status(400);\r",
                       "});\r",
                       "\r",
-                      "pm.test(\"Error message contains Each split must have at least 1 student\", function () {\r",
+                      "pm.test(\"Error message contains splits must be a non-empty list\", function () {\r",
                       "    var jsonData = pm.response.json();\r",
                       "    pm.expect(jsonData).to.have.property(\"error\");\r",
-                      "    pm.expect(jsonData.error).to.include(\"Each split must have at least 1 student\");\r",
+                      "    pm.expect(jsonData.error).to.include(\"splits must be a non-empty list\");\r",
                       "});"
                     ],
                     "type": "text/javascript",
@@ -4035,15 +4175,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 4;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 1\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -4062,7 +4211,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"BIOL2163\",\r\n    \"splits\": [\r\n        {\"number_of_students\": 183},\r\n        {\"number_of_students\": 0}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
+                  "raw": "\r\n{\r\n    \"examId\": {{exam_id}},\r\n    \"splits\": [],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -4109,15 +4258,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 4;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 1\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -4136,7 +4294,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"BIOL2163\",\r\n    \"splits\": [\r\n        {\"number_of_students\": 183}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"splits\": [\r\n        {\"number_of_students\": 280}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -4183,15 +4341,24 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
+                      "// venue ids\r",
                       "const ids = JSON.parse(pm.collectionVariables.get(\"venue_ids\") || \"[]\");\r",
-                      "\r",
                       "const index = 4;\r",
                       "\r",
                       "if (ids.length <= index) {\r",
                       "    throw new Error(`venue_ids does not have index ${index}. Current length: ${ids.length}`);\r",
                       "}\r",
+                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));\r",
                       "\r",
-                      "pm.collectionVariables.set(\"venue_id\", String(ids[index]));"
+                      "\r",
+                      "//exam ids\r",
+                      "const examIds = JSON.parse(pm.collectionVariables.get(\"exam_ids\") || \"[]\");\r",
+                      "const loc = 1\r",
+                      "\r",
+                      "if (examIds.length <= index) {\r",
+                      "    throw new Error(`exam_ids does not have index ${loc}. Current length: ${examIds.length}`);\r",
+                      "}\r",
+                      "pm.collectionVariables.set(\"exam_id\", String(examIds[loc]));"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -4210,7 +4377,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"courseCode\": \"BIOL2163\",\r\n    \"splits\": [\r\n        {\"number_of_students\": 100},\r\n        {\"number_of_students\": 20},\r\n        {\"number_of_students\": 23},\r\n        {\"number_of_students\": 23},\r\n        {\"number_of_students\": 17}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"splits\": [\r\n        {\"number_of_students\": 100},\r\n        {\"number_of_students\": 40},\r\n        {\"number_of_students\": 33},\r\n        {\"number_of_students\": 80},\r\n        {\"number_of_students\": 27}\r\n    ],\r\n    \"venueId\":{{venue_id}},\r\n    \"time\": 4,\r\n    \"date\": \"2026-12-01\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -4652,6 +4819,59 @@
                 "api",
                 "auth",
                 "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response is JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Error message is correct\", function () {\r",
+                  "    const data = pm.response.json();\r",
+                  "    pm.expect(data).to.have.property(\"error\");\r",
+                  "    pm.expect(data.error).to.eql(\"Access denied - Unauthorized user\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "upload"
               ]
             }
           },
@@ -6160,6 +6380,18 @@
     },
     {
       "key": "exam_venue_id",
+      "value": ""
+    },
+    {
+      "key": "exam_id_by_courseCode",
+      "value": ""
+    },
+    {
+      "key": "exam_ids_count",
+      "value": ""
+    },
+    {
+      "key": "exam_ids_by_courseCode",
       "value": ""
     }
   ]
