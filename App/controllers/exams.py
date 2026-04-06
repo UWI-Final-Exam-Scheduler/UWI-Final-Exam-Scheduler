@@ -1,4 +1,4 @@
-from App.models import Exam, Course
+from App.models import Exam, Course, exam
 from App.models.enrollment import Enrollment
 from App.strategies.loadfromlast import LoadFromLastStrategy
 from App.controllers.venue import get_venue_by_name
@@ -61,10 +61,10 @@ def get_exams_by_date(exam_date):
     return exam_json
 
 
-def reschedule_exam(exam_course_code, date_str=None, time=None, venue_id=None, unschedule=False):
-    exam = db.session.query(Exam).filter_by(courseCode=exam_course_code).first()
+def reschedule_exam(exam_id, date_str=None, time=None, venue_id=None, unschedule=False):
+    exam = db.session.get(Exam, exam_id)  # direct PK lookup, no ambiguity
     if not exam:
-        return None, f"Exam with course code {exam_course_code} not found"
+        return None, f"Exam with id {exam_id} not found"
 
     if unschedule:
         exam.date = None
@@ -173,12 +173,12 @@ def sync_exams_with_enrollment_data():
         raise e
     
 
-def split_exam(course_code, splits, venue_id=None, time=None, date=None):
-    existing = db.session.query(Exam).filter_by(courseCode=course_code).all()
+def split_exam(exam_id, splits, venue_id=None, time=None, date=None):
+    existing = db.session.query(Exam).filter_by(id=exam_id).first()
     if not existing:
-        return None, f"No exam found for course code {course_code}"
+        return None, f"No exam found for ID {exam_id}"
 
-    total_students = sum(e.number_of_students for e in existing)
+    total_students = existing.number_of_students
     split_total = sum(s["number_of_students"] for s in splits)
     if split_total != total_students:
         return None, (
@@ -196,14 +196,15 @@ def split_exam(course_code, splits, venue_id=None, time=None, date=None):
         return None, "Number of splits must be between 2 and 4"
 
     # Use the first existing exam split as the template for inherited attributes like date and time 
-    template = existing[0]
-    exam_date = datetime.strptime(date, "%Y-%m-%d").date() if date else template.date
-    exam_time = time if time is not None else template.time
+    course_code = existing.courseCode
+    exam_date = datetime.strptime(date, "%Y-%m-%d").date() if date else existing.date
+    exam_time = time if time is not None else existing.time
     exam_venue_id = venue_id if venue_id is not None else None
 
-    # Delete all existing exam records for this course before creating new splits
-    for exam in existing:
-        db.session.delete(exam)
+    # # Delete all existing exam records for this course before creating new splits
+    # for exam in existing:
+    #     db.session.delete(exam)
+    db.session.delete(existing) 
 
     # Create new split records — same date/time/length, individual student counts
     new_exams = []
@@ -213,7 +214,7 @@ def split_exam(course_code, splits, venue_id=None, time=None, date=None):
             date=exam_date,
             time=exam_time,
             venue_id=exam_venue_id,  
-            exam_length=template.exam_length,
+            exam_length=existing.exam_length,
             number_of_students=split["number_of_students"],
         )
         db.session.add(new_exam)

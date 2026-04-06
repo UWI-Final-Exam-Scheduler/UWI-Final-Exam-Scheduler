@@ -58,20 +58,20 @@ def reschedule_exam_view():
         return jsonify({'error': 'Access denied - Unauthorized user'}), 401
         
     data = request.get_json()
-    exam_course_code = data.get('courseCode')
+    exam_id = data.get('examId')
     date_str = data.get('date')
     time_str = data.get('time')
-    venue_id = data.get('venue_id')
+    venue_id = data.get('venueId')
     unschedule = data.get('unschedule', False)
 
-    if not exam_course_code:
-        return jsonify({'error': 'courseCode is required'}), 400
+    if not exam_id:
+        return jsonify({'error': 'Exam ID is required'}), 400
     
     if course_exists(exam_course_code) is False:
         return jsonify({'error': f'Course with code {exam_course_code} does not exist'}), 404
 
     try:
-        exam, error = reschedule_exam(exam_course_code, date_str, time_str, venue_id, unschedule)
+        exam, error = reschedule_exam(exam_id, date_str, time_str, venue_id, unschedule)
         if error:
             if "weekends" in error.lower() or "date format" in error.lower() or "does not match format" in error.lower():
                 return jsonify({'error': error}), 400
@@ -128,19 +128,19 @@ def split_exam_view():
         return jsonify({'error': 'Access denied - Unauthorized user'}), 401
 
     data = request.get_json()
-    course_code = data.get('courseCode')
+    exam_id = data.get('examId')
     splits = data.get('splits')       
     venue_id = data.get('venueId')    
     time = data.get('time')           
     date = data.get('date')           
 
-    if not course_code:
-        return jsonify({'error': 'courseCode is required'}), 400
+    if not exam_id:
+        return jsonify({'error': 'examId is required'}), 400
     if not splits or not isinstance(splits, list):
         return jsonify({'error': 'splits must be a non-empty list'}), 400
 
     try:
-        new_exams, error = split_exam(course_code, splits, venue_id, time, date)
+        new_exams, error = split_exam(exam_id, splits, venue_id, time, date)
         if error:
             return jsonify({'error': error}), 400
 
