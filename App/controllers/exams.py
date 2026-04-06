@@ -50,7 +50,7 @@ def get_exams_by_date(exam_date):
     exam_json = []
     for exam in exams:
         exam_json.append({
-            "id": exam.id,
+            "exam_id": exam.id,
             "courseCode": exam.courseCode,
             "exam_date": exam.date.strftime("%Y-%m-%d"), 
             "time": exam.time, 
@@ -124,7 +124,7 @@ def get_exams_that_need_rescheduling():
     exam_json = []
     for exam in exams:
         exam_json.append({
-            "id": exam.id,
+            "exam_id": exam.id,
             "courseCode": exam.courseCode,
             "exam_date": exam.date.strftime("%Y-%m-%d") if exam.date else None,
             "time": exam.time,
@@ -187,6 +187,15 @@ def split_exam(exam_id, splits, venue_id=None, time=None, date=None):
     if not existing:
         return None, f"No exam found for ID {exam_id}"
 
+    # splits can be between 2 -4 (just a rule i added)
+    if not (2 <= len(splits) <= 4):
+        return None, "Number of splits must be between 2 and 4"
+
+    # this is just to ensure that each split has at least 1 student
+    for s in splits:
+        if s["number_of_students"] < 1:
+            return None, "Each split must have at least 1 student"
+
     total_students = existing.number_of_students
     split_total = sum(s["number_of_students"] for s in splits)
     if split_total != total_students:
@@ -194,15 +203,6 @@ def split_exam(exam_id, splits, venue_id=None, time=None, date=None):
             f"Split totals ({split_total}) must equal the total enrolled "
             f"students ({total_students})"
         )
-
-    #this is just to ensure that each split has at least 1 student
-    for s in splits:
-        if s["number_of_students"] < 1:
-            return None, "Each split must have at least 1 student"
-
-    # splits can be between 2 -4 (just a rule i added)
-    if not (2 <= len(splits) <= 4):
-        return None, "Number of splits must be between 2 and 4"
 
     # Use the first existing exam split as the template for inherited attributes like date and time 
     course_code = existing.courseCode

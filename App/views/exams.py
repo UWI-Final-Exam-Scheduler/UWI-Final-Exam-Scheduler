@@ -154,7 +154,7 @@ def split_exam_view():
 
         return jsonify([
             {
-                "id": exam.id,
+                "exam_id": exam.id,
                 "courseCode": exam.courseCode,
                 "exam_date": exam.date.strftime("%Y-%m-%d") if exam.date else None,
                 "time": exam.time,
@@ -189,7 +189,7 @@ def merge_exams_view():
 
         return jsonify([
             {
-                "id": merged_exam.id,
+                "exam_id": merged_exam.id,
                 "courseCode": merged_exam.courseCode,
                 "exam_date": merged_exam.date.strftime("%Y-%m-%d") if merged_exam.date else None,
                 "time": merged_exam.time,
