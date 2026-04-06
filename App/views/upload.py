@@ -50,8 +50,8 @@ def receive_file_upload():
         fname = file.filename.lower()
 
         if is_timetable_pdf(fname):
+            # Replace timetable data on every timetable upload.
             Exam.query.delete()
-            db.session.commit()
             strategy = LoadFromLastStrategy()
             msg = strategy.execute(pdf_path=tmp_file_path)
         elif "course" in fname:
@@ -67,9 +67,8 @@ def receive_file_upload():
         
         return jsonify({"message": msg})
     except Exception as e:
+        db.session.rollback()
         return jsonify({"error": f"Error processing file: {str(e)}"}), 400
-    except Exception as e:
-        return jsonify({"error": f"Unexpected error: {str(e)}"}), 500
     finally:
         if os.path.exists(tmp_file_path):
             os.remove(tmp_file_path)
