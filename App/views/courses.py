@@ -17,7 +17,7 @@ def get_courses():
 
     # Ensure the user is authenticated before accessing courses
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 401
     
     try:
         page = request.args.get('page', 1, type=int)
@@ -41,7 +41,7 @@ def get_courseInfo(course_code):
 
     # Ensure the user is authenticated before accessing course info
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 401
     
     try:
         course_data = get_course_by_code(course_code)
@@ -58,7 +58,7 @@ def get_coursesBySubject(subject_code):
 
     # Ensure the user is authenticated before accessing courses by subject
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 401
     
     try:
         page = request.args.get('page', 1, type=int)
@@ -83,7 +83,7 @@ def get_subjectCodes():
 
     # Ensure the user is authenticated before accessing subject codes
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 401
     
     try: 
         subject_codes = get_subject_codes()

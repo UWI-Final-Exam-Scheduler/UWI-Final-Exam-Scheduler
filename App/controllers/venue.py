@@ -11,8 +11,14 @@ def create_venue(name, capacity):
     return newvenue
 
 def import_venues_from_csv(file_path):
+    existing_venue_names = {
+        name.lower() for (name,) in db.session.query(Venue.name).all()
+    }
+    inserted = 0
+    skipped_existing = 0
+
     with open(file_path, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)               
+        reader = csv.DictReader(csvfile)
         for row in reader:
             if not row.get("Venue Name") or not row.get("Capacity"):
                 raise ValueError(f"Missing required fields in row: {row}")
@@ -20,16 +26,24 @@ def import_venues_from_csv(file_path):
             name = str(row.get("Venue Name")).strip()
             capacity = int(row.get("Capacity"))
 
-            existing = Venue.query.filter_by(name=name).first()
-            if not existing:
-                venue = Venue(name=name, capacity=capacity)
-                db.session.add(venue)
+            normalized_name = name.lower()
+            if normalized_name in existing_venue_names:
+                skipped_existing += 1
+                continue
+
+            venue = Venue(name=name, capacity=capacity)
+            db.session.add(venue)
+            existing_venue_names.add(normalized_name)
+            inserted += 1
         try:
             db.session.commit()    
         except Exception as e:
             db.session.rollback()
             raise e
-        return "Venues imported successfully!"
+        return (
+            f"Venues imported successfully! Added {inserted} new venues. "
+            f"Skipped {skipped_existing} existing venues."
+        )
 
 def get_all_venues():
     venues = db.session.query(Venue).all()

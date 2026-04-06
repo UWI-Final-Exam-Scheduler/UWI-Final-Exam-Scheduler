@@ -6,9 +6,9 @@ from App.database import db
 from datetime import datetime
 
 
-def generate_timetable():
+def generate_timetable(pdf_path=None):
     strategy = LoadFromLastStrategy()
-    result = strategy.execute()
+    result = strategy.execute(pdf_path=pdf_path)
 
     if Enrollment.query.count() > 0:
         sync_exams_with_enrollment_data()   
@@ -241,7 +241,7 @@ def merge_exams(exam_ids):
     # all exam splits must share the same course code to be merged
     course_codes = {e.courseCode for e in exams_to_merge}
     if len(course_codes) > 1:
-        return None, "All exams to merge must share the same courseCode"
+        return None, "All exams to merge must share the same courseCode"  #mock test
 
     #we keep the first split and update the count and delete remaining splits 
     keeper = exams_to_merge[0]

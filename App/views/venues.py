@@ -20,7 +20,7 @@ def get_venues_endpoint():
 
     # Ensure the user is authenticated before accessing venues
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 401
         
     try:
         venues = get_all_venues()
@@ -37,7 +37,7 @@ def get_venue_by_name_endpoint(venue_name):
 
     # Ensure the user is authenticated before accessing venues
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized user'}), 403
+        return jsonify({'error': 'Access denied - Unauthorized user'}), 401
         
     try:
         venue = get_venue_by_name(venue_name)

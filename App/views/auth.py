@@ -56,7 +56,7 @@ def get_user_preferences_route():
     authenticated_user = get_jwt_identity() 
     
     if not is_admin(authenticated_user):
-        return jsonify({'error': 'Access denied - Unauthorized'}), 403
+        return jsonify({'error': 'Access denied - Unauthorized'}), 401
     
     preferences = get_user_preferences(authenticated_user)
 

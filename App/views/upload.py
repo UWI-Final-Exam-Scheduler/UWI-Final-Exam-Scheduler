@@ -2,9 +2,10 @@ from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
 import tempfile, os
 
-from App.models import Course, Student, Enrollment, Venue
+from App.models import Course, Student, Enrollment, Venue, Exam
 from App.database import db
 from App.controllers import (import_courses_from_csv, import_students_from_csv, import_enrollments_from_csv, import_venues_from_csv)
+from App.strategies.loadfromlast import LoadFromLastStrategy
 
 upload_views = Blueprint('upload_views', __name__, template_folder='../templates')
 
@@ -12,6 +13,10 @@ ALLOWED_EXTENSIONS = {"csv", "pdf", "xlsx"}
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def is_timetable_pdf(filename):
+    lowered = filename.lower()
+    return lowered.endswith(".pdf") and "uwi" in lowered and "timetable" in lowered
 
 @upload_views.route('/api/upload', methods=['POST'])
 @jwt_required()
@@ -37,28 +42,27 @@ def receive_file_upload():
         file.save(tmp_file_path)
         fname = file.filename.lower()
 
-        if "course" in fname:
-            Course.query.delete()
+        if is_timetable_pdf(fname):
+            Exam.query.delete()
             db.session.commit()
+            strategy = LoadFromLastStrategy()
+            msg = strategy.execute(pdf_path=tmp_file_path)
+        elif "course" in fname:
             msg = import_courses_from_csv(tmp_file_path)
         elif "student" in fname:
-            Student.query.delete()
-            db.session.commit()
             msg = import_students_from_csv(tmp_file_path)
         elif "enrollment" in fname:
-            Enrollment.query.delete()
-            db.session.commit()
             msg = import_enrollments_from_csv(tmp_file_path)
         elif "venue" in fname:
-            Venue.query.delete()
-            db.session.commit()
             msg = import_venues_from_csv(tmp_file_path)
         else:
             return jsonify({"error": "Could not determine file type from filename"}), 400
         
         return jsonify({"message": msg})
     except Exception as e:
-        return jsonify({"error": f"Error processing file: {str(e)}"}), 500
+        return jsonify({"error": f"Error processing file: {str(e)}"}), 400
+    except Exception as e:
+        return jsonify({"error": f"Unexpected error: {str(e)}"}), 500
     finally:
         if os.path.exists(tmp_file_path):
             os.remove(tmp_file_path)

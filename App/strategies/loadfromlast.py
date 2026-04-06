@@ -12,6 +12,16 @@ from App.strategies.strategy import SchedulingStrategy
 
 class LoadFromLastStrategy(SchedulingStrategy):
 
+    def is_date_within_exam_period(self, date):
+        # Determine exam period based on the month of the date
+        month = date.month
+        year = date.year
+        start, end = self.get_exam_period(year, month)
+        return start <= date <= end
+    
+    def is_weekend(self, date):
+        return date.weekday() >= 5  # 5 = Saturday, 6 = Sunday
+    
     def get_exam_period(self, year, month):
         # Check if 1st/2nd December is a Monday to determine if the exam period starts in November or December for sem1
         if month == 12:
@@ -109,12 +119,28 @@ class LoadFromLastStrategy(SchedulingStrategy):
                     break
         return mapped
 
-    def execute(self, **kwargs):
+    def resolve_pdf_path(self, pdf_path=None):
+        if pdf_path:
+            return Path(pdf_path)
+
         current_file = Path(__file__).resolve()
         project_root = current_file.parents[2]
-
         data_dir = project_root / "Test Data"
-        pdf_path = data_dir / "UWI Timetable Cross Reference Final 202510 17NOV2025.pdf"
+
+        candidates = [
+            path for path in data_dir.glob("*.pdf")
+            if "uwi" in path.name.lower() and "timetable" in path.name.lower()
+        ]
+
+        if not candidates:
+            raise FileNotFoundError(
+                f"No timetable PDF found in {data_dir}. Expected a PDF filename containing both 'uwi' and 'timetable'."
+            )
+
+        return sorted(candidates)[0]
+
+    def execute(self, **kwargs):
+        pdf_path = self.resolve_pdf_path(kwargs.get("pdf_path"))
 
         main_pattern = re.compile(
             r"^\d+\s+"
@@ -139,7 +165,12 @@ class LoadFromLastStrategy(SchedulingStrategy):
         detected_old_year = None
         # assume new year is the current year
         detected_new_year = datetime.now().year
-        old_dates = []
+        
+        # Bulk load all courses and venues
+        all_courses = {c.courseCode: c for c in Course.query.all()}
+        all_venues = {v.name: v for v in Venue.query.all()}
+        new_courses = []
+        new_exams = []
 
         with pdfplumber.open(pdf_path) as pdf:
             for page in pdf.pages:
@@ -154,7 +185,6 @@ class LoadFromLastStrategy(SchedulingStrategy):
 
                         main_match = main_pattern.match(raw_text)
                         if not main_match:
-                            print(f"Could not parse main row: {raw_text}")
                             skipped += 1
                             continue
 
@@ -166,7 +196,6 @@ class LoadFromLastStrategy(SchedulingStrategy):
 
                         rest_match = rest_pattern.match(rest)
                         if not rest_match:
-                            print(f"Could not parse rest of row: {raw_text}")
                             skipped += 1
                             continue
 
@@ -183,7 +212,7 @@ class LoadFromLastStrategy(SchedulingStrategy):
                         if detected_month is None:
                             detected_month = parsed_date.month
                             detected_old_year = parsed_date.year
-                        old_dates.append(parsed_date)
+                        # old_dates.append(parsed_date)
 
                         parsed_time = datetime.strptime(time_str, "%I:%M %p")
                         hour = parsed_time.hour
@@ -195,19 +224,18 @@ class LoadFromLastStrategy(SchedulingStrategy):
 
                         # Map old date to new year, skipping weekends, ensuring 3-week period
                         date_obj = self.map_exam_date_to_year(parsed_date, detected_old_year, detected_new_year, detected_month)
-
-                        course = Course.query.filter_by(courseCode=course_code).first()
+                        course = all_courses.get(course_code)
                         if not course:
                             course = Course(
                                 courseCode=course_code,
                                 name=course_title
                             )
-                            db.session.add(course)
+                            new_courses.append(course)
+                            all_courses[course_code] = course
                             created_courses += 1
 
-                        venue = Venue.query.filter_by(name=venue_name).first()
+                        venue = all_venues.get(venue_name)
                         if not venue:
-                            print(f"Missing venue: {venue_name}")
                             skipped += 1
                             continue
 
@@ -218,15 +246,9 @@ class LoadFromLastStrategy(SchedulingStrategy):
                             venue_id=venue.id
                         ).first()
 
-                        # if existing_exam:
-                        #     existing_exam.courseCode = course_code
-                        #     existing_exam.date = date_obj
-                        #     existing_exam.time = time_int
-                        #     existing_exam.venue_id = venue.id
-                        #     existing_exam.exam_length = exam_length
-                        #     existing_exam.number_of_students = number_of_students
-                        #     updated += 1
-                        if not existing_exam:
+                        if not existing_exam and not any(
+                            e.courseCode == course_code and e.date == date_obj and e.time == time_int and e.venue_id == venue.id for e in new_exams
+                        ):
                             exam = Exam(
                                 courseCode=course_code,
                                 date=date_obj,
@@ -235,12 +257,17 @@ class LoadFromLastStrategy(SchedulingStrategy):
                                 exam_length=exam_length,
                                 number_of_students=number_of_students
                             )
-                            db.session.add(exam)
+                            new_exams.append(exam)
                             inserted += 1
 
+        if new_courses:
+            db.session.bulk_save_objects(new_courses)
+        if new_exams:
+            db.session.bulk_save_objects(new_exams)
         db.session.commit()
 
         return {
+            "msg": f"Past Timetable loaded successfully",
             "inserted": inserted,
             "updated": updated,
             "skipped": skipped,

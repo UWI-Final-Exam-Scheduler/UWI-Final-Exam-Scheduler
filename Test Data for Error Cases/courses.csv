@@ -1,0 +1,686 @@
+Subj Code,Crse Numb
+ACCT,1002,Intro to Financial Accounting
+ACCT,1003,Intro to Cost and Mgmt Acctg
+ACCT,2014,Financial Accounting I
+ACCT,2017,Management Accounting I
+ACCT,2021,Cost & Management Accounting
+ACCT,3041,Adv Financial Accounting
+ACCT,3043,Auditing I
+ACTS,3001,Life Contingencies II
+ACTS,3003,Loss Models I
+ACTS,3004,Asset & Liability Management I
+ADRR,1001,"Intro to Nat Haz, Dis &Clim Ch"
+ADRR,1002,Environmental Sustainability
+ADRR,3001,Food & Nutri Sec Policy & Legi
+ADRR,3002,Community Eng Prin & Pract
+AGBU,1005,Introduction to Microeconomics
+AGBU,2000,Agriculture in the Economy
+AGBU,2002,Mgmt & Econ-Agri Prod & Mktg
+AGBU,3001,Marketing and Price Analysis
+AGBU,3006,Agri Project Appraisal & Imp
+AGCP,2000,Biosystems Engr Principles
+AGCP,2101,Principles of Sustainable Crop
+AGCP,3011,Major C'bean Export Crops
+AGCP,3014,Principles of Commodity Util
+AGEX,1003,Development of C'bbean Agri
+AGLS,1001,Anatomy & Phys of Animals
+AGLS,2101,Principles of Livestock Sci
+AGLS,3003,Ruminant Production Systems
+AGLS,6001,Tropical Animal Science
+AGRI,0101,"Agriculture, Food & the Env"
+AGRI,0102,Agricultural Physics
+AGRI,0103,Agricultural Chemistry
+AGRI,0104,Agricultural Biology I
+AGRI,0201,Agricultural Economics 1
+AGRI,0202,Sociology of Agriculture
+AGRI,0204,Intro to Crop & Livestock
+AGRI,1003,Mathematics for Scientists
+AGRI,1012,Microbiology
+AGRI,2003,Fundamentals of Applied Stat
+AGRI,6620,Statistics
+AGSL,1001,Soils and the Environ
+AGSL,2101,Principles of Soil Science
+ARTS,6103,Funding & Fin Mgmt in the Arts
+AVMT,6005,Strategic Mktg Mgt in Aviation
+AVMT,6008,Airline Operations Management
+AVMT,6019,Aviation Economics
+BIOC,2061,Bioenergetics
+BIOC,2161,Primary Metabolism
+BIOC,3062,Cellular & Molecular Def Sys
+BIOC,3162,Exp Biochem & Molecular Biol
+BIOL,0100,N1 Biology I
+BIOL,1262,Living Organisms 1
+BIOL,1263,Living Organisms II
+BIOL,2061,Cell & Developmental Biology
+BIOL,2163,Biostatistics
+BIOL,2165,Genetics II
+BIOL,2262,Evolutionary Biology
+BIOL,2360,Biochemistry IIA
+BIOL,3063,Marine Ecology & Oceanography
+BIOL,3070,Carib Island Ecology & Biogeog
+BIOL,3263,Introduction to Bioinformatics
+BIOL,3363,Medical Biotechnology
+BIOL,3468,Biodiversity and Conservation
+BIOL,3769,Plant Genetic Improvement
+BIOL,3770,Plant Pathogens
+BIOL,3771,Environmental Plant Physiology
+BIOL,3867,Animal Behaviour
+BIOL,3868,The Ecology of Humans
+BIOL,3960,Environmental Microbiology
+BIOL,3961,Prin of Medical Microbiology
+BIOL,3970,Aquaculture
+BIOT,6000,Molecular Biology & R-DNA Tech
+BIOT,6001,Microbial & Environ Biotech
+BMET,1004,Intro Human Anatomy & Phys I
+BMET,2001,Bioengineering
+BMET,2002,Intro to Medical Physics
+BMET,3002,Light & Optics in Medicine
+CANV,1005,Intro to Business for the Arts
+CANV,3058,The Economics of Culture
+CHEM,0100,N1 Chemistry I
+CHEM,1062,Basic Chem for Life Sci
+CHEM,1066,Intro to Chemistry I
+CHEM,2170,Fundamentals Inorganic Chem I
+CHEM,2270,Organic Chemistry I
+CHEM,2370,Physical Chemistry I
+CHEM,2470,Intro to Analytical Chemistry
+CHEM,2471,Analytical Methods in Chem I
+CHEM,3564,Principles of Polymer Chem
+CHEM,3570,Chemistry of the Environment
+CHEM,3575,Chemistry and Industry I
+CHEM,3577,Green Chemistry
+CHNG,1000,Intro to Chem & Proc Engr
+CHNG,1001,Applied Chemistry I
+CHNG,1003,Science of Materials
+CHNG,2000,Transport Phenomena II
+CHNG,2001,Process Design & Economics I
+CHNG,2002,Chemical Process Principles II
+CHNG,2004,Separation Processes I
+CHNG,3001,Transport Phenomena III
+CHNG,3004,Chemical Reaction Engr I
+CHNG,3006,Process Design & Economics II
+CHNG,3007,Separation Processes II
+CIEN,6000,Adv Environmental Engineering
+CIEN,6001,Adv Structural Engineering
+CLSY,6102,Applied Health Psychology
+COCR,1013,Financial Literacy & Training
+COEM,6003,Organisation & Mgmt of Const
+COEM,6006,Constr Accounting and Finance
+COEM,6009,Contract Management and Law
+COEM,6012,Geotechnics in Construction
+COEM,6013,Materials Technology
+COMP,0100,N1 Computer Science I
+COMP,1600,Intro to Computing Concepts
+COMP,1601,Computer Programming I
+COMP,1602,Computer Programming II
+COMP,2601,Computer Architecture
+COMP,2602,Computer Networks
+COMP,2605,Enterprise Database Systems
+COMP,2611,Data Structures
+COMP,3602,Theory of Computing
+COMP,3605,Introduction to Data Analytics
+COMP,3606,Wireless and Mobile Computing
+COMP,6401,Advanced Algorithms
+COMS,1101,Intro to Human Communication I
+COMS,2001,Communication Studies
+COMS,2201,Intercultural Communication
+COMS,2202,Principles of Mass Comm
+COMS,2301,Group & Organizational Comm
+COMS,3901,Communication Theory
+COMS,3902,Communication Research Methods
+COMS,6000,Human Communication Theory
+CRMJ,1001,Intro to Criminology & Crim Ju
+CRMJ,6001,Theories & Res Issues in Crim
+CRMJ,6002,Res Meths & Stats in CRMJ
+CRMJ,6003,"Sentencing, Correct& Penal Ref"
+CRMJ,6004,Terrorism & Political Violence
+CVNG,1013,Intro to Engineering Mechanics
+CVNG,1017,Intro to Sustainable Civil Eng
+CVNG,2001,Structural Mechanics
+CVNG,2005,Mechanics of Fluids II
+CVNG,2008,Soil Mechanics I
+CVNG,3002,Structural Analysis
+CVNG,3005,Foundation Engineering
+CVNG,3009,Highway Engineering
+DANC,0801,Caribbean Dance History
+DANC,0803,Dance Education I
+DANC,1303,Caribbean Dance
+DANC,2011,Indian Dance I
+ECNG,1000,Electrical Circuit Analysis I
+ECNG,1011,Electronics
+ECNG,1013,Introduction to Thermodynamics
+ECNG,2011,Signals and Systems
+ECNG,2012,Electronics & Instrumentation
+ECNG,2013,Maths for Electrical Eng II
+ECNG,3001,Communication Systems II
+ECNG,3002,Data Communication Systems
+ECNG,3006,Microp Sys - Design & Appl
+ECNG,3015,Indus & Commercial Elect Sys
+ECNG,3021,Intro to Engr Mgmt & Acctg Sys
+ECNG,3023,Intro to Software Engineering
+ECNG,3030,Electromechanical Energy Con
+ECON,0001,Mathematics for Social Sci
+ECON,1001,Introduction to Microeconomics
+ECON,1003,Mathematics for Economics I
+ECON,1004,Mathematics for Economics II
+ECON,1005,Introduction to Statistics
+ECON,2000,Intermediate Microeconomics I
+ECON,2002,Intermediate Macro-Economics I
+ECON,2015,Matrix Algebra for Economics
+ECON,2025,Statistical Methods
+ECON,3001,Industrial Economics
+ECON,3005,Monetary Theory and Policy
+ECON,3006,International Trade
+ECON,3011,Econ of Financial Institutions
+ECON,3016,Public Finance
+ECON,3024,The Econ of Ed & Mnpwr Plan
+ECON,3034,Environmental Economics
+ECON,3049,Econometrics I
+ECON,3051,Development Economics
+ECON,3057,Health Economics
+ECON,3067,Energy Economics I
+ECON,6003,Methods of Econ Investigation
+ECON,6030,Res Meth & Develop Econ
+ECON,6031,Caribbean Economic Development
+ECON,6043,Financial Economics
+ECON,6049,Advanced Financial Econometric
+EDCU,6309,Curriculum Theory as Process
+EDCU,6312,Curriculum Enactment & Comm
+EDFA,6207,Ed & Dev Of Soc Competencies
+EDGC,6214,Career Development
+EDME,6006,Princ of Assessment & Eval
+EDME,6121,Eval of Education Systems
+EDPS,6209,Youth Development
+EDRS,6208,Fundamentals of Ed Res I
+EDSE,6001,Nature & Needs of Exception
+EDSE,6004,Collaboration Consult & Incl
+ENGR,0304,Pre-Engineering Mathematics I
+ENGR,0306,Pre-Engineering Physics I
+ENGR,0309,Pre-Engineering Chemistry I
+ENGR,1180,Engineering Mathematics I
+ENRM,1001,Intro to Env & Nat Res Mgmt
+ENRM,2000,Soil & Land Evaluation
+ENRM,2001,Forest Resource Management
+ENRM,3000,Natural Res Econ & Assessment
+ENTR,0101,Fund of Entrepreneurship
+ENTR,2000,ICT Applications for Business
+ENTR,2003,Entrepreneurial Law
+ENTR,3000,Export Mkt Case Study & Prac
+ENTR,3001,Entrepreneurial Marketing
+ESST,1001,Biology for Enviro Sciences
+ESST,1002,Chemistry for Enviro Sciences
+ESST,2001,Principles of Env Chemistry
+ESST,2002,Environmental Technology
+ESST,3001,Environmental Fate & Transport
+ESST,3104,Clim Change & Abatement Tech
+FILM,1001,Introduction to Cinema
+FILM,3101,Indian Cinema
+FOST,6002,Food Packaging
+FOST,6003,Food Chemistry
+FOST,6005,Food Microbiology
+FOST,6006,Food Quality Assurance
+FOST,6007,Pres & Proc of Meat & Poultry
+FOUN,1001,English for Academic Purposes
+FOUN,1103,Argument and Report Writing
+FOUN,1106,Academic English for Res Purp
+FOUN,1210,"Sci, Med and Tech In Society"
+FREN,1600,Intro Lit in Fren:Ren to Enlig
+FREN,3505,French Caribbean Prose
+GEND,1103,Intro to Women St:Th Con&SK
+GEND,2109,Social Media and Gender
+GEND,2203,Feminist Theoretical Framework
+GEND,3039,Gender &Dev: Ref to Caribbean
+GEND,3501,The Philosophy of Gender
+GEOG,3107,Meteorology and Climatology
+GEOM,1001,Maths for Geomatics Eng
+GEOM,1004,Intro to Geospatial Info Scien
+GEOM,1010,Surveying I
+GEOM,2001,Numerical Methods for Geom Eng
+GEOM,2010,Fundamentals of GIS
+GEOM,2015,Geomatics for Civil & Env Eng
+GEOM,2020,Digital Photogrammetry
+GEOM,2030,Adjustment Computations
+GEOM,2040,Hydrographic Surveying
+GEOM,2045,Land Law
+GEOM,3030,Global Navigation SatelliteSys
+GEOM,3046,Advanced Mapping Systems
+GINF,6015,Extrac &Mgmt of Inf Geo-Images
+GINF,6020,Spatial Databases
+GINF,6030,Independent Study in Geoinform
+GINF,6100,Principles of Geoinformatics
+GOVT,0401,Org Theory & Behaviour I
+GOVT,0413,Human Resource Management
+GOVT,1000,Intro to Pol Inst & Anlys
+GOVT,1005,Intro Public Policy Analysis
+GOVT,1006,Intro to Public Sector Mgt
+GOVT,1011,Constitutional Law (for SS)
+GOVT,2010,Delinquency & Juvenile Justice
+GOVT,2011,Criminal Justice System
+GOVT,2019,Comparative Politics
+GOVT,2051,HRM & Ind Rel in the Pub Sect
+GOVT,2060,Int Rel: Theories & Approaches
+GOVT,2063,Cyber Politics
+GOVT,2070,Anti-Corrup Strat in Dev Count
+GOVT,2071,Organizational Behaviour
+GOVT,3004,Scope &Methods in Pol Analysis
+GOVT,3019,Latin American Govt Pol & Dev
+GOVT,3021,Public Policy Analysis
+GOVT,3023,Administrative Law I
+GOVT,3037,Public Administration
+GOVT,3046,International Organisations
+GOVT,3052,Contemp Issues of Intl Relat
+GOVT,3053,Intro to Intl Politics
+GOVT,3055,Theory & Pra of Int'l Negot'ns
+GOVT,3066,International Law & Developmen
+GOVT,3122,Public Sector Management
+HIST,1001,The Caribbean World to c 1660
+HIST,1018,Origins Growth Modern Sport
+HIST,1306,Ancient Africa to ca. 1000 CE
+HIST,1901,Intro to Heritage Studies
+HIST,2003,History of the W I 1660-1830
+HIST,2101,Latin American Hist 1810-1910
+HIST,2201,History of the USA to 1865
+HIST,2401,Nineteenth Century Europe
+HIST,2601,"Imperialism, 1763-1918"
+HIST,2801,Archaeology Research
+HIST,2806,Foundations of Modern Medicine
+HIST,3001,Topics in History of Trin&Tbgo
+HIST,3003,Gender in Caribbean History
+HIST,3605,African Diaspora I
+HIST,3613,The Modern Indian Diaspora
+HIST,6099,Society in the WI 1838-1938
+HIST,6599,Theory and Methods of History
+HUEC,0101,Fund of Food & Nutrition I
+HUEC,0103,Intro to Human Anatomy & Phy I
+HUEC,1008,Introduction to Food Chemistry
+HUEC,2000,Biochemistry
+HUEC,2001,Basic Human Anatomy & Physio
+HUEC,2004,FSM Equipment Layout & Design
+HUEC,2012,Nutrition Assess for Sports
+HUEC,2014,Nutrition and Metabolism
+HUEC,2015,Food Quality and Safety
+HUEC,3001,Community Nutrition
+HUEC,3004,Food Product Development
+HUEC,3014,Nutrition in Sprts and Fitness
+HUEC,5000,Advanced FSM
+HUEC,5020,Advanced Clinical Nutrition
+HUEC,5040,Advanced Community Nutrition
+IENG,2002,Operations Research 1
+IENG,3000,Industrial Mgmt for Indus Engr
+IENG,3005,Qual Ctrl & Reliability Engr
+IENG,3016,Applied Project Management
+INBU,1007,Fin Acct & Perform Dashboard
+INBU,1008,Principles & Functions of Mgt
+INBU,1009,Mathematics for Business
+INBU,2001,Intro to Mgmt Info Systems
+INBU,2002,Managerial Accounting
+INBU,2003,Organisational Behaviour
+INBU,2004,Macroecon &Sustainab Challenge
+INBU,3001,Cross Cultural Management
+INBU,3002,International Strategic Mgmt
+INBU,3004,Mastering Intl Sales Process
+INFO,1600,Intro to Info Tech Concepts
+INFO,2601,Networking Tech Fundamentals
+INFO,3600,Business Information Systems
+INRL,6020,Research Meth App Quan & Qual
+INSB,1002,Mathematics for Business
+INSB,2003,Finan Acct & Performance Dash
+INSB,2005,Managerial Accounting
+INSB,2007,Intro to Mgmt Info Systems
+INSB,2010,Macroeconomic & Sustainability
+INSB,2011,Man for Sustain: Tools & Frame
+LARS,0110,A Diasporic History of Carib
+LAW,1010,Law and Legal Systems
+LAW,1110,Criminal Law I
+LAW,2010,Law of Torts 2
+LAW,2110,Law of Contract 2
+LAW,2210,Real Property 1
+LAW,2310,Public International Law 1
+LAW,2510,Jurisprudence
+LAW,3020,Employment Law
+LAW,3110,Company Law
+LAW,3170,Law of Trusts
+LAW,3210,Family Law 1 (Husband & Wife)
+LAW,3381,Banking Law
+LAW,3620,Law of International Orgs
+LAW,3720,Intl Law of Human Rights
+LAW,3760,Intellectual Property
+LAW,3840,Alt Disputes Resolution
+LAW,6130,Compar Lab Law in a Corp Envt
+LAW,6205,Int'l Trade &Intellec Prop Law
+LAW,6330,Adv Public Intl Trade Law
+LAW,6470,Adv Intellectual Property Law
+LAW,6600,Adv Caribbean Integration Law
+LEAD,3001,Leadership in Pratice
+LING,1002,Intro to Morphology & Syntax
+LING,1005,Introduction to Language
+LING,2001,Phonological Theory
+LING,2006,Speech & Hear Sc-Med Ling Phys
+LING,2101,Language Acquisition
+LING,2204,Deaf Language and Culture
+LING,2304,Modern Language Situations
+LING,2402,Structure of the English Lang.
+LING,2819,Str & Usage of Carib Sign L I
+LING,3201,Caribbean Dialectology
+LING,6804,Lang Acq in Creole Contexts
+LMGV,1004,Valuation Methods I-Level 1
+LMGV,2002,Valuation Methods II
+LMGV,2010,Surveying for Land Management
+LMGV,3000,Applied Valuation
+LMGV,3004,Valuation Methods I-Level 3
+LMGV,3005,Intro to Quantity Surveying
+LMGV,3006,Intro to Quan Surv & Build Tec
+MATH,0100,N1 Mathematics I
+MATH,1115,Fund Math for the Gen Sci I
+MATH,1142,Calculus I
+MATH,1152,Sets and Number Systems
+MATH,1201,Applied Mathematics I
+MATH,2211,Mathematics of Finance I
+MATH,2230,Engineering Mathematics II
+MATH,2250,Industrial Statistics
+MATH,2270,Multivariable Calculus
+MATH,2273,Linear Algebra I
+MATH,2274,Probability Theory I
+MATH,2276,Discrete Mathematics
+MATH,3272,Abstract Algebra II
+MATH,3274,Set Theory
+MATH,3275,Intro to Complex Analysis
+MATH,3278,Probability II
+MATH,3530,Engineering Mathematics III
+MATH,3540,Introduction to Fluid Dynamics
+MATH,6110,Real Analysis
+MATH,6120,Differential Equations
+MATH,6180,Probability
+MDSC,1401,Environment and Health
+MDSC,1405,Basic Paraclinical Sci I
+MDSC,1406,Basic Paraclinical Sci II
+MDSC,2401,Respiration
+MDSC,2402,Neuroscience and Behaviour
+MDSC,2405,The Special Senses
+MDSC,2409,Introduction to Medical Ethics
+MDSC,3401,Applied Paraclinical Sci I
+MDSC,3402,Applied Paraclinical Sci II
+MEDC,0101,Bio for the Pre Health Sci 1
+MEDC,0201,Chem for the Pre Health Sci 1
+MEDC,0301,English for Pre Health Prfs 1
+MEDC,0401,Maths for the Pre Health Sci 1
+MEDC,0501,Phys for the Pre Health Sci 1
+MEDC,5400,Fund of Medical Bacteriology
+MEDC,5401,Fund of Med Mycology
+MEDC,5402,Fund of Medical Parasitology
+MEDC,6820,Medical Bacteriology
+MEDC,6821,Medical Mycology
+MEDC,6822,Molecular Biology Applied
+MEDC,6925,Bio & Data Anal for Hlth Sci
+MENG,1010,Statics &Strength of Materials
+MENG,1012,Science of Materials C
+MENG,2004,Mechanics of Machines I
+MENG,2007,Engineering Thermodynamics 2
+MENG,2009,Industrial Instrumentation
+MENG,2010,Strength of Materials I
+MENG,3000,Engineering Management 1
+MENG,3004,Soil and Water Engineering
+MENG,3006,Production Management
+MENG,3013,Product Design & Development
+MENG,3015,Materials Tech for Mech Engr
+MENG,3017,FEM in Engineering Practice
+MENG,3020,Elements of Food Engineering
+MENG,3022,Energy Engineering
+MENG,3023,Environmental Control Eng I
+MENG,3024,Strength of Materials II
+MENG,3025,Power Plant Engineering I
+MENG,6302,Design of Plant & Services
+MENG,6402,Human Resource Management 1
+MENG,6404,Maintenance Engr & Management
+MENG,6505,Health Safety &The Environment
+MENG,6700,Strategic Asset Management
+MENG,6701,Asset Maintenance Technologies
+MENG,6705,Maint Engineering & Mgmt
+MGMT,1001,Introduction to Management
+MGMT,1011,Introduction to Insurance
+MGMT,2006,Management Information Sys I
+MGMT,2007,Introduction to E- Commerce
+MGMT,2008,Organisational Behaviour
+MGMT,2009,Sociology of Sports
+MGMT,2010,Intro to Sports Management
+MGMT,2012,Quantitative Methods
+MGMT,2023,Financial Management I
+MGMT,2024,Money and Capital Markets
+MGMT,2026,Production & Operations Mgmt
+MGMT,2060,Insurance Law
+MGMT,2061,Life & Health Ins & Pensions
+MGMT,3008,Event Management
+MGMT,3011,Mgmt Information Systems II
+MGMT,3017,Human Resource Management
+MGMT,3024,Business Communication
+MGMT,3026,HR Management in Sports
+MGMT,3028,Phys Res Mgmt in Sprt/Fac Plan
+MGMT,3031,Business Strategy and Policy
+MGMT,3035,Ethics in Business
+MGMT,3048,Financial Management II
+MGMT,3051,Taxation I
+MGMT,3053,International Financial Mgmt
+MGMT,3062,Compensation Management
+MGMT,3081,Credit Analysis and Lending
+MGMT,3101,Ins Regulat & Market Conduct
+MGMT,3311,Occupational Safety&Health Mgt
+MGMT,6001,Human Resource Management
+MGMT,6310,Strategic Mgmt & Planning
+MGMT,6312,Insights into Consumer Beh
+MKTG,2001,Principles of Marketing
+MKTG,3000,Marketing Management
+MKTG,3002,Marketing Research
+MKTG,3010,Marketing Communications
+MUSC,0001,General Musicianship l
+MUSC,0005,General Musicianship lll
+MUSC,0201,Applied Music l
+MUSC,0202,Applied Music ll
+MUSC,0206,Applied Music III
+MUSC,0406,Practical Ear Training
+MUSC,1005,Introduction to World Music
+MUSC,1102,Aural Training I
+MUSC,1103,Music Theory
+MUSC,1211,History of Western Music I
+MUSC,1401,Performance Music I
+MUSC,1402,Performance Music II
+MUSC,2003,Pan Arranging I
+MUSC,2005,Performance Music III
+MUSC,2007,Musics of the Caribbean
+MUSC,2501,"Jazz Theory, Part I"
+MUSC,3201,Choral Arranging
+MUSC,3305,Performance Music V
+MUSC,3306,Performance Music VI
+MUSC,3501,Music Education I
+NURS,1004,Comm Skills: Writing
+NURS,1109,Human Anatomy & Physiology I
+NURS,1110,Biochemistry
+NURS,1112,Patient &Hlth Care Work Safety
+NURS,1115,Nutrition
+NURS,1116,Epidemiology
+NURS,2010,Intro to Professional Nursing
+NURS,2012,Human Pathophysiology
+NURS,3010,Research Methodology
+NURS,3011,Mental Health Nursing
+NURS,3013,Nurs Care of Adults - 19-64yrs
+NURS,4010,Nurs Care of Child&Adolescents
+NURS,4012,Nurs Care of Patients in S C S
+OESH,4100,Advanced Environmental Health
+OESH,4200,Adv Occupational Safety & Hlth
+OESH,5100,Advanced Environmental Health
+OESH,5200,Adv Occupational Safety & Hlth
+OESH,6100,Advanced Environmental Health
+OESH,6200,Adv Occupational Safety & Hlth
+OPTM,1011,Human Anatomy & Physiology
+OPTM,1012,Gen'l Pathology and Microbi
+OPTM,1031,Intro to the Optm Profession
+OPTM,1041,Pure Optics
+OPTM,1051,Vision 1
+OPTM,1061,Learning & Key Skills Devel
+OPTM,2021,General Pharmacology
+OPTM,2042,Ocular Pathology & Immunology
+OPTM,2051,Physiology of Vision & Percept
+OPTM,2072,Opthalmic Lenses & Dispensing
+OPTM,2102,Low Vision and Ageing
+OPTM,3011,Ocular and Systemic Disease I
+OPTM,3051,Binocular Vision & Orthoptics
+OPTM,3061,Contact Lens Practice II
+OPTM,3072,Law and Optometric Management
+PECH,1001,The Health Prof & Society
+PENG,6000,Petroleum Geoscience
+PENG,6002,Drilling Engr & Completions
+PENG,6005,Reservoir Evaluation
+PENG,6006,Advanced Well Test Analysis
+PENG,6007,Reservoir Engineering
+PENG,6009,Strategic Pet Mgmt & Orgns
+PENG,6028,Formation Evaluation
+PGSC,1000,Intro to Geol & Geol'l History
+PGSC,1002,Palaeontology & Biostrat
+PGSC,2000,Structural Geology
+PGSC,2001,Sedimentology
+PGSC,2011,Mineralogy
+PGSC,3001,Pet Geol of SE Caribbean
+PGSC,3003,Formation Evaluation
+PGSC,3004,Essential Petroleum Engr
+PHAR,1204,Int Basic Hlth ScsI:Anat&Phy I
+PHAR,1205,Int BasicHlthScsII: IntBiochem
+PHAR,1401,Integrated Basic Health Scs I
+PHAR,2105,"Microbiol, Immun & Gen Path"
+PHAR,2212,Pharmaceutics I
+PHAR,2401,"Microbiology, Immun & Gen Path"
+PHAR,2403,Pharmacology I
+PHAR,3104,Pharmacy Law & Ethics
+PHAR,3105,Biostatistics & Research Meth
+PHAR,3106,Complementary/Alternative Med
+PHAR,3205,Applied Therapeutics I
+PHAR,4102,Pharmacy Administration
+PHAR,4105,Community Pharmacy Prac Manag
+PHAR,4106,Instit Pharmacy Prac Mgmt
+PHAR,4107,Clinical Toxicology
+PHAR,4402,Pharmacy Administration
+PHAR,4405,Clinical Toxicology
+PHAR,4407,Pharmacy Practice III
+PHYS,0100,N1 Physics I
+PHYS,1001,Intro to Astronomy
+PHYS,1221,Introduction to Mechanics
+PHYS,1222,Intro to Optics Oscill & Waves
+PHYS,2150,Mathematics for Physicists
+PHYS,2152,"Vibrations,Waves and Optics"
+PHYS,2156,Meteorology and Climatology
+PHYS,2401,Optoelectronics
+PHYS,3150,Electromagnetism
+PHYS,3164,Ceramics Science
+PHYS,3201,Adv Electronics & Control Theo
+PLAN,6000,Philosophy & Prin of Planning
+PLAN,6004,Planning Analysis & Evaluation
+PLAN,6011,Planning in the Coastal Zone
+PLAN,6025,Ind Study Urban &Regional Plan
+PORT,1003,Intro to Brazilian Culture
+PRMG,6004,Project Accounting & Finance
+PRMG,6012,Value Engineering & Management
+PSMA,6003,Comp Prac&Dev of Publ Sec Mgmt
+PSMA,6104,Accounting Budg & Finan Mgmt
+PSMA,6112,Public Sect Employment Mgt
+PSYC,1001,Introduction to Psychology
+PSYC,2004,Personality Theory
+PSYC,2010,Stats & Res Design in Psyc
+PSYC,2011,Selected Theories in Soc Psyc
+PSYC,2012,Developmental Psychology
+PSYC,2016,Sensation and Perception
+PSYC,3022,Learning and Memory
+PSYC,3023,Contemp Issues in Social Psych
+PSYC,6101,Applied Soc Psych Seminars
+PSYC,6102,Applied Dev Psych Sem
+PSYC,6402,The Psychology of Com Conflict
+PSYC,7001,App Social Psychology Seminars
+PSYC,7002,App Dev Psychology Seminars
+PUHE,6002,Epidemiology I
+PUHE,6013,Health Management
+PUHE,6014,Public Health Policy & Law
+PYED,1003,Functional Anatomy
+RENT,6006,Bioenergy I
+SALI,6010,Development Theory and Policy
+SALI,6016,Demographic Techniques I
+SALI,6019,Elements of Official Statistic
+SALI,7002,Research Design & Mgmt
+SALI,8002,Research Design & Management
+SOCI,1002,Introduction to Sociology I
+SOCI,1005,Intro Stats for Behavioural Sc
+SOCI,1006,Study Cult: Intro to Anthr
+SOCI,2007,Survey Design and Analysis
+SOCI,2010,Anthro of Peoples of Carib 1
+SOCI,2022,Social Gerontology
+SOCI,3008,Industrial Soc I - Thry & Prac
+SOCI,3019,Social Policy Analysis
+SOCI,3032,Criminology 1
+SOCI,3039,Gender &Dev: Ref to Caribbean
+SOCI,6000,Current Trends in Socio Theory
+SOCI,6001,Social Policy Analysis & Eval
+SOCI,6005,Caribbean Social Issues
+SOCI,6020,Peoples & Cul of the Caribbean
+SOCI,6113,Child Rights:Policy into Pract
+SOWK,1001,Introduction to Social Work
+SOWK,2002,Theory &Prac of Soc Work II
+SOWK,2004,Development of Social Policy
+SOWK,3009,Theory & Practice SW:Comm Org
+SOWK,3012,Group & Individual Counselling
+SOWK,6001,Adv Social Work Theory & Meths
+SOWK,6002,Planning & Leadership
+SOWK,6009,Family Syst & Dynamics in Med
+SOWK,6016,ADR Systems and Processes
+SOWK,6104,Communication Cult & Conflict
+SPAN,1701,Intro to Hispanic Lit-Narrativ
+SPAN,2202,Spanish America: Society
+SPAN,2301,20thC Spanish Am Poetry
+SPAN,3603,Hispanic Drama
+SPAN,6499,Spanish American Short Story
+SPKN,1101,Human Anatomy I
+SPKN,1102,Introduction to Physiology
+SPKN,2102,Exercise Physiology I
+SPKN,2104,Motor Control & Motor Learning
+SPKN,2105,Research Methods in Sport
+SPKN,2106,Sport & Exercise Nutrition
+SPKN,2109,Adaptive Sport Kinetics
+SPKN,3101,Strength & Condition Training
+SPKN,3102,Applied Biomechanics in Sport
+SPKN,3106,Ergonomics in Sport & Phys Act
+SPLP,6006,Neurological Bases of Comm Dis
+STAT,6100,Applied Probability Theory
+STAT,6105,Prob Stat Method Data Analytic
+STAT,6120,Linear Statistical Models
+STAT,6170,Multivariate Analysis
+THEA,0501,Strategies &Tech of Drama/Thea
+THEA,0509,Stagecraft
+THEA,1203,Production IA
+THEA,2007,"Festivals, Drama & Society"
+THEA,2008,Modern Theatre
+THEA,2208,Performance II
+THEA,3301,Theory & Prac of Educ Thea I
+THEO,1001,Intro to Old Testament Lit
+THEO,1208,Christian Worship Introduction
+THEO,1301,Intro to Systematic Theology
+THEO,2008,The Gospel & Epistles of John
+THEO,2301,Perspectives in Christology
+THEO,2319,Christian Ethical Principles
+TOUR,1001,Intro to International Tourism
+TOUR,3003,Integrated Service Management
+TOUR,3005,Tourism Planning & Development
+VART,1904,History of Art Design & Archit
+VETM,1501,Veterinary Gross Anatomy I
+VETM,1502,Veterinary Physiology I
+VETM,1503,Veterinary Biochemistry
+VETM,2501,Animal Production I
+VETM,2502,Biostatistics
+VETM,2503,Veterinary Bacteriology
+VETM,2506,Veterinary Parasitology I
+VETM,2507,Vet Pharm & Therapeutics
+VETM,3005,Vet Systemic Pathology I
+VETM,3008,Veterinary Epidemiology
+VETM,3009,Vet PublicHealth/Zoo/ Prev Med
+VETM,3501,Avian Diseases
+VETM,3502,Principles of Medicine
+VETM,4001,Large Animal Surgery
+VETM,4003,Anaesthesiology
+VETM,4004,Theriogenology I
+VETM,4005,Diagnostic Imaging
+VETM,4211,Large Animal Medicine I
+VETM,4213,Small Animal Medicine I
