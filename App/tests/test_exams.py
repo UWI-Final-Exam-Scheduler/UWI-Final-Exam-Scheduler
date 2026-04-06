@@ -52,7 +52,7 @@ def test_reschedule_exam(empty_db):
 
     updated_exam, error = reschedule_exam(
         exam.id,
-        date_str="2026-05-10",
+        date_str="2026-05-11",
         time=9
     )
 

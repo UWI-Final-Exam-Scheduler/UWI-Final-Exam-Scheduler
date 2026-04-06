@@ -17,6 +17,7 @@ from App.controllers.venue import get_exams_capacity_in_venue, import_venues_fro
 from App.models.course import Course
 from App.models.enrollment import Enrollment
 from App.models.student import Student
+from App.models.user_preference import UserPreference
 from App.models.venue import Venue
 from App.controllers.clash_matrix import create_clash_matrix, view_conflicting_courses, view_course_clashes
 from App.controllers.exams import createTestExams, generate_timetable, get_all_days_with_exams, get_all_exams, get_exams_by_date, reschedule_exam, sync_exams_with_enrollment_data
@@ -276,6 +277,18 @@ def clear_exams():
     db.session.query(Exam).delete()
     db.session.commit()
     print("All rows in Exam table deleted.")
+
+@app.cli.command("clear-files")
+def clear_files():
+    db.session.query(ClashMatrix).delete()
+    db.session.query(Exam).delete()
+    db.session.query(Enrollment).delete()
+    db.session.query(Course).delete()
+    db.session.query(Student).delete()
+    db.session.query(Venue).delete()
+    db.session.query(UserPreference).delete()
+    db.session.commit()
+    print("All rows in tables excluding User and Admin are deleted.")
 
 '''
 User Commands

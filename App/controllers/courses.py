@@ -16,9 +16,15 @@ def normalize_course_code(courseCode):
     return letters.upper() + numbers
 
 def import_courses_from_csv(file_path):
+    existing_codes = {
+        code for (code,) in db.session.query(Course.courseCode).all()
+    }
+    inserted = 0
+    skipped_existing = 0
+
     with open(file_path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)   
-        courses = []            
+        courses = []
         for row in reader:
             if not row.get("Subj Code") or not row.get("Crse Numb") or not row.get("Title"):
                 raise ValueError(f"Missing required fields in row: {row}")
@@ -31,7 +37,13 @@ def import_courses_from_csv(file_path):
 
             title = str(row.get("Title")).strip()
 
+            if courseCode in existing_codes:
+                skipped_existing += 1
+                continue
+
             courses.append(Course(courseCode=courseCode, name=title))
+            existing_codes.add(courseCode)
+            inserted += 1
 
             if len(courses) == 1000:
                 db.session.bulk_save_objects(courses)
@@ -44,7 +56,10 @@ def import_courses_from_csv(file_path):
         except Exception as e:
             db.session.rollback()
             raise e
-        return "Courses imported successfully!"
+        return (
+            f"Courses imported successfully! Added {inserted} new courses. "
+            f"Skipped {skipped_existing} existing courses."
+        )
     
 def create_course(courseCode, name):
     courseCode = normalize_course_code(courseCode)
@@ -134,4 +149,6 @@ def get_subject_codes():
         return "No subject codes found."
     return sorted(set(code[0][:4] for code in subject_codes))
 
-    
+def course_exists(courseCode):
+    courseCode = normalize_course_code(courseCode)
+    return db.session.query(Course).filter_by(courseCode=courseCode).first() is not None

@@ -6,9 +6,12 @@ from App.database import db
 from datetime import datetime
 
 
-def generate_timetable():
+def generate_timetable(pdf_path=None):
     strategy = LoadFromLastStrategy()
-    result = strategy.execute()
+    result = strategy.execute(pdf_path=pdf_path)
+
+    if Enrollment.query.count() > 0:
+        sync_exams_with_enrollment_data()   
     return result
 
 def createTestExams():
@@ -30,12 +33,12 @@ def get_all_exams():
     for exam in exams:
         exam_json.append({
             "courseCode": exam.courseCode,
-            "exam_date": exam.date.strftime("%Y-%m-%d"),   
+            "exam_date":  exam.date.strftime("%Y-%m-%d") if exam.date else None,   
             "time": exam.time, 
             "venue_id": exam.venue_id,
             "exam_length": exam.exam_length,
-            "number_of_students": exam.number_of_students
-
+            "number_of_students": exam.number_of_students,
+            "exam_id": exam.id
         })
     return exam_json
 
@@ -83,10 +86,28 @@ def reschedule_exam(exam_id, date_str=None, time=None, venue_id=None, unschedule
         return None, "At least one of date, time or venue_id is required"
 
     try:
+        # Validate and set date
         if date_str:
-            exam.date = datetime.strptime(date_str, "%Y-%m-%d").date()
-        if time:
-            exam.time = time
+            if isinstance(date_str, str):
+                date_obj = datetime.strptime(date_str, "%Y-%m-%d").date()
+            elif isinstance(date_str, datetime):
+                date_obj = date_str.date()
+            elif isinstance(date_str, datetime.date):
+                date_obj = date_str
+            else:
+                return None, "Invalid date format, must be YYYY-MM-DD"
+            if date_obj.weekday() >= 5:
+                return None, "Exams cannot be scheduled on weekends"
+            exam.date = date_obj
+        # Validate and set time
+        if time is not None:
+            try:
+                valid_time = int(time)
+            except Exception:
+                return None, "Time must be an integer (9, 1, or 4)"
+            if valid_time not in [9, 1, 4]:
+                return None, "Invalid time slot. Please choose a valid time slot (9, 1, or 4)"
+            exam.time = valid_time
         if venue_id:
             exam.venue_id = venue_id
 
@@ -230,7 +251,7 @@ def merge_exams(exam_ids):
     # all exam splits must share the same course code to be merged
     course_codes = {e.courseCode for e in exams_to_merge}
     if len(course_codes) > 1:
-        return None, "All exams to merge must share the same courseCode"
+        return None, "All exams to merge must share the same courseCode"  #mock test
 
     #we keep the first split and update the count and delete remaining splits 
     keeper = exams_to_merge[0]

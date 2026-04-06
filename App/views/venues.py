@@ -25,10 +25,10 @@ def get_venues_endpoint():
     try:
         venues = get_all_venues()
         if venues is None:
-            return jsonify({'error': 'No venues found'}), 404
+            return jsonify({'error': 'No venues found'}), 404  #mock test needed
         return jsonify(venues), 200
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e)}), 500 #mock test needed
     
 @venue_views.route('/api/venues/<venue_name>', methods=['GET'])
 @jwt_required()
@@ -45,4 +45,4 @@ def get_venue_by_name_endpoint(venue_name):
             return jsonify({'error': venue}), 404
         return jsonify(venue), 200
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e)}), 500 #mock test needed
