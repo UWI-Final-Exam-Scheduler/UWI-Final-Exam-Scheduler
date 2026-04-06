@@ -243,6 +243,9 @@ def merge_exams(exam_ids):
 
     exams_to_merge = db.session.query(Exam).filter(Exam.id.in_(exam_ids)).all()
 
+    for e in exams_to_merge:
+        print(f"  id={e.id}  courseCode='{e.courseCode}'")
+    
     if len(exams_to_merge) != len(exam_ids):
         found_ids = {e.id for e in exams_to_merge}
         missing = [eid for eid in exam_ids if eid not in found_ids]

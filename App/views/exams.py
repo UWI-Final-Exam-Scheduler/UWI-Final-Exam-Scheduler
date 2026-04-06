@@ -83,6 +83,7 @@ def reschedule_exam_view():
             return jsonify({'error': error}), 404
         return jsonify({
             "msg": "Exam rescheduled successfully",
+            "id": exam.id,
             "courseCode": exam.courseCode,
             "exam_date": exam.date.strftime("%Y-%m-%d") if exam.date else None, 
             "time": exam.time, 
