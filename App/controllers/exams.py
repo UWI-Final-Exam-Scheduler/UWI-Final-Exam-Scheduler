@@ -64,9 +64,18 @@ def reschedule_exam(exam_id, date_str=None, time=None, venue_id=None, unschedule
         return None, f"Exam with id {exam_id} not found"
 
     if unschedule:
+        all_splits = db.session.query(Exam).filter_by(courseCode=exam.courseCode).all()
+        total_students = sum(e.number_of_students for e in all_splits)
+
         exam.date = None
         exam.time = 0
         exam.venue_id = None
+        exam.number_of_students = total_students
+
+        for split in all_splits:
+            if split.id != exam.id:
+                db.session.delete(split)
+
         db.session.commit()
         return exam, None
 
