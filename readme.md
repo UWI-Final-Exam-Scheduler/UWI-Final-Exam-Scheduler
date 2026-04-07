@@ -67,9 +67,9 @@ flask db-reset
 
 ---
 
-### 2. Import All Courses
+### 2. Import Courses
 
-Clears the courses table and imports course data from a CSV file.
+Imports course data from a CSV file into the database.
 
 ```bash
 flask import-all-courses
@@ -77,7 +77,38 @@ flask import-all-courses
 
 ---
 
-### 3. Load From Last Timetable
+### 3. Import Students
+
+Imports student data from a CSV file.
+
+```bash
+flask import-all-students
+```
+
+---
+
+### 4. Import Enrollments
+
+Imports enrollment data linking students to courses.
+
+```bash
+flask import-all-enrollments
+```
+
+---
+
+### 5. Import Venues
+
+Imports venue data including capacity information.
+
+```bash
+flask import-all-venues
+```
+
+---
+
+
+### 6. Load From Last Timetable
 
 Loads a previous year's timetable from a PDF file and inserts it into the database.
 
