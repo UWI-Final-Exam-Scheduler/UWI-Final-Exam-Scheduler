@@ -6,6 +6,21 @@ The UWI Final Exam Scheduler is a Flask-based web application designed to stream
 
 ---
 
+## Tech Stack
+
+* **Backend:** Flask (Python)
+* **Database:** PostgreSQL (NeonDB) with SQLAlchemy ORM
+* **Migrations:** Flask-Migrate
+* **Testing:** Pytest (with isolated test database)
+* **Data Processing:** Pandas / CSV handling
+* **Deployment:** Render
+
+---
+
+The UWI Final Exam Scheduler is a Flask-based web application designed to streamline the exam scheduling process and reduce the occurrence of back-to-back exams for students. It provides tools for importing data, generating schedules, and managing exam allocations efficiently.
+
+---
+
 ## Live Deployment
 
 The deployed application can be accessed here:
