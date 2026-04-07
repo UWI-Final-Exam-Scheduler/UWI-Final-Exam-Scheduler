@@ -133,6 +133,27 @@ Tests are configured using `pytest` and use an isolated test database.
 pytest
 ```
 
+## API Testing (Postman / Newman)
+
+The project includes a Postman collection for testing API endpoints. You can run these tests using Newman.
+
+### Install Newman
+
+```bash
+npm install -g newman
+```
+
+### Run Tests (Local)
+
+```bash
+npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment.json" --env-var "base_url=http://127.0.0.1:8080"
+```
+
+### Run Tests (Production)
+
+```bash
+npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment.json" --env-var "base_url=https://uwi-final-exam-scheduler.onrender.com"
+```
 ---
 
 ## Environment Variables
