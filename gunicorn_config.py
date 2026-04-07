@@ -1,19 +1,19 @@
-# gunicorn_config.py
+import os
 import multiprocessing
 
-# The socket to bind.
-# "0.0.0.0" to bind to all interfaces. 8000 is the port number.
-bind = "0.0.0.0:8080"
+# Bind to platform-provided port (Render) or default 8080.
+bind = f"0.0.0.0:{os.environ.get('PORT', '8080')}"
 
-# The number of worker processes for handling requests.
-workers = 4
+# Worker settings
+workers = int(os.environ.get("WEB_CONCURRENCY", max(1, multiprocessing.cpu_count() // 2)))
+worker_class = os.environ.get("GUNICORN_WORKER_CLASS", "gevent")
 
-# Use the 'gevent' worker type for async performance.
-worker_class = 'gevent'
+# Increase timeout for heavy upload endpoints (PDF/CSV processing).
+timeout = int(os.environ.get("GUNICORN_TIMEOUT", "180"))
+graceful_timeout = int(os.environ.get("GUNICORN_GRACEFUL_TIMEOUT", str(timeout)))
+keepalive = int(os.environ.get("GUNICORN_KEEPALIVE", "5"))
 
-# Log level
-loglevel = 'info'
-
-# Where to log to
-accesslog = '-'  # '-' means log to stdout
-errorlog = '-'  # '-' means log to stderr
+# Logging
+loglevel = os.environ.get("LOG_LEVEL", "info")
+accesslog = '-'  # stdout
+errorlog = '-'   # stderr
