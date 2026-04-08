@@ -41,6 +41,7 @@ pytest==7.0.1
 python-dotenv==1.0.1
 rich==13.4.2
 six==1.17.0
+setuptools==81.0.0
 SQLAlchemy==2.0.48
 tomli==2.4.1
 typing_extensions==4.15.0
