@@ -1,4 +1,4 @@
-from App.models import Exam, Course, exam
+from App.models import Exam, Course, Venue
 from App.models.enrollment import Enrollment
 from App.strategies.loadfromlast import LoadFromLastStrategy
 from App.controllers.venue import get_venue_by_name
@@ -61,61 +61,123 @@ def get_exams_by_date(exam_date):
     return exam_json
 
 
-def reschedule_exam(exam_id, date_str=None, time=None, venue_id=None, unschedule=False):
-    exam = db.session.get(Exam, exam_id)  # direct PK lookup, no ambiguity
+def reschedule_exam(
+    exam_id,
+    date_str=None,
+    time=None,
+    venue_id=None,
+    unschedule=False,
+    prevent_merge=False,
+):
+    exam = db.session.get(Exam, exam_id)
     if not exam:
         return None, f"Exam with id {exam_id} not found"
-
+    
     if unschedule:
-        all_splits = db.session.query(Exam).filter_by(courseCode=exam.courseCode).all()
-        total_students = sum(e.number_of_students for e in all_splits)
-
         exam.date = None
         exam.time = 0
         exam.venue_id = None
-        exam.number_of_students = total_students
-
-        for split in all_splits:
-            if split.id != exam.id:
-                db.session.delete(split)
-
         db.session.commit()
         return exam, None
 
-    if not any([date_str, time, venue_id]):
+    if not any([date_str, time is not None, venue_id is not None]):
         return None, "At least one of date, time or venue_id is required"
 
     try:
-        # Validate and set date
+        # validate and set date
         if date_str:
             if isinstance(date_str, str):
                 date_obj = datetime.strptime(date_str, "%Y-%m-%d").date()
             elif isinstance(date_str, datetime):
                 date_obj = date_str.date()
-            elif isinstance(date_str, datetime.date):
-                date_obj = date_str
             else:
                 return None, "Invalid date format, must be YYYY-MM-DD"
+
             if date_obj.weekday() >= 5:
                 return None, "Exams cannot be scheduled on weekends"
+
             exam.date = date_obj
-        # Validate and set time
+
+        # validate and set time
         if time is not None:
             try:
                 valid_time = int(time)
             except Exception:
                 return None, "Time must be an integer (9, 1, or 4)"
+
             if valid_time not in [9, 1, 4]:
                 return None, "Invalid time slot. Please choose a valid time slot (9, 1, or 4)"
+
             exam.time = valid_time
-        if venue_id:
+
+        # set venue
+        if venue_id is not None:
             exam.venue_id = venue_id
+
+        #split conflict check 
+        sibling_scheduled = (
+            db.session.query(Exam)
+            .filter(
+                Exam.id != exam.id,
+                Exam.courseCode == exam.courseCode,
+                Exam.date.isnot(None),
+                Exam.time.isnot(None),
+            )
+            .all()
+        )
+
+        if sibling_scheduled:
+            allowed_date = sibling_scheduled[0].date
+            allowed_time = sibling_scheduled[0].time
+
+            if exam.date != allowed_date or exam.time != allowed_time:
+                db.session.rollback()
+                return None, (
+                    f"Split conflict: {exam.courseCode} already has scheduled split(s) at "
+                    f"{allowed_date.strftime('%Y-%m-%d')} time {allowed_time}. "
+                    "All splits must share the same date and time."
+                )
+        if not prevent_merge:
+            if exam.date is not None and exam.time is not None and exam.venue_id is not None:
+                existing_same_slot = (
+                    db.session.query(Exam)
+                    .filter(
+                        Exam.id != exam.id,
+                        Exam.courseCode == exam.courseCode,
+                        Exam.date == exam.date,
+                        Exam.time == exam.time,
+                        Exam.venue_id == exam.venue_id,
+                    )
+                    .all()
+                )
+
+                if existing_same_slot:
+                    venue_obj = db.session.get(Venue, exam.venue_id)
+                    if venue_obj is not None:
+                        merged_total = exam.number_of_students + sum(
+                            e.number_of_students for e in existing_same_slot
+                        )
+                        if merged_total > venue_obj.capacity:
+                            db.session.rollback()
+                            return None, (
+                                f"Cannot auto-merge: merged total {merged_total} exceeds "
+                                f"venue capacity {venue_obj.capacity}"
+                            )
+
+                    keeper = existing_same_slot[0]
+                    keeper.number_of_students += exam.number_of_students
+                    db.session.delete(exam)
+                    db.session.commit()
+                    return keeper, None
 
         db.session.commit()
         return exam, None
+
     except Exception as e:
         db.session.rollback()
         return None, str(e)
+
+
     
 def get_exams_that_need_rescheduling():
     exams = db.session.query(Exam).filter(Exam.date == None).all()

@@ -63,6 +63,8 @@ def reschedule_exam_view():
     time_str = data.get('time')
     venue_id = data.get('venueId')
     unschedule = data.get('unschedule', False)
+    prevent_merge = data.get('preventMerge', False)
+
 
     if exam_id is None or exam_id == "":
         return jsonify({'error': 'Exam ID is required'}), 400
@@ -73,7 +75,7 @@ def reschedule_exam_view():
         return jsonify({'error': 'Exam ID must be an integer'}), 400
 
     try:
-        exam, error = reschedule_exam(exam_id, date_str, time_str, venue_id, unschedule)
+        exam, error = reschedule_exam(exam_id, date_str, time_str, venue_id, unschedule, prevent_merge)
         if error:
             if "weekends" in error.lower() or "date format" in error.lower() or "does not match format" in error.lower():
                 return jsonify({'error': error}), 400
