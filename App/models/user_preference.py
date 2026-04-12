@@ -15,3 +15,11 @@ class UserPreference(db.Model):
         self.user_id = user_id
         self.abs_threshold = abs_threshold
         self.perc_threshold = perc_threshold
+
+    def get_json(self):
+        return {
+            'user_id': self.user_id,
+            'abs_threshold': self.abs_threshold,
+            'perc_threshold': self.perc_threshold,
+            'update_time': self.update_time.isoformat() if self.update_time else None
+        }

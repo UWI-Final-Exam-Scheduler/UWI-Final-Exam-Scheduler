@@ -12,3 +12,9 @@ class Course(db.Model):
     def __init__(self, courseCode, name):
         self.courseCode = courseCode
         self.name = name
+
+    def get_json(self):
+        return {
+            'courseCode': self.courseCode,
+            'name': self.name
+        }

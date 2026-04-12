@@ -1,9 +1,11 @@
 from App.database import db
+from App.models.admin import Admin
 
 class Exam(db.Model):
     __tablename__ = "exams"
 
     id = db.Column(db.Integer, nullable=False, unique=True, primary_key=True, autoincrement=True)
+    admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'), nullable=True) 
     courseCode= db.Column(db.String(20), db.ForeignKey('courses.courseCode'), nullable=False)
     date = db.Column(db.Date, nullable=True, index=True)
     time = db.Column(db.Integer, nullable=False) 
@@ -13,11 +15,13 @@ class Exam(db.Model):
     
     course = db.relationship('Course', back_populates='exams')
     venue = db.relationship("Venue", back_populates="exams")
+    admin = db.relationship("Admin", back_populates="exams")
 
-    def __init__(self, courseCode, date, time, venue_id, exam_length, number_of_students):
+    def __init__(self, courseCode, date, time, venue_id, exam_length, number_of_students, admin_id=None):
         self.courseCode = courseCode
         self.date = date
         self.time = time
+        self.admin_id = admin_id
         self.venue_id = venue_id
         self.exam_length = exam_length
         self.number_of_students = number_of_students

@@ -141,6 +141,7 @@ class LoadFromLastStrategy(SchedulingStrategy):
 
     def execute(self, **kwargs):
         pdf_path = self.resolve_pdf_path(kwargs.get("pdf_path"))
+        admin_id = kwargs.get("admin_id")
 
         main_pattern = re.compile(
             r"^\d+\s+"
@@ -255,7 +256,8 @@ class LoadFromLastStrategy(SchedulingStrategy):
                                 time=time_int,
                                 venue_id=venue.id,
                                 exam_length=exam_length,
-                                number_of_students=number_of_students
+                                number_of_students=number_of_students, 
+                                admin_id=admin_id
                             )
                             new_exams.append(exam)
                             inserted += 1

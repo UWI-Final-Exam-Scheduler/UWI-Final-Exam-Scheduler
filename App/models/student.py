@@ -10,3 +10,7 @@ class Student(db.Model):
     def __init__(self, student_id):
         self.student_id = student_id
     
+    def get_json(self):
+        return {
+            'student_id': self.student_id
+        }

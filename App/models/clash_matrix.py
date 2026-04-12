@@ -17,3 +17,11 @@ class ClashMatrix(db.Model):
         self.course1 = course1
         self.course2 = course2
         self.clash_count = clash_count
+
+    def get_json(self):
+        return {
+            'id': self.id,
+            'course1': self.course1,
+            'course2': self.course2,
+            'clash_count': self.clash_count
+        }

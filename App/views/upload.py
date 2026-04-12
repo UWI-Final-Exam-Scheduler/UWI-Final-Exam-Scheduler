@@ -58,7 +58,7 @@ def receive_file_upload():
             # Replace timetable data on every timetable upload.
             Exam.query.delete()
             strategy = LoadFromLastStrategy()
-            msg = strategy.execute(pdf_path=tmp_file_path)
+            msg = strategy.execute(pdf_path=tmp_file_path, admin_id=authenticated_user)
 
             # Keep current student counts aligned if enrollments were uploaded first.
             if Enrollment.query.count() > 0:
