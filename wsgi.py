@@ -6,21 +6,21 @@ import click, pytest, sys
 from flask.cli import with_appcontext, AppGroup
 
 from flask.cli import with_appcontext, AppGroup
-from App.controllers.enrollments import create_enrollment, createTestEnrollments, import_enrollments_from_csv
+from App.controllers.enrollments import import_enrollments_from_csv
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users )
-from App.controllers.courses import get_subject_codes, import_courses_from_csv, create_course, get_all_courses, get_course_by_code, get_courses_by_subject
-from App.controllers.students import import_students_from_csv, create_student
+from App.controllers.courses import get_subject_codes, import_courses_from_csv, get_all_courses, get_course_by_code, get_courses_by_subject
+from App.controllers.students import import_students_from_csv
 from App.controllers.admin import create_admin
-from App.controllers.venue import get_exams_capacity_in_venue, import_venues_from_csv
+from App.controllers.venue import import_venues_from_csv
 from App.models.course import Course
 from App.models.enrollment import Enrollment
 from App.models.student import Student
 from App.models.user_preference import UserPreference
 from App.models.venue import Venue
 from App.controllers.clash_matrix import create_clash_matrix, view_conflicting_courses, view_course_clashes
-from App.controllers.exams import createTestExams, generate_timetable, get_all_days_with_exams, get_all_exams, get_exams_by_date, reschedule_exam, sync_exams_with_enrollment_data
+from App.controllers.exams import generate_timetable, get_all_days_with_exams, get_all_exams, get_exams_by_date, reschedule_exam, sync_exams_with_enrollment_data
 from App.models.clash_matrix import ClashMatrix
 from App.models.exam import Exam
 from App.controllers.user_preference import get_user_preferences, update_user_preferences
@@ -102,16 +102,17 @@ def export_clash_matrix():
     except Exception as e:
         print(f"Error exporting clash matrix: {e}")
 
-@app.cli.command("create-course", help="Creates a course")
-@click.argument("course_code")
-@click.argument("name", nargs=-1)
-def create_course_command(course_code, name):
-    name = " ".join(name)
-    try:
-        msg = create_course(course_code, name)
-        print(msg)
-    except Exception as e:
-        print(f"Error creating course: {e}")
+
+# @app.cli.command("create-course", help="Creates a course")
+# @click.argument("course_code")
+# @click.argument("name", nargs=-1)
+# def create_course_command(course_code, name):
+#     name = " ".join(name)
+#     try:
+#         msg = create_course(course_code, name)
+#         print(msg)
+#     except Exception as e:
+#         print(f"Error creating course: {e}")
 
 @app.cli.command("import-all-students", help="reads students data file into the database")
 def read_students():
@@ -125,14 +126,15 @@ def read_students():
     except Exception as e:
         print(f"Error importing students: {e}")
 
-@app.cli.command("create-student", help="Creates a student")
-@click.argument("student_id")
-def create_student_command(student_id):
-    try:
-        msg = create_student(student_id)
-        print(msg)
-    except Exception as e:
-        print(f"Error creating student: {e}")
+
+# @app.cli.command("create-student", help="Creates a student")
+# @click.argument("student_id")
+# def create_student_command(student_id):
+#     try:
+#         msg = create_student(student_id)
+#         print(msg)
+#     except Exception as e:
+#         print(f"Error creating student: {e}")
 
 @app.cli.command("import-all-enrollments", help="reads enrollments data file into the database")
 def read_enrollments():
@@ -147,15 +149,16 @@ def read_enrollments():
     except Exception as e:
         print(f"Error importing enrollments: {e}")     
 
-@app.cli.command("create-enrollment", help="Creates an enrollment")
-@click.argument("student_id")
-@click.argument("course_code")
-def create_enrollment_command(student_id, course_code):
-    try:
-        msg = create_enrollment(student_id, course_code)
-        print(msg)
-    except Exception as e:
-        print(f"Error creating enrollment: {e}")
+
+# @app.cli.command("create-enrollment", help="Creates an enrollment")
+# @click.argument("student_id")
+# @click.argument("course_code")
+# def create_enrollment_command(student_id, course_code):
+#     try:
+#         msg = create_enrollment(student_id, course_code)
+#         print(msg)
+#     except Exception as e:
+#         print(f"Error creating enrollment: {e}")
 
 @app.cli.command("import-all-venues", help="reads venues data file into the database")
 def read_venues():
@@ -208,13 +211,14 @@ def create_clash_matrix_command():
     except Exception as e:
         print(f"Error creating clash matrix: {e}")
 
-@app.cli.command("create-test-exams", help="Creates test exams in the database")
-def create_test_exams_command():
-    try:
-        createTestExams()
-        print("Test exams created successfully!")
-    except Exception as e:
-        print(f"Error creating test exams: {e}")
+
+# @app.cli.command("create-test-exams", help="Creates test exams in the database")
+# def create_test_exams_command():
+#     try:
+#         createTestExams()
+#         print("Test exams created successfully!")
+#     except Exception as e:
+#         print(f"Error creating test exams: {e}")
 
 @app.cli.command("create-test-enrollments", help="Creates test enrollments in the database")
 def create_test_enrollments_command():
@@ -264,13 +268,14 @@ def get_days_with_exams_command():
     except Exception as e:
         print(f"Error getting days with exams: {e}")
 
-@app.cli.command("get-venue-exams", help="Get all exams scheduled in a venue")
-@click.argument("venue_id", type=int)
-def get_venue_exams_command(venue_id):
-    try:
-        get_exams_capacity_in_venue(venue_id)
-    except Exception as e:
-        print(f"Error getting venue exams: {e}")
+
+# @app.cli.command("get-venue-exams", help="Get all exams scheduled in a venue")
+# @click.argument("venue_id", type=int)
+# def get_venue_exams_command(venue_id):
+#     try:
+#         get_exams_capacity_in_venue(venue_id)
+#     except Exception as e:
+#         print(f"Error getting venue exams: {e}")
 
 @app.cli.command("clear-exams")
 def clear_exams():

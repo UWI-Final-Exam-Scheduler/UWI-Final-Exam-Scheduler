@@ -1,17 +1,11 @@
-from flask import Blueprint, render_template, jsonify, request, flash, send_from_directory, flash, redirect, url_for
+from flask import Blueprint, jsonify, request
 from App.controllers.auth import is_admin
-from flask_jwt_extended import jwt_required, current_user, unset_jwt_cookies, set_access_cookies, decode_token, get_jwt_identity, get_jwt
-from App.models import User
+from flask_jwt_extended import jwt_required, unset_jwt_cookies, set_access_cookies, decode_token, get_jwt_identity, get_jwt
 from App.controllers.user import get_user_by_username 
 from App.controllers.user_preference import get_user_preferences, update_user_preferences
-from.index import index_views
 from App.controllers import login
 
 auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
-
-'''
-API Routes
-'''
 
 @auth_views.route('/api/auth/login', methods=['POST'])
 def user_login_api():
@@ -61,7 +55,7 @@ def get_user_preferences_route():
     preferences = get_user_preferences(authenticated_user)
 
     if preferences is None:
-        return jsonify(error='User preferences not found'), 404 #mock test needed
+        return jsonify(error='User preferences not found'), 404 
     return jsonify(preferences), 200
     
 
@@ -94,7 +88,7 @@ def identify():
             'message': f'Logged in as {username} ({role})'
         }), 200
     except Exception as e:
-        return jsonify(error='Unable to identify user'), 401 #mock test needed
+        return jsonify(error='Unable to identify user'), 401 
 
 @auth_views.route('/api/logout', methods=['GET'])
 def logout_api():

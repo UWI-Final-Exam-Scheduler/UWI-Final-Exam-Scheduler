@@ -1,10 +1,5 @@
-from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
-from App.controllers import venue
-from App.models.admin import Admin
-from flask_jwt_extended import jwt_required, current_user as jwt_current_user, get_jwt_identity
-
-from.index import index_views
-
+from flask import Blueprint, jsonify
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from App.controllers.venue import (
     get_all_venues,
     get_venue_by_name,
@@ -24,7 +19,7 @@ def get_venues_endpoint():
         
     try:
         venues = get_all_venues()
-        if venues is None:
+        if not venues:
             return jsonify({'error': 'No venues found'}), 404  #mock test needed
         return jsonify(venues), 200
     except Exception as e:
@@ -42,7 +37,7 @@ def get_venue_by_name_endpoint(venue_name):
     try:
         venue = get_venue_by_name(venue_name)
         if isinstance(venue, str):
-            return jsonify({'error': venue}), 404
+            return jsonify({'error': venue}), 404 #mock test needed
         return jsonify(venue), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500 #mock test needed

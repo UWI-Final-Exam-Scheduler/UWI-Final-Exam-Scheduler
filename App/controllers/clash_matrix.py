@@ -46,7 +46,7 @@ def exceeds_percentage_threshold(clash_count, enrollment_count, course1, course2
         return False
     return (clash_count / smaller_class) >= perc_thresh
 
-# would only show clashes when both thresholds are satisfied
+# would show clashes when either thresholds are exceeded
 def view_conflicting_courses(abs_threshold=5, perc_threshold=0.1):
     qualifying_clashes = []
     course_has_clash = set()
@@ -62,7 +62,7 @@ def view_conflicting_courses(abs_threshold=5, perc_threshold=0.1):
     clashes = ClashMatrix.query.filter(ClashMatrix.clash_count >= abs_threshold).all()
 
     for clash in clashes:
-        if absolute_threshold(clash.clash_count, abs_threshold=abs_threshold) and \
+        if absolute_threshold(clash.clash_count, abs_threshold=abs_threshold) or \
            exceeds_percentage_threshold(
                clash.clash_count,
                enrollment_count,
@@ -121,7 +121,6 @@ def view_conflicting_courses(abs_threshold=5, perc_threshold=0.1):
         "percentage_students_affected": round(affected_students_percentage, 2),
     }
 
-
 def view_course_clashes(course_code, abs_threshold=5, perc_threshold=0.1):
     course_code = course_code.upper()
     clashes = ClashMatrix.query.filter((ClashMatrix.course1 == course_code) | (ClashMatrix.course2 == course_code)).all()
@@ -132,11 +131,10 @@ def view_course_clashes(course_code, abs_threshold=5, perc_threshold=0.1):
     enrollments_counts = db.session.query(Enrollment.courseCode, db.func.count(Enrollment.student_id)).group_by(Enrollment.courseCode).all()
     enrollment_count = dict(enrollments_counts)
 
-
     course_clashes = []
     for clash in clashes:
         other_course = clash.course2 if clash.course1 == course_code else clash.course1
-        if absolute_threshold(clash.clash_count, abs_threshold=abs_threshold) and \
+        if absolute_threshold(clash.clash_count, abs_threshold=abs_threshold) or \
         exceeds_percentage_threshold(clash.clash_count, enrollment_count, clash.course1, clash.course2, perc_thresh=perc_threshold):
             course_clashes.append({
                 "other_course": other_course,

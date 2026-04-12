@@ -1,10 +1,8 @@
 from App.models import Exam, Course, Venue
 from App.models.enrollment import Enrollment
 from App.strategies.loadfromlast import LoadFromLastStrategy
-from App.controllers.venue import get_venue_by_name
 from App.database import db
 from datetime import datetime
-
 
 def generate_timetable(pdf_path=None):
     strategy = LoadFromLastStrategy()
@@ -13,17 +11,6 @@ def generate_timetable(pdf_path=None):
     if Enrollment.query.count() > 0:
         sync_exams_with_enrollment_data()   
     return result
-
-def createTestExams():
-    exam1 = Exam(courseCode="ACCT1002", date=datetime(2026, 5, 4).date(), time=9, venue_id=7, exam_length=120, number_of_students= 5)
-    exam2 = Exam(courseCode="AGBU1005", date=datetime(2026, 5, 4).date(), time=1, venue_id=7, exam_length=120, number_of_students= 5)
-    exam3 = Exam(courseCode="AGBU2000", date=datetime(2026, 5, 5).date(), time=9, venue_id=8, exam_length=120, number_of_students= 10)
-    exam4 = Exam(courseCode="AGBU2002", date=datetime(2026, 6, 5).date(), time=1, venue_id=9, exam_length=120, number_of_students= 7)
-    exam5 = Exam(courseCode="BIOC2061", date=datetime(2026, 6, 5).date(), time=4, venue_id=9, exam_length=120, number_of_students= 2)
-    exam6 = Exam(courseCode="BIOL0100", date=datetime(2026, 6, 9).date(), time=9, venue_id=10, exam_length=120, number_of_students= 3)
-    exam7 = Exam(courseCode="BIOL0100", date=datetime(2026, 6, 9).date(), time=9, venue_id=7, exam_length=120, number_of_students= 10)
-    db.session.add_all([exam1, exam2, exam3, exam4, exam5, exam6, exam7])
-    db.session.commit()
 
 def get_all_exams():
     exams = db.session.query(Exam).all()
@@ -59,7 +46,6 @@ def get_exams_by_date(exam_date):
             "number_of_students": exam.number_of_students
         })
     return exam_json
-
 
 def reschedule_exam(
     exam_id,
@@ -177,8 +163,6 @@ def reschedule_exam(
         db.session.rollback()
         return None, str(e)
 
-
-    
 def get_exams_that_need_rescheduling():
     exams = db.session.query(Exam).filter(Exam.date == None).all()
     if not exams:
@@ -243,7 +227,6 @@ def sync_exams_with_enrollment_data():
         db.session.rollback()
         raise e
     
-
 def split_exam(exam_id, splits, venue_id=None, time=None, date=None):
     existing = db.session.query(Exam).filter_by(id=exam_id).first()
     if not existing:

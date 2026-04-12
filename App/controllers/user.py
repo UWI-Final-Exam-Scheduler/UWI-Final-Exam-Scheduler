@@ -1,6 +1,5 @@
 from App.models import User, Admin
 from App.database import db
-from App.controllers.admin import create_admin
 
 def create_user(username, password, role='user'):
     if role == 'admin':

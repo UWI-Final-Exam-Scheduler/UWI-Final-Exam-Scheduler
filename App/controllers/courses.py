@@ -60,22 +60,6 @@ def import_courses_from_csv(file_path):
             f"Courses imported successfully! Added {inserted} new courses. "
             f"Skipped {skipped_existing} existing courses."
         )
-    
-def create_course(courseCode, name):
-    courseCode = normalize_course_code(courseCode)
-    
-    existing = Course.query.filter_by(courseCode=courseCode).first()
-    if existing:
-        raise ValueError(f"Course with code {courseCode} already exists.")
-    
-    course = Course(courseCode=courseCode, name=name)
-    db.session.add(course)
-    try:
-        db.session.commit()    
-    except Exception as e:
-        db.session.rollback()
-        raise e
-    return f"Course {courseCode} created successfully!"
 
 def get_all_courses(page=1, per_page=20):
     courses = db.session.query(Course).paginate(page=page, per_page=per_page)
