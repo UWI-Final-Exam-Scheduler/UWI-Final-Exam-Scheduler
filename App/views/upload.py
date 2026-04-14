@@ -1,10 +1,15 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
 import tempfile, os
-
-from App.models import Course, Student, Enrollment, Venue, Exam
+from App.models import Enrollment, Exam
 from App.database import db
-from App.controllers import (import_courses_from_csv, import_students_from_csv, import_enrollments_from_csv, import_venues_from_csv)
+from App.controllers import (
+    import_courses_from_csv,
+    import_students_from_csv,
+    import_enrollments_from_csv,
+    import_venues_from_csv,
+    sync_exams_with_enrollment_data,
+)
 from App.strategies.loadfromlast import LoadFromLastStrategy
 from flask_jwt_extended import get_jwt_identity
 from App.controllers.auth import is_admin
@@ -53,7 +58,11 @@ def receive_file_upload():
             # Replace timetable data on every timetable upload.
             Exam.query.delete()
             strategy = LoadFromLastStrategy()
-            msg = strategy.execute(pdf_path=tmp_file_path)
+            msg = strategy.execute(pdf_path=tmp_file_path, admin_id=authenticated_user)
+
+            # Keep current student counts aligned if enrollments were uploaded first.
+            if Enrollment.query.count() > 0:
+                sync_exams_with_enrollment_data()
         elif "course" in fname:
             msg = import_courses_from_csv(tmp_file_path)
         elif "student" in fname:

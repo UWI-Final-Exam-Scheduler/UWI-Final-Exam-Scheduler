@@ -38,7 +38,7 @@ class UserUnitTests(unittest.TestCase):
         assert user.password != password
 
     def test_check_password(self):
-        password = "mypass"
+        password = "bobpass"
         user = User("bob", password)
         assert user.check_password(password)
 

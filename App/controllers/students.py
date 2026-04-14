@@ -49,25 +49,3 @@ def import_students_from_csv(file_path):
             f"Students imported successfully! Added {inserted} new students. "
             f"Skipped {skipped_existing} existing students."
         )
-
-def create_student(student_id):
-    if len(str(student_id)) != 9:
-        raise ValueError("student_id must be exactly 9 digits")
-    
-    if not str(student_id).isdigit():
-        raise ValueError("student_id must contain only digits (no letters or other characters)")
-    
-    student_id = int(student_id)
-    
-    existing = Student.query.filter_by(student_id=student_id).first()
-    if existing:
-        raise ValueError(f"Student with ID {student_id} already exists.")
-    
-    student = Student(student_id=student_id)
-    db.session.add(student)
-    try:
-        db.session.commit()    
-    except Exception as e:
-        db.session.rollback()
-        raise e
-    return f"Student {student_id} created successfully!"

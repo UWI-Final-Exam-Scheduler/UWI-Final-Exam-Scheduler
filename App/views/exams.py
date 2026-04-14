@@ -1,11 +1,8 @@
 from datetime import datetime
-
-from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
-from App.controllers import exams, venue
-from App.models.admin import Admin
+from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user, get_jwt_identity
 from App.strategies.loadfromlast import LoadFromLastStrategy
-from App.controllers import get_exams_that_need_rescheduling, get_exams_by_date, reschedule_exam, get_all_exams, get_all_days_with_exams, sync_exams_with_enrollment_data, split_exam, merge_exams
+from App.controllers import get_exams_that_need_rescheduling, get_exams_by_date, reschedule_exam, get_all_exams, get_all_days_with_exams, split_exam, merge_exams
 from App.controllers.auth import is_admin
 
 exams_views = Blueprint('exams_views', __name__, template_folder='../templates')

@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "cd199114-f06d-49d3-bd9c-1ee45535c81f",
-    "name": "FINAL EXAM SCHEDULER",
+    "_postman_id": "e722b113-d958-4978-ad75-bfbb1cbc745c",
+    "name": "FINAL EXAM SCHEDULER PROJECT",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "42003085",
-    "_collection_link": "https://go.postman.co/collection/42003085-cd199114-f06d-49d3-bd9c-1ee45535c81f?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/42003085-e722b113-d958-4978-ad75-bfbb1cbc745c?source=collection_link"
   },
   "item": [
     {
@@ -49,8 +49,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "login"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             }
           },
           "response": []
@@ -85,8 +91,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/auth/identify",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "identify"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "identify"
+              ]
             }
           },
           "response": []
@@ -124,8 +136,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "login"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             }
           },
           "response": []
@@ -163,8 +181,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "login"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             }
           },
           "response": []
@@ -205,8 +229,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "login"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             }
           },
           "response": []
@@ -273,8 +303,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -324,8 +359,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -389,8 +429,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -440,8 +485,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -491,8 +541,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -542,8 +597,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -607,8 +667,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -659,8 +724,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -731,8 +801,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -783,8 +858,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -848,8 +928,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -900,8 +985,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -952,8 +1042,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/upload",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "upload"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "upload"
+                  ]
                 }
               },
               "response": []
@@ -1005,8 +1100,13 @@
             },
             "url": {
               "raw": "{{base_url}}/api/upload",
-              "host": ["{{base_url}}"],
-              "path": ["api", "upload"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "upload"
+              ]
             }
           },
           "response": []
@@ -1049,8 +1149,13 @@
             },
             "url": {
               "raw": "{{base_url}}/api/upload",
-              "host": ["{{base_url}}"],
-              "path": ["api", "upload"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "upload"
+              ]
             }
           },
           "response": []
@@ -1100,8 +1205,13 @@
             },
             "url": {
               "raw": "{{base_url}}/api/upload",
-              "host": ["{{base_url}}"],
-              "path": ["api", "upload"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "upload"
+              ]
             }
           },
           "response": []
@@ -1168,8 +1278,13 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/venues",
-              "host": ["{{base_url}}"],
-              "path": ["api", "venues"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "venues"
+              ]
             }
           },
           "response": []
@@ -1218,8 +1333,14 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/venues/JFK Auditorium",
-              "host": ["{{base_url}}"],
-              "path": ["api", "venues", "JFK Auditorium"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "venues",
+                "JFK Auditorium"
+              ]
             }
           },
           "response": []
@@ -1256,8 +1377,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/venues/SPEC",
-              "host": ["{{base_url}}"],
-              "path": ["api", "venues", "SPEC"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "venues",
+                "SPEC"
+              ]
             }
           },
           "response": []
@@ -1340,8 +1467,13 @@
             },
             "url": {
               "raw": "{{base_url}}/api/courses?page=1",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses"
+              ],
               "query": [
                 {
                   "key": "page",
@@ -1397,8 +1529,13 @@
             },
             "url": {
               "raw": "{{base_url}}/api/courses?page=0",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses"
+              ],
               "query": [
                 {
                   "key": "page",
@@ -1438,11 +1575,22 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer{{admin_token}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/courses?per_page=0",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses"
+              ],
               "query": [
                 {
                   "key": "per_page",
@@ -1504,8 +1652,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/courses/BIOL2163",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses", "BIOL2163"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "BIOL2163"
+              ]
             }
           },
           "response": []
@@ -1570,8 +1724,15 @@
             },
             "url": {
               "raw": "{{base_url}}/api/courses/subject/ECON?page=1",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses", "subject", "ECON"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "subject",
+                "ECON"
+              ],
               "query": [
                 {
                   "key": "page",
@@ -1620,8 +1781,15 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/courses/subject/ECON?page=0",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses", "subject", "ECON"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "subject",
+                "ECON"
+              ],
               "query": [
                 {
                   "key": "page",
@@ -1670,8 +1838,15 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/courses/subject/ECON?per_page=0",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses", "subject", "ECON"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "subject",
+                "ECON"
+              ],
               "query": [
                 {
                   "key": "per_page",
@@ -1726,8 +1901,14 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/courses/subjects",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses", "subjects"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "subjects"
+              ]
             }
           },
           "response": []
@@ -1813,11 +1994,22 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/clash-matrix?abs_threshold=5&perc_threshold=0.10",
-              "host": ["{{base_url}}"],
-              "path": ["api", "clash-matrix"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clash-matrix"
+              ],
               "query": [
                 {
                   "key": "abs_threshold",
@@ -1857,11 +2049,22 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/clash-matrix?abs_threshold=five&perc_threshold=0.10",
-              "host": ["{{base_url}}"],
-              "path": ["api", "clash-matrix"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clash-matrix"
+              ],
               "query": [
                 {
                   "key": "abs_threshold",
@@ -1901,11 +2104,22 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/clash-matrix?abs_threshold=-5&perc_threshold=0.10",
-              "host": ["{{base_url}}"],
-              "path": ["api", "clash-matrix"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clash-matrix"
+              ],
               "query": [
                 {
                   "key": "abs_threshold",
@@ -1945,11 +2159,22 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/clash-matrix?abs_threshold=5&perc_threshold=ten",
-              "host": ["{{base_url}}"],
-              "path": ["api", "clash-matrix"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clash-matrix"
+              ],
               "query": [
                 {
                   "key": "abs_threshold",
@@ -2003,11 +2228,24 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/course/COMP1602/clash-matrix",
-              "host": ["{{base_url}}"],
-              "path": ["api", "course", "COMP1602", "clash-matrix"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "course",
+                "COMP1602",
+                "clash-matrix"
+              ]
             }
           },
           "response": []
@@ -2065,11 +2303,24 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/course/COMP1602/clash-matrix?abs_threshold={{abs_threshold}}&perc_threshold={{perc_threshold}}",
-              "host": ["{{base_url}}"],
-              "path": ["api", "course", "COMP1602", "clash-matrix"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "course",
+                "COMP1602",
+                "clash-matrix"
+              ],
               "query": [
                 {
                   "key": "abs_threshold",
@@ -2109,11 +2360,24 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/course/COMP1602/clash-matrix?abs_threshold=five&perc_threshold={{perc_threshold}}",
-              "host": ["{{base_url}}"],
-              "path": ["api", "course", "COMP1602", "clash-matrix"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "course",
+                "COMP1602",
+                "clash-matrix"
+              ],
               "query": [
                 {
                   "key": "abs_threshold",
@@ -2153,11 +2417,24 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "{{base_url}}/api/course/COMP1602/clash-matrix?abs_threshold={{abs_threshold}}&perc_threshold=ten",
-              "host": ["{{base_url}}"],
-              "path": ["api", "course", "COMP1602", "clash-matrix"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "course",
+                "COMP1602",
+                "clash-matrix"
+              ],
               "query": [
                 {
                   "key": "abs_threshold",
@@ -2267,8 +2544,13 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams"
+                  ]
                 }
               },
               "response": []
@@ -2323,8 +2605,14 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/exams/2026-12-11",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "2026-12-11"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "2026-12-11"
+                  ]
                 }
               },
               "response": []
@@ -2371,8 +2659,14 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/exams/2026-12-24",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "2026-12-24"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "2026-12-24"
+                  ]
                 }
               },
               "response": []
@@ -2411,8 +2705,14 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/exams/2026-12-24",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "2026-12-24"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "2026-12-24"
+                  ]
                 }
               },
               "response": []
@@ -2451,8 +2751,14 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/exams/2026-12-12",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "2026-12-12"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "2026-12-12"
+                  ]
                 }
               },
               "response": []
@@ -2546,7 +2852,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false,\r\n    \"preventMerge\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2555,8 +2861,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/reschedule",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "reschedule"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "reschedule"
+                  ]
                 }
               },
               "response": []
@@ -2637,7 +2949,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 4,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 4,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false,\r\n    \"preventMerge\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2646,8 +2958,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/reschedule",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "reschedule"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "reschedule"
+                  ]
                 }
               },
               "response": []
@@ -2728,7 +3046,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 4,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 4,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false,\r\n    \"preventMerge\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2737,8 +3055,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/reschedule",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "reschedule"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "reschedule"
+                  ]
                 }
               },
               "response": []
@@ -2819,7 +3143,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false,\r\n    \"preventMerge\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2828,8 +3152,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/reschedule",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "reschedule"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "reschedule"
+                  ]
                 }
               },
               "response": []
@@ -2900,7 +3230,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026/12/14\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026/12/14\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false,\r\n    \"preventMerge\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2909,8 +3239,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/reschedule",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "reschedule"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "reschedule"
+                  ]
                 }
               },
               "response": []
@@ -2977,7 +3313,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-12\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-12\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false,\r\n    \"preventMerge\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2986,8 +3322,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/reschedule",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "reschedule"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "reschedule"
+                  ]
                 }
               },
               "response": []
@@ -3054,7 +3396,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 2,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 2,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false,\r\n    \"preventMerge\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3063,8 +3405,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/reschedule",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "reschedule"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "reschedule"
+                  ]
                 }
               },
               "response": []
@@ -3131,7 +3479,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": \"two\",\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
+                  "raw": "{\r\n    \"examId\": {{exam_id}},\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": \"two\",\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false,\r\n    \"preventMerge\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3140,8 +3488,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/reschedule",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "reschedule"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "reschedule"
+                  ]
                 }
               },
               "response": []
@@ -3199,7 +3553,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"examId\": \"\",\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 2,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
+                  "raw": "{\r\n    \"examId\": \"\",\r\n    \"date\": \"2026-12-15\",\r\n    \"time\": 2,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false,\r\n    \"preventMerge\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3208,8 +3562,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/reschedule",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "reschedule"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "reschedule"
+                  ]
                 }
               },
               "response": []
@@ -3276,7 +3636,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"examId\": \"COMP2611\",\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false\r\n}\r\n",
+                  "raw": "{\r\n    \"examId\": \"COMP2611\",\r\n    \"date\": \"2026-12-14\",\r\n    \"time\": 1,\r\n    \"venueId\": {{venue_id}},\r\n    \"unschedule\": false,\r\n    \"preventMerge\": false\r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3285,8 +3645,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/reschedule",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "reschedule"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "reschedule"
+                  ]
                 }
               },
               "response": []
@@ -3346,8 +3712,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/need_rescheduling",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "need_rescheduling"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "need_rescheduling"
+                  ]
                 }
               },
               "response": []
@@ -3396,8 +3768,14 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/exams/days_with_exams",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "days_with_exams"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "days_with_exams"
+                  ]
                 }
               },
               "response": []
@@ -3503,8 +3881,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/split",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "split"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "split"
+                  ]
                 }
               },
               "response": []
@@ -3571,8 +3955,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/split",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "split"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "split"
+                  ]
                 }
               },
               "response": []
@@ -3651,8 +4041,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/split",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "split"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "split"
+                  ]
                 }
               },
               "response": []
@@ -3730,8 +4126,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/split",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "split"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "split"
+                  ]
                 }
               },
               "response": []
@@ -3811,8 +4213,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/split",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "split"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "split"
+                  ]
                 }
               },
               "response": []
@@ -3891,8 +4299,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/split",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "split"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "split"
+                  ]
                 }
               },
               "response": []
@@ -3971,8 +4385,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/split",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "split"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "split"
+                  ]
                 }
               },
               "response": []
@@ -4051,8 +4471,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/split",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "split"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "split"
+                  ]
                 }
               },
               "response": []
@@ -4084,8 +4510,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/merge",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "merge"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "merge"
+                  ]
                 }
               },
               "response": []
@@ -4133,8 +4565,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/merge",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "merge"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "merge"
+                  ]
                 }
               },
               "response": []
@@ -4182,8 +4620,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/merge",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "merge"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "merge"
+                  ]
                 }
               },
               "response": []
@@ -4231,8 +4675,14 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/exams/merge",
-                  "host": ["{{base_url}}"],
-                  "path": ["api", "exams", "merge"]
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "exams",
+                    "merge"
+                  ]
                 }
               },
               "response": []
@@ -4316,7 +4766,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"abs_threshold\": 7,\r\n    \"perc_threshold\": 0.1\r\n}",
+              "raw": "{\r\n    \"abs_threshold\": 4,\r\n    \"perc_threshold\": 0.1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -4325,8 +4775,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/auth/preferences",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "preferences"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "preferences"
+              ]
             }
           },
           "response": []
@@ -4381,12 +4837,23 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{base_url}}/api/auth/preferences",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "preferences"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "preferences"
+              ]
             }
           },
           "response": []
@@ -4435,8 +4902,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "login"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             }
           },
           "response": []
@@ -4483,8 +4956,13 @@
             },
             "url": {
               "raw": "{{base_url}}/api/upload",
-              "host": ["{{base_url}}"],
-              "path": ["api", "upload"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "upload"
+              ]
             }
           },
           "response": []
@@ -4527,8 +5005,13 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/venues",
-              "host": ["{{base_url}}"],
-              "path": ["api", "venues"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "venues"
+              ]
             }
           },
           "response": []
@@ -4571,8 +5054,14 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/venues/JFK Auditorium",
-              "host": ["{{base_url}}"],
-              "path": ["api", "venues", "JFK Auditorium"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "venues",
+                "JFK Auditorium"
+              ]
             }
           },
           "response": []
@@ -4622,8 +5111,13 @@
             },
             "url": {
               "raw": "{{base_url}}/api/courses",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses"
+              ]
             }
           },
           "response": []
@@ -4666,8 +5160,14 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/courses/BIOL2163",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses", "BIOL2163"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "BIOL2163"
+              ]
             }
           },
           "response": []
@@ -4710,8 +5210,15 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/courses/subject/COMP",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses", "subject", "COMP"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "subject",
+                "COMP"
+              ]
             }
           },
           "response": []
@@ -4754,8 +5261,14 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/courses/subjects",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses", "subjects"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "subjects"
+              ]
             }
           },
           "response": []
@@ -4805,8 +5318,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/auth/preferences",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "preferences"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "preferences"
+              ]
             }
           },
           "response": []
@@ -4849,8 +5368,13 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/exams",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams"
+              ]
             }
           },
           "response": []
@@ -4893,8 +5417,14 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/exams/2026-12-01",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "2026-12-01"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "2026-12-01"
+              ]
             }
           },
           "response": []
@@ -4937,8 +5467,13 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/clash-matrix",
-              "host": ["{{base_url}}"],
-              "path": ["api", "clash-matrix"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clash-matrix"
+              ]
             }
           },
           "response": []
@@ -4981,8 +5516,15 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/course/COMP1602/clash-matrix",
-              "host": ["{{base_url}}"],
-              "path": ["api", "course", "COMP1602", "clash-matrix"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "course",
+                "COMP1602",
+                "clash-matrix"
+              ]
             }
           },
           "response": []
@@ -5034,8 +5576,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/exams/reschedule",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "reschedule"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "reschedule"
+              ]
             }
           },
           "response": []
@@ -5078,8 +5626,14 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/exams/need_rescheduling",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "need_rescheduling"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "need_rescheduling"
+              ]
             }
           },
           "response": []
@@ -5122,8 +5676,14 @@
             ],
             "url": {
               "raw": "{{base_url}}/api/exams/days_with_exams",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "days_with_exams"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "days_with_exams"
+              ]
             }
           },
           "response": []
@@ -5175,8 +5735,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/exams/split",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "split"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "split"
+              ]
             }
           },
           "response": []
@@ -5228,8 +5794,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/exams/merge",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "merge"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "merge"
+              ]
             }
           },
           "response": []
@@ -5281,8 +5853,13 @@
             },
             "url": {
               "raw": "{{base_url}}/api/logout",
-              "host": ["{{base_url}}"],
-              "path": ["api", "logout"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "logout"
+              ]
             }
           },
           "response": []
@@ -5327,8 +5904,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/venues",
-              "host": ["{{base_url}}"],
-              "path": ["api", "venues"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "venues"
+              ]
             }
           },
           "response": []
@@ -5368,8 +5950,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/courses?page=1",
-              "host": ["{{base_url}}"],
-              "path": ["api", "courses"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses"
+              ],
               "query": [
                 {
                   "key": "page",
@@ -5415,8 +6002,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/exams",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams"
+              ]
             }
           },
           "response": []
@@ -5465,8 +6057,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/exams/reschedule",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "reschedule"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "reschedule"
+              ]
             }
           },
           "response": []
@@ -5506,8 +6104,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/exams/need_rescheduling",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "need_rescheduling"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "need_rescheduling"
+              ]
             }
           },
           "response": []
@@ -5547,8 +6151,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/exams/days_with_exams",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "days_with_exams"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "days_with_exams"
+              ]
             }
           },
           "response": []
@@ -5588,8 +6198,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/exams/split",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "split"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "split"
+              ]
             }
           },
           "response": []
@@ -5629,8 +6245,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/exams/merge",
-              "host": ["{{base_url}}"],
-              "path": ["api", "exams", "merge"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "exams",
+                "merge"
+              ]
             }
           },
           "response": []
@@ -5670,8 +6292,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/clash-matrix?abs_threshold=5&perc_threshold=0.10",
-              "host": ["{{base_url}}"],
-              "path": ["api", "clash-matrix"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clash-matrix"
+              ],
               "query": [
                 {
                   "key": "abs_threshold",
@@ -5721,8 +6348,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/auth/preferences",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "preferences"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "preferences"
+              ]
             }
           },
           "response": []
@@ -5771,8 +6404,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/auth/preferences",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "preferences"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "preferences"
+              ]
             }
           },
           "response": []
@@ -5843,6 +6482,22 @@
     },
     {
       "key": "exam_ids_by_courseCode",
+      "value": ""
+    },
+    {
+      "key": "exams_payload",
+      "value": ""
+    },
+    {
+      "key": "split_target_exam_id",
+      "value": ""
+    },
+    {
+      "key": "split_a",
+      "value": ""
+    },
+    {
+      "key": "split_b",
       "value": ""
     }
   ]
