@@ -1,3 +1,2 @@
 Method,Name,Error,Occurrences
-POST,POST /api/exams/split,HTTPError('502 Server Error: Bad Gateway for url: POST /api/exams/split'),1
-PATCH,PATCH /api/exams/reschedule,HTTPError('404 Client Error: Not Found for url: PATCH /api/exams/reschedule'),1
+GET,GET /api/exams,HTTPError('502 Server Error: Bad Gateway for url: GET /api/exams'),1
