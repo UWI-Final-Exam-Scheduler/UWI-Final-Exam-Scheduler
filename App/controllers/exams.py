@@ -1,12 +1,14 @@
 from App.models import Exam, Course, Venue
 from App.models.enrollment import Enrollment
 from App.strategies.loadfromlast import LoadFromLastStrategy
+from App.services.exam_scheduler_service import ExamSchedulerService
 from App.database import db
 from datetime import datetime
 
 def generate_timetable(pdf_path=None):
-    strategy = LoadFromLastStrategy()
-    result = strategy.execute(pdf_path=pdf_path)
+    # strategy = LoadFromLastStrategy()
+    scheduler = ExamSchedulerService()
+    result = scheduler.generate_timetable(pdf_path=pdf_path)
 
     if Enrollment.query.count() > 0:
         sync_exams_with_enrollment_data()   
