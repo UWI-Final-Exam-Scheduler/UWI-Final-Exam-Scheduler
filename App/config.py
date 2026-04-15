@@ -14,6 +14,8 @@ def load_config(app, overrides):
     env = os.environ.get('ENV', 'development') # default to 'development' if ENV is not set
     if env == 'production':
         db_url = os.environ.get('DATABASE_URI_NEON_PROD')
+    elif env == 'test':
+        db_url = os.environ.get('DATABASE_URI_SQLITE_TEST')
     else:
         db_url = os.environ.get('DATABASE_URI_NEON_DEV')
     
@@ -41,6 +43,7 @@ def load_config(app, overrides):
     app.config['JWT_ACCESS_COOKIE_NAME'] = 'access_token'
     app.config["JWT_TOKEN_LOCATION"] = ["cookies", "headers"]
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
+    app.config["JWT_COOKIE_SAMESITE"] = "None"
 
     # Set secure cookie settings based on environment
     is_production = (env == 'production') # boolean check for production environment
