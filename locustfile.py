@@ -24,28 +24,31 @@ class ExamSchedulerAdminUser(HttpUser):
     wait_time = between(0.5, 1)
  
     def on_start(self):
-        # Log in once at the start of each simulated user session.
-        self.token = None
+        self.csrf_token = None
+
         response = self.client.post(
             "/api/auth/login",
             json={"username": ADMIN_USERNAME, "password": ADMIN_PASSWORD},
             name="POST /api/auth/login",
         )
+
         if response.status_code == 200:
-            self.token = response.json().get("access_token")
+            # Extract CSRF token from cookies
+            self.csrf_token = self.client.cookies.get("csrf_access_token")
         else:
-            # If login fails, stop this user
-            self.token = None
+            raise Exception("Login failed")
  
     def on_stop(self):
         # Log out at the end of the session.
         self.client.get("/api/logout", name="GET /api/logout")
  
     def auth_headers(self) -> dict:
-        # Return the Authorization header for JWT-protected endpoints.
-        if not self.token:
-            return {}
-        return {"Authorization": f"Bearer {self.token}"}
+        headers = {}
+
+        if self.csrf_token:
+            headers["X-CSRF-TOKEN"] = self.csrf_token
+
+        return headers
     
     # AUTH ROUTES
 
