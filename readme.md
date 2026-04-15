@@ -2,7 +2,7 @@
 
 ## Overview
 
-The UWI Final Exam Scheduler is a Flask-based web application designed to streamline the exam scheduling process and reduce the occurrence of back-to-back exams for students. It provides tools for importing data, generating schedules, and managing exam allocations efficiently.
+The UWI Final Exam Scheduler is a Flask-based web application designed to streamline the exam scheduling process and reduce the occurrence of back-to-back exams for students. It provides tools for importing data, generating schedules, managing exam allocations, and detecting scheduling conflicts via a clash matrix.
 
 ---
 
@@ -25,15 +25,13 @@ The UWI Final Exam Scheduler is a Flask-based web application designed to stream
 
 The deployed application can be accessed here:
 
-👉 [https://uwi-final-exam-scheduler.onrender.com/](https://uwi-final-exam-scheduler.onrender.com/)
+[https://uwi-final-exam-scheduler.onrender.com/](https://uwi-final-exam-scheduler.onrender.com/)
 
 ---
 
 ## Running the Project Locally
 
-### 1. Install Dependencies
-
-Ensure you have Python installed, then install the required packages:
+### 1. Install Python Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -69,10 +67,22 @@ After changing the environment variable, reload your terminal or VS Code window 
 flask run
 ```
 
-The application should now be accessible at:
+The application is accessible at:
 
 ```
 http://127.0.0.1:5000/
+```
+
+To run with Gunicorn (mirrors production):
+
+```bash
+gunicorn -c gunicorn_config.py wsgi:app
+```
+
+Or via the npm script:
+
+```bash
+npm run prod-serve
 ```
 
 ---
@@ -81,7 +91,7 @@ http://127.0.0.1:5000/
 
 The project includes several custom Flask CLI commands to manage the database and load data. All commands are run using the `flask` CLI. For grouped commands, use the group prefix (e.g., `flask user ...`, `flask admin ...`).
 
-### 1. Reset Database
+### Reset Database
 
 Drops all tables and recreates the database schema.
 
@@ -263,31 +273,20 @@ flask admin get-all-days-with-exams
 
 ---
 
-### 8. User Preferences
-
-**Get user preferences:**
-
-```bash
-flask user get-preferences <user_id>
-```
+### 6. Load From Last Timetable
 
 **Update user preferences:**
 
 ```bash
-flask user update-preferences <user_id> --abs_threshold <int> --perc_threshold <float>
+flask load-from-last
 ```
 
----
+This command:
 
-### 9. Testing via CLI
-
-**Run user tests:**
-
-```bash
-flask test user [unit|int|all]
-```
-
-Default is `all` if not specified.
+- Parses exam data from a provided PDF
+- Creates courses if they do not already exist
+- Inserts exam records into the database
+- Supports split venues by creating separate exam entries
 
 ---
 
@@ -325,37 +324,25 @@ The test database file can be viewed at: `instance/test.db`
 
 ## API Testing (Postman / Newman)
 
-The project includes a Postman collection for testing API endpoints. You can run these tests using Newman.
+### API Tests (Newman / Postman)
 
-### Install Newman
+Install Newman:
 
 ```bash
 npm install -g newman
 ```
 
-### Run Postman Tests Locally
+**Run against local server:**
 
-1. **Set the environment variable to development:**
-   ```powershell
-   $env:ENV="development"
-   ```
-2. **Reload your terminal or VS Code window.**
-3. **Run the Postman collection:**
-   ```bash
-   npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment" --env-var "base_url=http://127.0.0.1:8080"
-   ```
+```bash
+npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment.json" --env-var "base_url=http://127.0.0.1:8080"
+```
 
-### Run Postman Tests in Production
+### Run Tests (Production)
 
-1. **Set the environment variable to production:**
-   ```powershell
-   $env:ENV="production"
-   ```
-2. **Reload your terminal or VS Code window.**
-3. **Run the Postman collection:**
-   ```bash
-   npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment" --env-var "base_url=https://uwi-final-exam-scheduler.onrender.com"
-   ```
+```bash
+npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment.json" --env-var "base_url=https://uwi-final-exam-scheduler.onrender.com"
+```
 
 ---
 
@@ -365,7 +352,7 @@ Environment variables required for the project (e.g., database URI, secrets) wil
 
 ---
 
-## Notes
+## Architecture Notes
 
 - The system follows an MVC-style Flask structure with controllers handling business logic.
 - Scheduling strategies (e.g., loading from previous timetables or optimisation approaches) are modular and can be extended.
