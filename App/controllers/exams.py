@@ -5,13 +5,14 @@ from App.services.exam_scheduler_service import ExamSchedulerService
 from App.database import db
 from datetime import datetime
 
-def generate_timetable(pdf_path=None):
+def generate_timetable(pdf_path=None, admin_id=None):
     # strategy = LoadFromLastStrategy()
     scheduler = ExamSchedulerService()
-    result = scheduler.generate_timetable(pdf_path=pdf_path)
+    # Pass admin_id to the scheduler if supported, else set it in the service/model layer
+    result = scheduler.generate_timetable(pdf_path=pdf_path, admin_id=admin_id)
 
     if Enrollment.query.count() > 0:
-        sync_exams_with_enrollment_data()   
+        sync_exams_with_enrollment_data()
     return result
 
 def get_all_exams():
