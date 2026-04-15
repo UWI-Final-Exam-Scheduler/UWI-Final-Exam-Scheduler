@@ -332,16 +332,10 @@ Install Newman:
 npm install -g newman
 ```
 
-**Run against local server:**
-
-```bash
-npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment.json" --env-var "base_url=http://127.0.0.1:8080"
-```
-
 ### Run Tests (Production)
 
 ```bash
-npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment.json" --env-var "base_url=https://uwi-final-exam-scheduler.onrender.com"
+npx newman run "Postman Prod/FINAL EXAM SCHEDULER PROD.postman_collection.json" -e "Postman Prod/Prod Environment.postman_environment" --env-var "base_url=https://uwi-final-exam-scheduler.onrender.com"
 ```
 
 ---
