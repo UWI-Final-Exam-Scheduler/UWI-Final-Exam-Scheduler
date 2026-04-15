@@ -70,7 +70,7 @@ flask run
 The application is accessible at:
 
 ```
-http://127.0.0.1:5000/
+http://127.0.0.1:8080
 ```
 
 To run with Gunicorn (mirrors production):
