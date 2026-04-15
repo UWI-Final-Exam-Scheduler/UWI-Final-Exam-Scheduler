@@ -45,7 +45,7 @@ def create_app(overrides={}):
                     ["http://localhost:3000", # frontend local
                      "http://localhost:8080", # backend local
                      "https://uwi-final-exam-scheduler.onrender.com", # backend production 
-                     "https://uwifinalexamcchedulerfrontend.vercel.app" # frontend production
+                     "https://uwifinalexamschedulerfrontend.vercel.app/" # frontend production
                     ]}},
         supports_credentials=True,
         allow_headers=["Content-Type", "Authorization"],

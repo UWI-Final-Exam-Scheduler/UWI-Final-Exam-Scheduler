@@ -8,19 +8,16 @@ The UWI Final Exam Scheduler is a Flask-based web application designed to stream
 
 ## Tech Stack
 
-| Layer                 | Technology                                                                             |
-| --------------------- | -------------------------------------------------------------------------------------- |
-| **Backend**           | Flask (Python)                                                                         |
-| **Auth**              | Flask-JWT-Extended (JWT Bearer tokens)                                                 |
-| **Database**          | PostgreSQL (NeonDB) via SQLAlchemy ORM                                                 |
-| **Migrations**        | Flask-Migrate / Alembic                                                                |
-| **Admin UI**          | Flask-Admin                                                                            |
-| **PDF Parsing**       | pdfplumber / pdfminer.six                                                              |
-| **Optimisation**      | PuLP (LP solver)                                                                       |
-| **Data Processing**   | Pandas / CSV handling                                                                  |
-| **Production Server** | Gunicorn + gevent workers                                                              |
-| **Testing**           | Pytest (unit/integration), Newman (API), Locust (performance), Mocha + Puppeteer (E2E) |
-| **Deployment**        | Render                                                                                 |
+- **Backend:** Flask (Python)
+- **Database:** PostgreSQL (NeonDB) with SQLAlchemy ORM
+- **Migrations:** Flask-Migrate
+- **Testing:** Pytest (with isolated test database)
+- **Data Processing:** Pandas / CSV handling
+- **Deployment:** Render
+
+---
+
+The UWI Final Exam Scheduler is a Flask-based web application designed to streamline the exam scheduling process and reduce the occurrence of back-to-back exams for students. It provides tools for importing data, generating schedules, and managing exam allocations efficiently.
 
 ---
 
@@ -40,16 +37,29 @@ The deployed application can be accessed here:
 pip install -r requirements.txt
 ```
 
-### 2. Set Environment Variables
+### 2. Set Environment Variable
 
-Create a `.env` file (or export variables) with at minimum:
+Before running the application or tests, set the `ENV` variable to control the environment mode:
 
+**For Windows PowerShell:**
+
+```powershell
+$env:ENV="development"
 ```
-DATABASE_URL=<your_postgres_connection_string>
-SECRET_KEY=<your_secret_key>
-JWT_SECRET_KEY=<your_jwt_secret>
-ENV=development
+
+**For production:**
+
+```powershell
+$env:ENV="production"
 ```
+
+**For testing:**
+
+```powershell
+$env:ENV="test"
+```
+
+After changing the environment variable, reload your terminal or VS Code window to ensure the new value is picked up.
 
 ### 3. Run the Application
 
@@ -79,7 +89,7 @@ npm run prod-serve
 
 ## WSGI CLI Commands
 
-The project includes several custom Flask CLI commands to manage the database and load data.
+The project includes several custom Flask CLI commands to manage the database and load data. All commands are run using the `flask` CLI. For grouped commands, use the group prefix (e.g., `flask user ...`, `flask admin ...`).
 
 ### Reset Database
 
@@ -89,41 +99,183 @@ Drops all tables and recreates the database schema.
 flask db-reset
 ```
 
-### Import Courses
+---
 
-Imports course data from a CSV file into the database.
+### 2. User and Admin Management
 
-```bash
-flask import-all-courses
-```
-
-### Import Students
-
-Imports student data from a CSV file.
+**Create a user:**
 
 ```bash
-flask import-all-students
+flask user create <username> <password> <role>
 ```
 
-### Import Enrollments
-
-Imports enrollment data linking students to courses.
+Example:
 
 ```bash
-flask import-all-enrollments
+flask user create test_user testpass admin
 ```
 
-### Import Venues
-
-Imports venue data including capacity information.
+**Create an admin:**
 
 ```bash
-flask import-all-venues
+flask admin create <username> <password>
 ```
 
-### Load From Last Timetable
+Example:
 
-Loads a previous year's timetable from a PDF file and inserts it into the database.
+```bash
+flask admin create admin1 adminpass
+```
+
+---
+
+### 3. Import Data
+
+**Import venues:**
+
+```bash
+flask admin import-venues
+```
+
+**Import students:**
+
+```bash
+flask admin import-students
+```
+
+**Import courses:**
+
+```bash
+flask admin import-courses
+```
+
+**Import enrollments:**
+
+```bash
+flask admin import-enrollments
+```
+
+---
+
+### 4. Import Past Timetable
+
+Loads a previous year's timetable from a PDF file and inserts it into the database. Optionally, you can specify an admin username to associate with the imported exams.
+
+```bash
+flask admin import-past-timetable --admin_username <admin_username>
+```
+
+If you omit `--admin_username`, the first admin in the database will be used.
+
+---
+
+### 5. Clash Matrix
+
+**Create clash matrix:**
+
+```bash
+flask create-clash-matrix
+```
+
+---
+
+### 6. Exam and Venue Management
+
+**View all venues:**
+
+```bash
+flask admin view-venues
+```
+
+**View a specific venue:**
+
+```bash
+flask admin view-venue "Venue Name"
+```
+
+**View all courses (paginated):**
+
+```bash
+flask admin view-courses --page <page> --per_page <per_page>
+```
+
+**View a course by code:**
+
+```bash
+flask admin view-course <course_code>
+```
+
+**View courses by subject (paginated):**
+
+```bash
+flask admin view-courses-by-subject <subject_code> --page <page> --per_page <per_page>
+```
+
+**View all subject codes:**
+
+```bash
+flask admin view-subject-codes
+```
+
+**Check if a course exists:**
+
+```bash
+flask admin course-exists <course_code>
+```
+
+---
+
+### 7. Exam Scheduling and Management
+
+**Get all exams:**
+
+```bash
+flask admin get-all-exams
+```
+
+**Get exams by date:**
+
+```bash
+flask admin get-exams-by-date <YYYY-MM-DD>
+```
+
+**Reschedule an exam:**
+
+```bash
+flask admin reschedule-exam <exam_id> --date <YYYY-MM-DD> --time <time> --venue_id <venue_id>
+```
+
+You can omit some arguments to use dynamic lookup (see CLI help for details).
+
+**Split an exam:**
+
+```bash
+flask admin split-exam '[{"number_of_students":10},{"number_of_students":10}]' --exam_id <id> --venue_id <id> --date <YYYY-MM-DD> --time <time>
+```
+
+**Merge exams:**
+
+```bash
+flask admin merge-exams --course_code <course_code> --date <YYYY-MM-DD> --time <time> --venue_id <id>
+```
+
+**Get exams that need rescheduling:**
+
+```bash
+flask admin get-exams-need-rescheduling
+```
+
+**Get all days with exams:**
+
+```bash
+flask admin get-all-days-with-exams
+```
+
+---
+
+### 6. Load From Last Timetable
+
+**Update user preferences:**
 
 ```bash
 flask load-from-last
@@ -131,195 +283,46 @@ flask load-from-last
 
 This command:
 
-- Parses exam data from a provided PDF using pdfplumber
+- Parses exam data from a provided PDF
 - Creates courses if they do not already exist
 - Inserts exam records into the database
 - Supports split venues by creating separate exam entries
 
 ---
 
-## Database Management
+## Running Unit and Integration Tests
 
-### Migrations
+Tests are configured using `pytest` and use an isolated test database.
+
+### 1. Set the environment variable to test:
+
+```powershell
+$env:ENV="test"
+```
+
+### 2. Reload your terminal or VS Code window.
+
+### 3. Initialize the test database:
 
 ```bash
-flask db migrate
+python init_test_db.py
 ```
 
-Use when changes to the code affect the database schema (e.g., adding or modifying models).
+### 4. Populate the test database (for CLI-related tests):
 
 ```bash
-flask db upgrade
+pytest App/tests/test_cli.py
 ```
 
-Apply the latest schema changes to the database.
-
----
-
-## API Reference
-
-All endpoints (except `/api/auth/login`) require a valid JWT Bearer token:
-
-```
-Authorization: Bearer <access_token>
-```
-
-Admin-only endpoints return `401` if the authenticated user does not have the `admin` role.
-
----
-
-### Auth
-
-| Method | Endpoint                | Auth  | Description                                                           |
-| ------ | ----------------------- | ----- | --------------------------------------------------------------------- |
-| `POST` | `/api/auth/login`       | None  | Log in; returns `access_token`, `user_id`, `username`, `role`         |
-| `GET`  | `/api/auth/identify`    | JWT   | Returns the current user's identity from the token                    |
-| `GET`  | `/api/auth/preferences` | Admin | Retrieve clash-detection thresholds for the current admin             |
-| `PUT`  | `/api/auth/preferences` | Admin | Update clash-detection thresholds (`abs_threshold`, `perc_threshold`) |
-| `GET`  | `/api/logout`           | JWT   | Clears JWT cookie                                                     |
-
-**Login request body:**
-
-```json
-{ "username": "admin", "password": "adminpass" }
-```
-
-**Preferences body (PUT):**
-
-```json
-{ "abs_threshold": 10, "perc_threshold": 0.15 }
-```
-
----
-
-### Exams
-
-All exam endpoints require **Admin** JWT.
-
-| Method  | Endpoint                       | Description                                          |
-| ------- | ------------------------------ | ---------------------------------------------------- |
-| `GET`   | `/api/exams`                   | List all exams                                       |
-| `GET`   | `/api/exams/<date>`            | List exams on a specific date (`YYYY-MM-DD`)         |
-| `GET`   | `/api/exams/days_with_exams`   | List all dates that have at least one exam scheduled |
-| `GET`   | `/api/exams/need_rescheduling` | List exams that are unscheduled or have conflicts    |
-| `PATCH` | `/api/exams/reschedule`        | Reschedule (or unschedule) a single exam             |
-| `POST`  | `/api/exams/split`             | Split an exam into multiple sittings                 |
-| `POST`  | `/api/exams/merge`             | Merge multiple exam splits back into one             |
-
-**Reschedule body (PATCH):**
-
-```json
-{
-  "examId": 42,
-  "date": "2026-12-10",
-  "time": 9,
-  "venueId": null,
-  "unschedule": false,
-  "preventMerge": false
-}
-```
-
-**Split body (POST):**
-
-```json
-{
-  "examId": 42,
-  "splits": [{ "number_of_students": 30 }, { "number_of_students": 25 }],
-  "venueId": null,
-  "time": 9,
-  "date": "2026-12-10"
-}
-```
-
-**Merge body (POST):**
-
-```json
-{ "examIds": [43, 44] }
-```
-
----
-
-### Courses
-
-All course endpoints require **Admin** JWT.
-
-| Method | Endpoint                                                 | Description                           |
-| ------ | -------------------------------------------------------- | ------------------------------------- |
-| `GET`  | `/api/courses?page=1&per_page=20`                        | Paginated list of courses             |
-| `GET`  | `/api/courses/<course_code>`                             | Single course detail                  |
-| `GET`  | `/api/courses/subjects`                                  | List distinct subject prefix codes    |
-| `GET`  | `/api/courses/subject/<subject_code>?page=1&per_page=20` | Paginated courses filtered by subject |
-
----
-
-### Venues
-
-All venue endpoints require **Admin** JWT.
-
-| Method | Endpoint                   | Description          |
-| ------ | -------------------------- | -------------------- |
-| `GET`  | `/api/venues`              | List all venues      |
-| `GET`  | `/api/venues/<venue_name>` | Single venue by name |
-
----
-
-### Clash Matrix
-
-Requires **Admin** JWT. Identifies pairs of courses sharing enrolled students.
-
-| Method | Endpoint                                                                    | Description                          |
-| ------ | --------------------------------------------------------------------------- | ------------------------------------ |
-| `GET`  | `/api/clash-matrix?abs_threshold=5&perc_threshold=0.1`                      | Full clash matrix across all courses |
-| `GET`  | `/api/course/<course_code>/clash-matrix?abs_threshold=5&perc_threshold=0.1` | Clashes for a single course          |
-
-**Query parameters:**
-
-- `abs_threshold` (int, default `5`) — minimum number of shared students to flag a clash
-- `perc_threshold` (float, default `0.1`) — minimum percentage overlap to flag a clash
-
----
-
-### File Upload
-
-Requires **Admin** JWT. The endpoint auto-detects file type from the filename.
-
-| Method | Endpoint      | Description                                            |
-| ------ | ------------- | ------------------------------------------------------ |
-| `POST` | `/api/upload` | Upload a CSV or timetable PDF (multipart `file` field) |
-
-**Supported files:**
-
-| Filename pattern      | Action                                            |
-| --------------------- | ------------------------------------------------- |
-| `*course*.csv`        | Import courses                                    |
-| `*student*.csv`       | Import students                                   |
-| `*enrollment*.csv`    | Import enrollments                                |
-| `*venue*.csv`         | Import venues                                     |
-| `*uwi*timetable*.pdf` | Replace all exam data from previous timetable PDF |
-
----
-
-### Users
-
-| Method | Endpoint     | Auth | Description      |
-| ------ | ------------ | ---- | ---------------- |
-| `GET`  | `/api/users` | None | Public user list |
-
----
-
-## Running Tests
-
-### Unit & Integration Tests (Pytest)
-
-Tests run against an isolated test database configured in `App/tests/conftest.py`.
+### 5. Run all other unit and integration tests:
 
 ```bash
 pytest
 ```
 
-Tests are located in `App/tests/` and cover controllers, models, strategies, and API views.
+The test database file can be viewed at: `instance/test.db`
 
----
+## API Testing (Postman / Newman)
 
 ### API Tests (Newman / Postman)
 
@@ -335,7 +338,7 @@ npm install -g newman
 npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment.json" --env-var "base_url=http://127.0.0.1:8080"
 ```
 
-**Run against production:**
+### Run Tests (Production)
 
 ```bash
 npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment.json" --env-var "base_url=https://uwi-final-exam-scheduler.onrender.com"
@@ -343,68 +346,34 @@ npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Po
 
 ---
 
-### Performance Tests (Locust)
-
-The `locustfile.py` simulates a full admin session exercising all major API endpoints with weighted task distribution.
-
-**Start the Locust web UI:**
-
-```bash
-locust -f locustfile.py --host=http://127.0.0.1:8080
-```
-
-Then open `http://localhost:8089` to configure users and spawn rate.
-
-**Override credentials via environment:**
-
-```bash
-LOCUST_USERNAME=admin LOCUST_PASSWORD=adminpass locust -f locustfile.py --host=http://127.0.0.1:8080
-```
-
----
-
-### E2E Tests (Mocha + Puppeteer)
-
-Requires Node.js and a running local server on port 8080.
-
-**Install dependencies:**
-
-```bash
-npm install
-```
-
-**Run tests:**
-
-```bash
-npm run e2e
-```
-
-E2E tests are located in `e2e/test.js` and use Puppeteer (headless Chrome) with Chai assertions.
-
----
-
 ## Environment Variables
 
-| Variable           | Description                                     |
-| ------------------ | ----------------------------------------------- |
-| `DATABASE_URL`     | PostgreSQL connection string                    |
-| `SECRET_KEY`       | Flask session secret                            |
-| `JWT_SECRET_KEY`   | Secret for signing JWTs                         |
-| `ENV`              | `development` or `production`                   |
-| `PORT`             | Port for Gunicorn (set automatically by Render) |
-| `WEB_CONCURRENCY`  | Number of Gunicorn workers (optional)           |
-| `GUNICORN_TIMEOUT` | Request timeout in seconds (default `180`)      |
+Environment variables required for the project (e.g., database URI, secrets) will be provided separately during handover.
 
 ---
 
 ## Architecture Notes
 
-- The system follows an MVC-style Flask structure: `models/`, `controllers/`, `views/`, `services/`, and `strategies/`.
-- Scheduling is implemented via the Strategy pattern (`App/strategies/`):
-  - `LoadFromLastStrategy` — parses a prior-year timetable PDF and seeds the database.
-  - `OptimizationStrategy` — LP-based schedule optimisation using PuLP (extensible).
-- The `ExamSchedulerService` acts as the orchestration layer between strategies and the database.
-- Clash detection is computed on-demand from current enrollment data and filtered by configurable absolute and percentage thresholds (stored per admin in `UserPreference`).
+- The system follows an MVC-style Flask structure with controllers handling business logic.
+- Scheduling strategies (e.g., loading from previous timetables or optimisation approaches) are modular and can be extended.
+
+---
+
+## Database Management
+
+### Migrations
+
+```
+flask db migrate
+```
+
+Use this command when changes to the code affect the database schema (e.g., adding or modifying models).
+
+```
+flask db upgrade
+```
+
+Use this command to apply the latest schema changes to the database.
 
 ---
 
@@ -418,6 +387,6 @@ E2E tests are located in `e2e/test.js` and use Puppeteer (headless Chrome) with 
 
 ## Future Improvements
 
-- Full LP optimisation strategy (PuLP scaffolding already in place in `App/strategies/optimize.py`)
+- Full optimisation-based scheduling strategy integration
 - Improved validation and error handling for imported data
 - Enhanced UI for schedule visualisation and editing
