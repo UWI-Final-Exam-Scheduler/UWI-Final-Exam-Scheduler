@@ -13,9 +13,10 @@ from App.controllers.exams import (
 )
 
 
-def create_exam(course="COMP1600", students=50, exam_date=None, time=9, venue_id=None):
+def create_exam(course="COMP1600", admin_id=None, students=50, exam_date=None, time=9, venue_id=None):
     exam = Exam(
         courseCode=course,
+        admin_id=admin_id,
         number_of_students=students,
         date=exam_date,
         time=time,

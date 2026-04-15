@@ -1,6 +1,19 @@
+import os
+from wsgi import app as cli_app
 import pytest
+import os
+from wsgi import app as cli_app
 from App.main import create_app
 from App.database import db
+
+# Ensure persistent test.db has all tables before any tests run
+@pytest.fixture(scope="session", autouse=True)
+def ensure_test_db_tables():
+    db_uri = cli_app.config["SQLALCHEMY_DATABASE_URI"]
+    # Only run for file-based SQLite DB
+    if db_uri.startswith("sqlite:///test.db"):
+        with cli_app.app_context():
+            db.create_all()
 
 
 @pytest.fixture

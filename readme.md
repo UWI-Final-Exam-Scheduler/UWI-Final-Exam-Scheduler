@@ -8,12 +8,12 @@ The UWI Final Exam Scheduler is a Flask-based web application designed to stream
 
 ## Tech Stack
 
-* **Backend:** Flask (Python)
-* **Database:** PostgreSQL (NeonDB) with SQLAlchemy ORM
-* **Migrations:** Flask-Migrate
-* **Testing:** Pytest (with isolated test database)
-* **Data Processing:** Pandas / CSV handling
-* **Deployment:** Render
+- **Backend:** Flask (Python)
+- **Database:** PostgreSQL (NeonDB) with SQLAlchemy ORM
+- **Migrations:** Flask-Migrate
+- **Testing:** Pytest (with isolated test database)
+- **Data Processing:** Pandas / CSV handling
+- **Deployment:** Render
 
 ---
 
@@ -39,7 +39,31 @@ Ensure you have Python installed, then install the required packages:
 pip install -r requirements.txt
 ```
 
-### 2. Run the Application
+### 2. Set Environment Variable
+
+Before running the application or tests, set the `ENV` variable to control the environment mode:
+
+**For Windows PowerShell:**
+
+```powershell
+$env:ENV="development"
+```
+
+**For production:**
+
+```powershell
+$env:ENV="production"
+```
+
+**For testing:**
+
+```powershell
+$env:ENV="test"
+```
+
+After changing the environment variable, reload your terminal or VS Code window to ensure the new value is picked up.
+
+### 3. Run the Application
 
 ```bash
 flask run
@@ -55,7 +79,7 @@ http://127.0.0.1:5000/
 
 ## WSGI CLI Commands
 
-The project includes several custom Flask CLI commands to manage the database and load data.
+The project includes several custom Flask CLI commands to manage the database and load data. All commands are run using the `flask` CLI. For grouped commands, use the group prefix (e.g., `flask user ...`, `flask admin ...`).
 
 ### 1. Reset Database
 
@@ -67,71 +91,237 @@ flask db-reset
 
 ---
 
-### 2. Import Courses
+### 2. User and Admin Management
 
-Imports course data from a CSV file into the database.
+**Create a user:**
 
 ```bash
-flask import-all-courses
+flask user create <username> <password> <role>
+```
+
+Example:
+
+```bash
+flask user create test_user testpass admin
+```
+
+**Create an admin:**
+
+```bash
+flask admin create <username> <password>
+```
+
+Example:
+
+```bash
+flask admin create admin1 adminpass
 ```
 
 ---
 
-### 3. Import Students
+### 3. Import Data
 
-Imports student data from a CSV file.
+**Import venues:**
 
 ```bash
-flask import-all-students
+flask admin import-venues
+```
+
+**Import students:**
+
+```bash
+flask admin import-students
+```
+
+**Import courses:**
+
+```bash
+flask admin import-courses
+```
+
+**Import enrollments:**
+
+```bash
+flask admin import-enrollments
 ```
 
 ---
 
-### 4. Import Enrollments
+### 4. Import Past Timetable
 
-Imports enrollment data linking students to courses.
+Loads a previous year's timetable from a PDF file and inserts it into the database. Optionally, you can specify an admin username to associate with the imported exams.
 
 ```bash
-flask import-all-enrollments
+flask admin import-past-timetable --admin_username <admin_username>
+```
+
+If you omit `--admin_username`, the first admin in the database will be used.
+
+---
+
+### 5. Clash Matrix
+
+**Create clash matrix:**
+
+```bash
+flask create-clash-matrix
 ```
 
 ---
 
-### 5. Import Venues
+### 6. Exam and Venue Management
 
-Imports venue data including capacity information.
+**View all venues:**
 
 ```bash
-flask import-all-venues
+flask admin view-venues
+```
+
+**View a specific venue:**
+
+```bash
+flask admin view-venue "Venue Name"
+```
+
+**View all courses (paginated):**
+
+```bash
+flask admin view-courses --page <page> --per_page <per_page>
+```
+
+**View a course by code:**
+
+```bash
+flask admin view-course <course_code>
+```
+
+**View courses by subject (paginated):**
+
+```bash
+flask admin view-courses-by-subject <subject_code> --page <page> --per_page <per_page>
+```
+
+**View all subject codes:**
+
+```bash
+flask admin view-subject-codes
+```
+
+**Check if a course exists:**
+
+```bash
+flask admin course-exists <course_code>
 ```
 
 ---
 
+### 7. Exam Scheduling and Management
 
-### 6. Load From Last Timetable
-
-Loads a previous year's timetable from a PDF file and inserts it into the database.
+**Get all exams:**
 
 ```bash
-flask load-from-last
+flask admin get-all-exams
 ```
 
-This command:
+**Get exams by date:**
 
-* Parses exam data from a provided PDF
-* Creates courses if they do not already exist
-* Inserts exam records into the database
-* Supports split venues by creating separate exam entries
+```bash
+flask admin get-exams-by-date <YYYY-MM-DD>
+```
+
+**Reschedule an exam:**
+
+```bash
+flask admin reschedule-exam <exam_id> --date <YYYY-MM-DD> --time <time> --venue_id <venue_id>
+```
+
+You can omit some arguments to use dynamic lookup (see CLI help for details).
+
+**Split an exam:**
+
+```bash
+flask admin split-exam '[{"number_of_students":10},{"number_of_students":10}]' --exam_id <id> --venue_id <id> --date <YYYY-MM-DD> --time <time>
+```
+
+**Merge exams:**
+
+```bash
+flask admin merge-exams --course_code <course_code> --date <YYYY-MM-DD> --time <time> --venue_id <id>
+```
+
+**Get exams that need rescheduling:**
+
+```bash
+flask admin get-exams-need-rescheduling
+```
+
+**Get all days with exams:**
+
+```bash
+flask admin get-all-days-with-exams
+```
 
 ---
 
-## Running Tests
+### 8. User Preferences
+
+**Get user preferences:**
+
+```bash
+flask user get-preferences <user_id>
+```
+
+**Update user preferences:**
+
+```bash
+flask user update-preferences <user_id> --abs_threshold <int> --perc_threshold <float>
+```
+
+---
+
+### 9. Testing via CLI
+
+**Run user tests:**
+
+```bash
+flask test user [unit|int|all]
+```
+
+Default is `all` if not specified.
+
+---
+
+## Running Unit and Integration Tests
 
 Tests are configured using `pytest` and use an isolated test database.
+
+### 1. Set the environment variable to test:
+
+```powershell
+$env:ENV="test"
+```
+
+### 2. Reload your terminal or VS Code window.
+
+### 3. Initialize the test database:
+
+```bash
+python init_test_db.py
+```
+
+### 4. Populate the test database (for CLI-related tests):
+
+```bash
+pytest App/tests/test_cli.py
+```
+
+### 5. Run all other unit and integration tests:
 
 ```bash
 pytest
 ```
+
+The test database file can be viewed at: `instance/test.db`
 
 ## API Testing (Postman / Newman)
 
@@ -143,17 +333,30 @@ The project includes a Postman collection for testing API endpoints. You can run
 npm install -g newman
 ```
 
-### Run Tests (Local)
+### Run Postman Tests Locally
 
-```bash
-npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment.json" --env-var "base_url=http://127.0.0.1:8080"
-```
+1. **Set the environment variable to development:**
+   ```powershell
+   $env:ENV="development"
+   ```
+2. **Reload your terminal or VS Code window.**
+3. **Run the Postman collection:**
+   ```bash
+   npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment" --env-var "base_url=http://127.0.0.1:8080"
+   ```
 
-### Run Tests (Production)
+### Run Postman Tests in Production
 
-```bash
-npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment.json" --env-var "base_url=https://uwi-final-exam-scheduler.onrender.com"
-```
+1. **Set the environment variable to production:**
+   ```powershell
+   $env:ENV="production"
+   ```
+2. **Reload your terminal or VS Code window.**
+3. **Run the Postman collection:**
+   ```bash
+   npx newman run ".\Postman\FINAL EXAM SCHEDULER.postman_collection.json" -e ".\Postman\Final Exam Scheduler Environment.postman_environment" --env-var "base_url=https://uwi-final-exam-scheduler.onrender.com"
+   ```
+
 ---
 
 ## Environment Variables
@@ -164,8 +367,8 @@ Environment variables required for the project (e.g., database URI, secrets) wil
 
 ## Notes
 
-* The system follows an MVC-style Flask structure with controllers handling business logic.
-* Scheduling strategies (e.g., loading from previous timetables or optimisation approaches) are modular and can be extended.
+- The system follows an MVC-style Flask structure with controllers handling business logic.
+- Scheduling strategies (e.g., loading from previous timetables or optimisation approaches) are modular and can be extended.
 
 ---
 
@@ -189,14 +392,14 @@ Use this command to apply the latest schema changes to the database.
 
 ## Data Handling Assumptions
 
-* Enrollment history is not permanently stored in the database.
-* At the end of each semester, enrollment data is exported externally.
-* The Enrollment table is cleared before the start of a new semester.
+- Enrollment history is not permanently stored in the database.
+- At the end of each semester, enrollment data is exported externally.
+- The Enrollment table is cleared before the start of a new semester.
 
 ---
 
 ## Future Improvements
 
-* Full optimisation-based scheduling strategy integration
-* Improved validation and error handling for imported data
-* Enhanced UI for schedule visualisation and editing
+- Full optimisation-based scheduling strategy integration
+- Improved validation and error handling for imported data
+- Enhanced UI for schedule visualisation and editing

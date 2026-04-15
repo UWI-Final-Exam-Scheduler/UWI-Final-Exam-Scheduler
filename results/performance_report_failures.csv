@@ -1,2 +1,1 @@
 Method,Name,Error,Occurrences
-GET,GET /api/exams,HTTPError('502 Server Error: Bad Gateway for url: GET /api/exams'),1
